@@ -38,13 +38,13 @@ This page describes how to create关系s with JHipster using the standard comman
 
 As we use JPA, 普通的一对多（one-to-many）, 多对一（many-to-one）, 多对多（many-to-many），一对一（one-to-one）关联关系有如下场景：
 
-1. [单个双向一对多（one-to-many）关系](#1)
-2. [单个单向多对多（many-to-one）关系](#2)
-3. [单个单向一对多（one-to-many）关系](#3)
+1. [双向一对多（one-to-many）关系](#1)
+2. [单向多对一（many-to-one）关系](#2)
+3. [单向一对多（one-to-many）关系](#3)
 4. [两个一对多（one-to-many） 关系，在两个相同的实体对象上](#4)
-5. [单个多对多（many-to-many）关系](#5)
-6. [单个一对一（one-to-one）关系](#6)
-7. [单个单向一对一（one-to-one）关系](#7)
+5. [多对多（many-to-many）关系](#5)
+6. [一对一（one-to-one）关系](#6)
+7. [单向一对一（one-to-one）关系](#7)
 
 _Tip: the `User` entity_
 
@@ -54,11 +54,11 @@ Please note that the `User` entity, which is handled by JHipster, is specific. Y
 - `many-to-many` and `one-to-one`关系s to the `User` entity, but the other entity __must__ be the owner
 of the关系 (a `Team` can have a many-to-many关系 to `User`, but only the team can add/remove users, and a user cannot add/remove a team). On the AngularJS client UI, you will also be able to select a `User` in a multi-select box.
 
-## <a name="1"></a> 单个双向一对多（one-to-many）关系
+## <a name="1"></a> 双向一对多（one-to-many）关系
 
 Let's start with two entities, a `Owner` and a `Car`. A owner can have many cars, and a car can have only one owner.
 
-这是一个非常普通的一对多（one-to-many）关系(一个 owner 拥有多个 car) 在“一”的一遍, 以及一个多对一（many-to-one）关系 (多个 car 拥有同一个 owner) 在另一边对象上:
+这是一个非常普通的一对多（one-to-many）关系(一个 owner 拥有多个 car) 在“一”的一边, 以及一个多对一（many-to-one）关系 (多个 car 拥有同一个 owner) 在另一边对象上:
 
     Owner (1) <-----> (*) Car
 
@@ -66,12 +66,12 @@ We will create the `Owner` first. Here are the relevant JHipster questions for t
 
     jhipster entity Owner
     ...
-    Generating关系s with other entities
-    ? Do you want to add a关系 to another entity? Yes
+    Generating relationships with other entities
+    ? Do you want to add a relationship to another entity? Yes
     ? What is the name of the other entity? Car
-    ? What is the name of the关系? car
-    ? What is the type of the关系? one-to-many
-    ? What is the name of this关系 in the other entity? owner
+    ? What is the name of the relationship? car
+    ? What is the type of the relationship? one-to-many
+    ? What is the name of this relationship in the other entity? owner
 
 Please note that we selected the default options concerning the names of the关系s.
 
@@ -98,11 +98,11 @@ The same can be achieved using the below JDL as well
 
 That's it, you now have a one-to-many关系 between those two entities! On the generated AngularJS client UI you will have a dropdown in `Car` to select a `Owner`.
 
-## <a name="2"></a> 单个单向的 many-to-one 关系
+## <a name="2"></a> 单向多对一（many-to-one）关系
 
 In the previous example we had a 双向关系: from a `Car` instance you could find its owner, and from a `Owner` instance you could get all of its cars.
 
-单个的多对一（many-to-one）关系意味着 car 对象可以关联到他们的 owner, 但反过来不行。
+多对一（many-to-one）关系意味着 car 对象可以关联到他们的 owner, 但反过来不行。
 
     Owner (1) <----- (*) Car
 
@@ -140,9 +140,9 @@ This is the corresponding JDL:
     }
 
 
-## <a name="3"></a> 单个单向一对多（one-to-many）关系
+## <a name="3"></a> 单向一对多（one-to-many）关系
 
-单个单向的一对多（one-to-many）关系 means that the `Owner` instance can get its collection of cars, but not the opposite. It is the opposite from the previous example.
+单向的一对多（one-to-many）关系 means that the `Owner` instance can get its collection of cars, but not the opposite. It is the opposite from the previous example.
 
     Owner (1) -----> (*) Car
 
@@ -217,7 +217,7 @@ The same can be achieved using the below JDL as well
 
 A `Car` can now have a driver and a owner, which are both `Person` entities. On the generated AngularJS client UI you will dropdowns in `Car` to select a `Person` for `owner` field and `driver` field.
 
-## <a name="5"></a> 单个多对多（many-to-many）关系
+## <a name="5"></a> 多对多（many-to-many）关系
 
 A `Driver` can drive many cars, but a `Car` can also have many drivers.
 
@@ -262,7 +262,7 @@ The same can be achieved using the below JDL as well
 
 That's it, you now have a many-to-many关系 between those two entities! On the generated AngularJS client UI you will have a multi-select dropdown in `Car` to select multiple `Driver` since `Car` is the owning side.
 
-## <a name="6"></a> 单个一对一（one-to-one）关系
+## <a name="6"></a> 一对一（one-to-one）关系
 
 Following our example, a one-to-one关系 would mean that a `Driver` can drive only one `Car`, and a `Car` can only have one `Driver`.
 
@@ -304,9 +304,9 @@ The same can be achieved using the below JDL as well
 
 That's it, you now have a one-to-one关系 between those two entities! On the generated AngularJS client UI you will have a dropdown in `Car` to select a `Driver` since `Car` is the owning side.
 
-## <a name="7"></a> 单个单向一对一（one-to-one）关系
+## <a name="7"></a> 单向一对一（one-to-one）关系
 
-单个单向一对一（one-to-one）关系 means that the `citizen` instance can get its passport, but the `passport` instance can't get to its owner.
+单向一对一（one-to-one）关系 means that the `citizen` instance can get its passport, but the `passport` instance can't get to its owner.
 
     Citizen (1) -----> (1) Passport
 

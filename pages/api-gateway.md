@@ -1,30 +1,32 @@
 ---
 layout: default
-title: API Gateway
+title: API 网关
 permalink: /api-gateway/
 sitemap:
     priority: 0.7
     lastmod: 2017-05-03T00:00:00-00:00
 ---
 
-# <i class="fa fa-exchange"></i> The JHipster API Gateway
+# <i class="fa fa-exchange"></i> JHipster API 网关
 
-JHipster can generate API gateways. A gateway is a normal JHipster application, so you can use the usual JHipster options and development workflows on that project, but it also acts as the entrance to your microservices. More specifically, it provides HTTP routing and load balancing, quality of service, security and API documentation for all microservices.
+JHipster 可以用来创建 API 网关应用。一个网关应用是一个普通的 JHipster 应用，
+所以你可以使用常规的 JHipster 选项及一些开发在这类应用上，
+ 同时它还扮演者微服务入口的角色。举例来说，它能提供 HTTP 路由、负载均衡、quality of service、安全、以及 所有微服务的 API 文档。
 
-## Summary
+## 摘要
 
-1. [Architecture diagram](#architecture_diagram)
-2. [HTTP routing](#http_routing)
-3. [Security](#security)
-4. [Automatic documentation](#documentation)
-5. [Rate limiting](#rate_limiting)
-6. [Access control policy](#acl)
+1. [架构图](#architecture_diagram)
+2. [HTTP 路由](#http_routing)
+3. [安全](#security)
+4. [自动生成文档](#documentation)
+5. [限速](#rate_limiting)
+6. [访问控制策略](#acl)
 
-## <a name="architecture_diagram"></a> Architecture diagram
+## <a name="architecture_diagram"></a> 架构图
 
 <img src="{{ site.url }}/images/microservices_architecture_detail.001.png" alt="Diagram" style="width: 800; height: 600" class="img-responsive"/>
 
-## <a name="http_routing"></a> HTTP requests routing using the gateway
+## <a name="http_routing"></a> HTTP 请求路由网关
 
 When the gateways and the microservices are launched, they will register themselves in the registry (using the `eureka.client.serviceUrl.defaultZone` key in the `src/main/resources/config/application.yml` file).
 
@@ -40,7 +42,7 @@ If there are several instances of the same service running, the gateway will get
 
 Each gateway has a specific "admin > gateway" menu, where opened HTTP routes and microservices instances can be monitored.
 
-## <a name="security"></a> Security
+## <a name="security"></a> 安全
 
 ### JWT (JSON Web Token)
 
@@ -69,7 +71,7 @@ You will find all UAA-related information on our specific <a href="/using-uaa/">
 
 Then, the gateway uses Spring Security's JWT implementation to send JWT tokens to the microservices.
 
-## <a name="documentation"></a> Automatic documentation
+## <a name="documentation"></a> 自动生成文档
 
 The gateway exposes the Swagger API definitions of the services it proxifies so you can benefit from all useful tools like Swagger UI and swagger-codegen.
 
@@ -79,16 +81,16 @@ Using this drop-down list, all microservices APIs are automatically documented, 
 
 When using a secured API, security tokens are automatically added to the Swagger UI interface, so all requests work out-of-the-box.
 
-## <a name="rate_limiting"></a> Rate limiting
+## <a name="rate_limiting"></a> 限速
 
 This is an advanced feature that uses [Bucket4j](https://github.com/vladimir-bukhtoyarov/bucket4j) and [Hazelcast](https://hazelcast.com/) to provide quality of service on microservices.
 
-Gateways provide rate-limiting features, so the number of REST requests can be limited:
+网关可以提供限速功能，REST 请求的数量可以被限制为：
 
-- by IP address (for anonymous users)
-- by user login (for logged-in users)
+- 根据 IP 地址 (匿名用户)
+- 根据用户登入 (登入用户)
 
-JHipster will then use [Bucket4j](https://github.com/vladimir-bukhtoyarov/bucket4j) and [Hazelcast](https://hazelcast.com/) to calculate request counts, and will send HTTP 429 (too many requests) errors when the limit is exceeded. The default limit per user is 100,000 API calls per hour.
+JHipster 使用 [Bucket4j](https://github.com/vladimir-bukhtoyarov/bucket4j) 和 [Hazelcast](https://hazelcast.com/) 来计算请求次数，并且会在达到限制时发送 HTTP 429 (请求过多)。默认的限制是每个用户每小时 100,000 次 API 调用。
 
 This is an important feature, to protect a microservice architecture from being flooded by a specific user's requests.
 
@@ -103,8 +105,8 @@ To enable rate limiting, open up the `application-dev.yml` or `application-prod.
 
 Data is stored in Hazelcast, so it is possible to scale gateways as long as the Hazelcast distributed cache is configured, which should work out-of-the-box:
 
-- All gateways have Hazelcast configured by default
-- If you use the [JHipster Registry]({{ site.url }}/jhipster-registry/), all instances of a gateway should automatically register themselves in a distributed cache
+- 所有的网关，默认配置使用 Hazelcast
+- 如果使用 [JHipster Registry]({{ site.url }}/jhipster-registry/), all instances of a gateway should automatically register themselves in a distributed cache
 
 If you want to add more rules, or modify the existing rules, you need to code them in the `RateLimitingFilter` class. Examples of modifications could be:
 
@@ -112,7 +114,7 @@ If you want to add more rules, or modify the existing rules, you need to code th
 - Adding limits per minute or per day
 - Removing all limits for "admin" users
 
-## <a name="acl"></a> Access control policy
+## <a name="acl"></a> 访问控制策略
 
 By default all registered microservices are available through the gateway. If you want to exclude a specific API from being exposed through the gateway, you can use the gateway's specific access control policy filter. It is configurable using the `jhipster.gateway.authorized-microservices-endpoints` key in the `application-*.yml` files:
 

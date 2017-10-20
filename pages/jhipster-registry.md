@@ -7,31 +7,31 @@ sitemap:
     lastmod: 2017-05-03T00:00:00-00:00
 ---
 
-# <i class="fa fa-dashboard"></i> The JHipster Registry
+# <i class="fa fa-dashboard"></i> JHipster Registry
 
-## Overview
+## 概述
 
-The JHipster Registry is a runtime application, provided by the JHipster team. Like the JHipster generator, it is an Open Source, Apache 2-licensed application, and its source code is available on GitHub under the JHipster organization at [jhipster/jhipster-registry](https://github.com/jhipster/jhipster-registry).
+JHipster Registry 是一个运行时应用，由 JHipster 团队开发。就像 JHipster，它也是开源的，基于 Apache 2 开原协议，它的代码在 GitHub 上：[jhipster/jhipster-registry](https://github.com/jhipster/jhipster-registry).
 
-The JHipster Registry has three main purposes:
+JHipster Registry has 三个主要目标：
 
-- It is a an [Eureka server](https://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html), that serves as a discovery server for applications. This is how JHipster handles routing, load balancing and scalability for all applications.
-- It is a [Spring Cloud Config server](https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html), that provide runtime configuration to all applications.
-- It is an administration server, with dashboards to monitor and manage applications.
+- 作为 [Eureka 服务](https://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html), that serves as a discovery server for applications. This is how JHipster handles routing, load balancing and scalability for all applications.
+- 作为 [Spring Cloud 配置中心](https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html), that provide runtime configuration to all applications.
+- 作为管理中心，具备一个仪表板来监控应用。
 
-All those features are packaged into one convenient application with a modern Angular-based user interface.
+所有这些功能，都打包在同一个应用中，并具备一个潮流的 Angular 用户界面。
 
 ![]({{ site.url }}/images/jhipster-registry-animation.gif)
 
-## Summary
+## 摘要
 
-1. [Installation](#installation)
+1. [安装](#installation)
 2. [Service discovery with Eureka](#eureka)
 3. [Application configuration with Spring Cloud Config](#spring-cloud-config)
-4. [Administration dashboards](#dashboards)
+4. [管理中心](#dashboards)
 5. [Securing the JHipster Registry](#security)
 
-## <a name="installation"></a> Installation
+## <a name="installation"></a> 安装
 
 ### Spring profiles
 
@@ -46,11 +46,12 @@ Once the JHipster Registry is running, you can check its configuration in the `C
 
 ### Using the pre-packaged WAR file
 
-The JHipster Registry is available as an executable WAR file on our [Releases page](https://github.com/jhipster/jhipster-registry/releases).
+JHipster Registry 发布为一个可运行的 WAR 包，提供在我们的网页上：[发布网页](https://github.com/jhipster/jhipster-registry/releases).
 
-Download the WAR file, and run it as a usual JHipster application, using the profile you want to use (see the previous section about profiles). For example, to run it using a Spring Cloud Config configuration stored in the `central-config` directory:
+下载 WAR 文件，已普通 JHipster 应用的方式启动，设置你想要使用的 profile (看上面有关 profile 的章节)。例如, to run it using a Spring Cloud Config configuration stored in the `central-config` directory:
 
     ./jhipster-registry-<version>.war --security.user.password=admin --jhipster.security.authentication.jwt.secret=secret-key --spring.cloud.config.server.native.search-locations=file:./central-config
+（译注：windows 下不能这样运行）
 
 Note that it is important to provide a JWT secret key to the registry on startup, either via the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_SECRET` environment variable or with arguments as shown above. Another possible way is to set this value in the `application.yml` file of your centralized configuration source (which is loaded on startup by all your applications including the registry).
 
@@ -58,14 +59,14 @@ Similarly, to run the registry with the `prod` profile, adapt the arguments to y
 
     ./jhipster-registry-<version>.war --spring.profiles.active=prod --security.user.password=admin --jhipster.security.authentication.jwt.secret=secret-key --spring.cloud.config.server.git.uri=https://github.com/jhipster/jhipster-registry-sample-config
 
-### Building from source
+### 从源码构建
 
 The JHipster Registry can be cloned/forked/downloaded directly from [jhipster/jhipster-registry](https://github.com/jhipster/jhipster-registry). As the JHipster Registry is also a JHipster-generated application, you can run it like any other JHipster application:
 
 - run it in development with `./mvnw` (for the Java server) and `yarn start` (for managing the front-end), it will use by default the `dev` profile and it will be available at [http://127.0.0.1:8761/](http://127.0.0.1:8761/).
 - use `./mvnw -Pprod package` to package it in production, and generate the usual JHipster executable WAR file. You can then run the WAR file using the `dev` or `prod` Spring profile, for example: `./jhipster-registry-<version>.war --spring.profiles.active=prod`
 
-Please note that to use the `native` profile, you need to have a `central-config` directory with your configuration, so if you run `./jhipster-registry-<version>.war --spring.profiles.active=dev`, you need to have that directory set up.
+请注意使用 `native` profile 时，你还需要设置一个 `central-config` 目录， so if you run `./jhipster-registry-<version>.war --spring.profiles.active=dev`, you need to have that directory set up.
 
 ### Using Docker
 
@@ -81,7 +82,7 @@ It's very easy to host a JHipster Registry instance in the cloud. This is mandat
 
 Please read [the "microservices in production" documentation]({{ site.url }}/microservices-in-production/) to learn how to deploy the JHipster Registry to Cloud Foundry or to Heroku.
 
-## <a name="eureka"></a> Service discovery with Eureka
+## <a name="eureka"></a> 使用 Eureka 服务发现
 
 ![]({{ site.url }}/images/jhipster-registry-eureka.png)
 
@@ -90,7 +91,7 @@ The JHipster Registry is a [Netflix Eureka server](https://github.com/Netflix/eu
 - This is very useful for microservices architectures: this is how the gateways know which microservices are available, and which instances are up
 - For all applications, including monoliths, this is how the Hazelcast distributed cache can automatically scale, see [the Hazelcast cache documentation]({{ site.url }}/using-cache/)
 
-## <a name="spring-cloud-config"></a> Application configuration with Spring Cloud Config
+## <a name="spring-cloud-config"></a> 使用 Spring Cloud Config 配置应用
 
 ![]({{ site.url }}/images/jhipster-registry-spring-cloud-config.png)
 
@@ -110,14 +111,14 @@ For example, adding properties in a `gateway-prod.yml` file will set those prope
 
 As the Gateway routes are configured using Spring Boot, they can also be managed using the Spring Config Server, for example you could map application `app1-v1` to the `/app1` URL in your `v1` branch, and map application `app1-v2` to the `/app1` URL in your `v2` branch. This is a good way of upgrading microservices without any downtime for end-users.
 
-### <a name="encryption"></a> Using encrypted configuration values
+### <a name="encryption"></a> 使用加密配置值
 
-The JHipster Registry has a specific `configuration > encryption` page to allow easy encryption and decryption of configuration values.
+JHipster Registry 有一个特殊的 `configuration > encryption` 网页来执行加密和解密配置。
 
 To encrypt configuration values (for example, database passwords) you need to:
 
-- download the [JCE](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html) and install it by following the instructions in the downloaded files (this is only required if you are using the Oracle JDK).
-- set the `encrypt.key` property in `bootstrap.yml` (not `application.yml`) or use the `ENCRYPT_KEY` environment variable with your symmetric key passphrase.
+- 下载 [JCE](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html) and install it by following the instructions in the downloaded files (this is only required if you are using the Oracle JDK).
+- 设置 `encrypt.key` 属性，在 `bootstrap.yml` 文件里 (注意不是 `application.yml`) 或者设置 `ENCRYPT_KEY` 环境变量 with your symmetric key passphrase.
 
 If everything is setup correctly, you should be able to use the specific `Configuration > Encryption` page, and also send POST requests to `/config/encrypt` and `/config/decrypt` endpoints with the text you want to manipulate in the `body` of the requests.
 
@@ -127,7 +128,7 @@ The cipher text must be placed in any `*.yml` configuration file, in the form `p
 
 For more information, please refer to Spring Cloud Config's [Encryption and Decryption documentation](http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html#_encryption_and_decryption).
 
-## <a name="dashboards"></a> Administration dashboards
+## <a name="dashboards"></a> 管理中心
 
 The JHipster Registry provides administration dashboards, which are used for all application types. As soon as an application registers on the Eureka server, it will become available in the dashboards.
 
@@ -166,7 +167,7 @@ The configuration dashboard uses Spring Boot Actuator's configuration endpoint t
 
 The logs dashboard allows to manage at runtime the Logback configuration of the running application. Changing the log level of a Java package is as simple as clicking on a button, which is very convenient both in development and in production.
 
-## <a name="security"></a> Securing the JHipster Registry
+## <a name="security"></a> JHipster Registry 安全
 
 The JHipster Registry is secured by default. You can login using the usual "admin/admin" login and password that are used in normal JHipster applications.
 

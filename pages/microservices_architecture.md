@@ -1,35 +1,36 @@
 ---
 layout: default
-title: Doing microservices with JHipster
+title: 用 JHipster 设计微服务架构
 permalink: /microservices-architecture/
 sitemap:
     priority: 0.7
     lastmod: 2016-03-10T00:00:00-00:00
 ---
 
-# <i class="fa fa-sitemap"></i> Doing microservices with JHipster
+# <i class="fa fa-sitemap"></i> 用 JHipster 设计微服务架构
 
-## <a name="microservices_vs_monolithic"></a> Microservices vs Monolithic architecture
+## <a name="microservices_vs_monolithic"></a> 微服务 vs 传统架构
 
-The first question JHipster will ask you is the kind of application you want to generate. You have the choice between two architecture styles:
+使用 JHipster 时，第一个问题就是询问你选择哪种类型的应用。你可以选择两种应用架构风格：
 
-- A "monolithic" architecture uses a single, one-size-fits-all application, which contains both the front-end Angular code, and the back-end Spring Boot code.
-- A "microservices" architecture splits the front-end and the back-end, so that it's easier for your application to scale and survive infrastructure issues.
+- "巨石（monolithic）" 类架构使用一个单一的、one-size-fits-all 的应用，其内部包含前端的 Angular 代码，以及后端的 Spring Boot 代码。
+- "微服务（microservices）" 架构将前端和后端拆分开来，使你的应用 to scale and survive infrastructure issues.
 
-A "monolithic" application is much easier to work on, so if you don't have any specific requirements, this is the option we recommend, and our default option.
+"巨石 monolithic" 应用比较容易上手，所以如果你不是有特别的需要，这还是我们的推荐方式，也是 JHipster 的默认选项。
 
-## <a name="overview"></a> Microservices architecture overview
+## <a name="overview"></a> 微服务架构预览
 
-The JHipster microservices architecture works in the following way:
+JHipster 的微服务架构以下面介绍的方式工作：
 
- * A [gateway]({{ site.url }}/api-gateway/) is a JHipster-generated application (using application type `microservice gateway` when you generate it) that handles Web traffic, and serves an Angular application. There can be several different gateways, if you want to follow the [Backends for Frontends pattern](https://www.thoughtworks.com/insights/blog/bff-soundcloud), but that's not mandatory.
- * [Traefik]({{ site.url }}/traefik/) is a modern HTTP reverse proxy and load balancer that can work with a gateway.
- * The [JHipster Registry]({{ site.url }}/jhipster-registry/) is a runtime application on which all applications registers and get their configuration from. It also provides runtime monitoring dashboards.
- * [Consul]({{ site.url }}/consul/) is a service discovery service, as well as a key/value store. It can be used as an alternative to the JHipster Registry.
- * [JHipster UAA]({{ site.url }}/us/) is a JHipster-based User Authentication and Authorization system, which uses the OAuth2 protocol.
- * [Microservices]({{ site.url }}/creating-microservices/) are JHipster-generated applications (using application type `microservice application` when you generate them), that handle REST requests. They are stateless, and several instances of them can be launched in parallel to handle heavy loads.
- * The [JHipster Console](https://github.com/jhipster/jhipster-console) is a monitoring & alerting console, based on the ELK stack.
+ * [网关（gateway）]({{ site.url }}/api-gateway/) 是一个 JHipster 生成的应用（使用应用类型：`microservice gateway`），它处理网络流量，
+  并且服务为一个 Angular 应用。可以存在多个网关，如果你遵循 [Backends for Frontends pattern（译注：多前端架构）](https://www.thoughtworks.com/insights/blog/bff-soundcloud), 但这个并不是必要的。
+ * [Traefik]({{ site.url }}/traefik/) 是一个现代化的 HTTP 反向代理及负载均衡器，它可以和网关集成工作。
+ * [JHipster Registry]({{ site.url }}/jhipster-registry/) 是一个所有应用注册和配置中心。它还能提供运行时监控仪表盘。
+ * [Consul]({{ site.url }}/consul/) 是一个服务发现提供者，使用键/值对存储。它可以作为 JHipster Registry 的替代。
+ * [JHipster UAA]({{ site.url }}/us/) 是一个 JHipster 构建的 User 认证和鉴权中心，使用 OAuth2 协议。
+ * [Microservices]({{ site.url }}/creating-microservices/) 是指一堆用 JHipster 构建的应用（使用应用类型：`microservice application`），它们处理 REST 请求。它们都是无状态的，以及它们中的一些可以被运行为多个实例来应对高负载。
+ * [JHipster Console](https://github.com/jhipster/jhipster-console) 是一个监控和告警控制台，使用 ELK 架构。
 
-In the diagram below, the green components are specific to your application and the blue components provide its underlying infrastructure.
+下面的图，绿色组件是指你的应用，蓝色的组件提供基础架构。
 
 <img src="{{ site.url }}/images/microservices_architecture_2.png" alt="Diagram" style="width: 930px; height: 558px"/>

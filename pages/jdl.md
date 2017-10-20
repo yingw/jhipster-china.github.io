@@ -7,97 +7,106 @@ sitemap:
     lastmod: 2017-10-11T12:00:00-00:00
 ---
 
-# <i class="fa fa-star"></i> JHipster Domain Language (JDL)
+# <i class="fa fa-star"></i> JHipster Domain Language (JDL 语法)
 
 
-The JDL is a JHipster specific domain language where we have added the possibility to describe all your entities and their relationships in a single file (or more than one) with a simple and user-friendly syntax.
+JDL 是 JHipster 特质的 domain 语言，我们提供了能在一个文件（或多个）中来描述所有实体对象及其关系的能力，并且只需要很简单的、友好的语法。
 
-You can use our online [JDL-Studio]({{ site.url }}/jdl-studio/) IDE to create JDL and its UML visualization. You can create and export or share the URL of your JDL model as well.
+可以使用我们的在线工具 [JDL-Studio]({{ site.url }}/jdl-studio/) 来创建 JDL 及其 UML 视图。你还可以创建、导出、或分享你的模型。
 
-Once you have a generated project (either existing one or generated with `jhipster` command line), you can generate entities from a JDL file using the `import-jdl` sub-generator, by running `jhipster import-jdl your-jdl-file.jh` (make sure to execute this command under your JHipster project). You can also generate entities and export them as a JDL file using [JHipster UML]({{ site.url }}/jhipster-uml/), by running `jhipster-uml your-xmi-file.xmi --to-jdl` from the root of the generated JHipster application. To learn more about JHipster UML, and install it, go to the [JHipster UML documentation]({{ site.url }}/jhipster-uml/).
+一旦你创建了项目（现有的或者用 `jhipster` 命令工具创建的), 接下来你可以使用命令 `import-jdl` 来从 JDL 文件生成实体对象，执行：`jhipster import-jdl your-jdl-file.jh` (确保在 JHipster 项目目录下执行)。
+你还能用 [JHipster UML]({{ site.url }}/jhipster-uml/) 来创建实体对象并导出为 JDL 文件，执行 `jhipster-uml your-xmi-file.xmi --to-jdl`  (确保在 JHipster 项目目录下执行)。要了解更多关于如何安装和使用 JHipster UML, 访问 [JHipster UML documentation]({{ site.url }}/jhipster-uml/).
 
-This can be used as a replacement to using the [entity sub-generator]({{ site.url }}/creating-an-entity/). The idea is that it is much easier to [manage relationships]({{ site.url }}/managing-relationships/) using a visual tool than with the classical Yeoman questions and answers.
+这可以作为 [entity sub-generator]({{ site.url }}/creating-an-entity/) 工具的替代。
+核心思想是使用图形工具比使用传统的 Yeoman 问答来 [管理关联关系]({{ site.url }}/managing-relationships/) 要简单的多。
 
-The JDL project is [available on GitHub](https://github.com/jhipster/jhipster-core/), it is an Open Source project like JHipster (Apache 2.0 License). It can also be used as a node library to do JDL parsing.
+JDL 项目在 [GitHub 地址](https://github.com/jhipster/jhipster-core/), 它和 JHipster 一样是开源的并且遵循 Apache 2.0 开源协议。
+It can also be used as a node library to do JDL parsing.
 
-_If you like the JHipster Domain Language, don't forget to give the project a star on [GitHub](https://github.com/jhipster/jhipster-core/)!_
-_If you like the JDL Studio don't forget to give the project a star on [GitHub](https://github.com/jhipster/jdl-studio/)!_
+_如果你喜欢 JHipster Domain Language，别忘了给我们的项目一颗星 [GitHub](https://github.com/jhipster/jhipster-core/)!_
+_如果你喜欢 JDL Studio，也不要吝啬给我们再来一颗 [GitHub](https://github.com/jhipster/jdl-studio/)!_
 
-Here is the full JDL documentation:
+下面是完整的 JDL 文档：
 
-1. [JDL Sample](#sample)
-2. [How to use it](#howtojdl)  
-3. [The language](#jdllanguage)  
-  3.1 [Entity Declaration](#entitydeclaration)  
-  3.2 [Relationship Declaration](#relationshipdeclaration)  
-  3.3 [Enumerations](#enumerationdeclaration)  
-  3.4 [Blobs](#blobdeclaration)  
-  3.5 [Option declaration](#optiondeclaration)  
-  3.6 [Microservice-related options](#microserviceoptions)
-4. [Commenting](#commentingjdl)  
-5. [All the relationships](#jdlrelationships)  
-6. [Constants](#constants)  
-7. [Annexes](#annexes)  
-  7.1 [Available types and constraints](#types_and_constraints)  
-  7.2 [Available options](#all_options)  
-8. [Issues and bugs](#issues)  
+1. [JDL 样例](#sample)
+2. [如何使用](#howtojdl)  
+3. [语法](#jdllanguage)  
+  3.1 [声明实体对象](#entitydeclaration)  
+  3.2 [声明关联关系](#relationshipdeclaration)  
+  3.3 [枚举](#enumerationdeclaration)  
+  3.4 [Blob 类型](#blobdeclaration)  
+  3.5 [可选声明](#optiondeclaration)  
+  3.6 [微服务相关选项](#microserviceoptions)
+4. [备注](#commentingjdl)  
+5. [所有的关联](#jdlrelationships)  
+6. [内容](#constants)  
+7. [附录](#annexes)  
+  7.1 [类型和约束](#types_and_constraints)  
+  7.2 [可选项](#all_options)  
+8. [错误和 Bug](#issues)  
 
 ***
 
-# <a name="sample"></a> JDL Sample
+# <a name="sample"></a> JDL 样例
 
-The Oracle "Human Resources" sample application has been translated into JDL, and is available [here](https://github.com/jhipster/jhipster-core/blob/master/lib/dsl/example.jh). The same application is loaded by default in [JDL-Studio]({{ site.url }}/jdl-studio/) as well.
+我们将 Oracle 的 "人力资源" 样例程序翻译成了 JDL，放在 [这里](https://github.com/jhipster/jhipster-core/blob/master/lib/dsl/example.jh). 并且该程序是 [JDL-Studio]({{ site.url }}/jdl-studio/) 默认加载的模型。
 
-## <a name="howtojdl"></a> How to use it
+## <a name="howtojdl"></a> 如何使用
 
-If you want to use JHipster UML instead of the `import-jdl` sub-generator you need to install it by running `npm install -g jhipster-uml`.
+如果你打算使用 JHipster UML 而不是 `import-jdl` 命令工具，你还得安装它：`npm install -g jhipster-uml`.
 
-You can then use JDL files to generate entities:
+你可以使用 JDL 文件来生成实体对象：
 
-  - simply create a file with the extension '.jh' or '.jdl',
-  - declare your entities and relationships or create and download the file with [JDL-Studio]({{ site.url }}/jdl-studio/),
-  - in your JHipster application's root folder, run `jhipster import-jdl my_file.jdl` or `jhipster-uml my_file.jdl`.
+  - 创建一个后缀为 '.jh' 或 '.jdl' 的文件，
+  - 声明实体对象和关联关系，或者从 [JDL-Studio]({{ site.url }}/jdl-studio/) 下载该文件，
+  - 在 JHipster 应用的根目录中，执行：`jhipster import-jdl my_file.jdl` 或者 `jhipster-uml my_file.jdl`.
 
-and *Voilà*, you are done!
+and *Voilà*, 就行了！
 
-If you work in a team, perhaps you would like to have multiple files instead of one. We added this option so that you don't manually
-concatenate all the files into one, you just have to run `jhipster import-jdl my_file1.jh my_file2.jh` or `jhipster-uml my_file1.jh my_file2.jh`.
+[comment]: <> (This is a comment, it will not be included)
+[comment]: <> (in  the output file unless you use it in)
+[comment]: <> (a reference style link.)
+[//]: <> (This is also a comment.)
+[//]: # (This may be the most platform independent comment)
 
-If you do not want to regenerate your entities, while importing a JDL, you can use the `--json-only` flag to skip entity creation part and create only the json files in `.jhipster` folder.
+
+如果你在团队内工作，有可能需要多个文件而不是一个。我们也支持这样使你不需要手工把它们拼在一起，你需要执行：
+`jhipster import-jdl my_file1.jh my_file2.jh` 或者 `jhipster-uml my_file1.jh my_file2.jh`.
+
+如果你不想创建实体对象类，而只是需要 JSON 文件，你可以在导入时加上参数：`--json-only`，这样就只会在 `.jhipster` 目录里创建 json 文件，而不会创建那些实体对象了。
 
     jhipster import-jdl ./my-jdl-file.jdl --json-only
     
-By default `import-jdl` regenerates only entities which have changed, if you want all your entities to be regenerated then pass in the `--force`  flag. Please note that this will overwrite all your local changes to the entity files
+默认情况下，`import-jdl` 命令只会生成发生了改变的实体对象, 如果你需要所有的实体对象都重新生成一遍，可以加上参数：`--force`。请注意这会覆盖你在这些对象上做的所有变更。
 
     jhipster import-jdl ./my-jdl-file.jdl --force
 
-If you want to use it in your project, you can add do so by doing `npm install jhipster-core --save` to install it locally, and save it in your `package.json` file.
+如果你希望在项目内使用，你可以执行:`npm install jhipster-core --save` 来将之安装在本地，并保存在你的 `package.json` 文件里。
 
-## <a name="jdllanguage"></a> The language
-We tried to keep the syntax as friendly as we can for developers.
-You can do three things with it:
-  - Declare entities with their attributes,
-  - Declare the relationships between them,
-  - And declare some JHipster specific options.
+## <a name="jdllanguage"></a> 语法
+我们尽量将语法设计的对开发人员友好，你可用用它来做三件事：
+  - 定义实体对象和它们的属性，
+  - 定义它们之间的关联关系，
+  - 定义一下 JHipster 的选项。
 
 
-### <a name="entitydeclaration"></a> Entity declaration
+### <a name="entitydeclaration"></a> 声明实体对象
 
-The entity declaration is done as follows:
+实体对象的声明如下格式：
 
     entity <entity name> {
       <field name> <type> [<validation>*]
     }
 
-  - `<entity name>` is the name of the entity,
-  - `<field name>` the name of one field of the entity,
-  - `<type>` the JHipster supported type of the field,
-  - and as an option `<validation>` the validations for the field.
+  - `<entity name>` 是实体对象的名称，
+  - `<field name>` 实体对象的属性，
+  - `<type>` JHipster 支持的属性类型，
+  - 可选的 `<validation>` 类型的校验规则。
 
-The possible types and validations are those described [here](#annexes), if the validation requires a value, simply add `(<value>)` right after the name of the validation.
+所有的属性类型和校验规则在 [这里](#annexes)，如果校验规则需要一个值，还要加上 `(<value>)` 在校验规则的右边。
 
 
-Here's an example of a JDL code:
+一些 JDL 的例子：
 
 ```
 entity A
@@ -110,15 +119,15 @@ entity D {
 }
 ```
 
-Regexes are a bit special as they are used like this (from v1.3.6):
+正则表达式的写法稍微特别些 (v1.3.6 版本开始支持):
 ```
 entity A {
   myString required min(1) max(42) pattern(/[A-Z]+/)
 }
 ```
-If you're using the generator prior to v4.9.X, you'd need to use patterns like this `pattern('[A-Z]+'`).
+如果你在使用 v4.9.X 之前的版本，你得这样使用正则表达式：`pattern('[A-Z]+')`.
 
-Because the JDL was made to be simple to use and read, if your entity is empty (no field), you can just declare an entity with `entity A` or `entity A {}`.
+JDL 设计的易用可读，如果你的实体是空的（没有属性），你可以这样声明：`entity A` 或 `entity A {}`。
 
 Note that JHipster adds a default `id` field so that you needn't worry about it.
 
