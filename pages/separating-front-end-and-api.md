@@ -7,25 +7,24 @@ sitemap:
     lastmod: 2017-09-10T00:00:00-00:00
 ---
 
-# <i class="fa fa-unlink"></i> Separating the front-end and the API server
-
-## Introduction
-
+# <i class="fa fa-unlink"></i> 分离前端和 API 服务
+ 
+## 介绍
+ 
 JHipster is a "full-stack" development tool, and its goal is to make you work efficiently with your front-end code (AngularJS/Angular) and your back-end code (Spring Boot).
 
 However, it is a common requirement to separate the front-end and the back-end codes, typically because they are developed by different teams and have a different lifecycle.
 
 **Pleae note** that this isn't the default JHipster way of working: this isn't complex to do, and works well, but this is an advanced topic. If you are just getting started with JHipster, we recommend that you begin by using our standard way of working.
 
-## Generating only a front-end or a back-end application
-
+## 分别创建前端和后段程序
+ 
 You can choose to generate only a JHipster back-end or JHipster front-end application. At generation time, this is only a matter of choosing flags which are described in our [application generation documentation]({{ site.url }}/creating-an-app/):
 
-- `jhipster --skip-client` will only generate a back-end application (this is typically what JHipster microservices are)
-- `jhipster --skip-server` will only generate a front-end application
-
-## Directory layout
-
+- `jhipster --skip-client` 会只创建后段应用 (这就类似一个典型的微服务应用)
+- `jhipster --skip-server` 将会创建前端应用
+## 目录结构
+ 
 JHipster uses the standard Maven directory layout. When working on the back-end, you can just read the [Maven standard directory layout documentation](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html).
 
 When working on the front-end, there are 2 directories you need to know:
@@ -38,33 +37,33 @@ If you have separate teams working on the front-end and back-end, you have two s
 - Both teams can work on the same project. As the directories are separated, there won't have much conflicts between teams. To make things even cleaner, both teams could work on separate branches.
 - The front-end code can be stored in a specific Git project, and then imported into the main back-end project as a Git sub-module. This would require to move the client-side build scripts, but this is a simple refactoring.
 
-## HTTP requests routing and caching
-
+## HTTP 请求路由及缓存
+ 
 Once the front-end and back-end have been separated, the issue will be how to handle HTTP requests:
 
 - All API calls will use a `/api` prefix. If you are using Angular, there is also a specific `SERVER_API_URL` constant, defined in the `webpack.common.js` configuration, that can enrich this prefix. For example, you can use `"http://api.jhipster.tech:8081/"` as a back-end API server (If you do this, please read our documentation on CORS below).
 - Calls to `/` serve static assets (from the front-end), which should not be cached by the browser.
 - Calls to `/app` (which contains the client-side application) and to `/content` (which contains the static content, like images and CSS) should be cached in production, as those assets are hashed.
 
-# Using BrowserSync
+# 使用 BrowserSync
 
 In `dev` mode, JHipster uses BrowserSync for hot-reload of the front-end application. BrowserSync has a proxy ([here is its documentation](https://www.browsersync.io/docs/options#option-proxy)) that will route requests from `/api` to a back-end server (by default, `http://127.0.0.1:8080`).
 
 This only works in `dev` mode, but this is a very powerful way of accessing different API servers from the front-end.
 
-## Using CORS
+## 使用 CORS
 
 CORS ([Cross-origin request sharing](https://fr.wikipedia.org/wiki/Cross-origin_resource_sharing)) allow to access different back-end servers with the same front-end, without configuring a proxy.
 
-This is an easy-to-use solution, but it can be less secure in production.
+这里有一个简单的解决方案，但是在生产环境中并不是很安全。
 
-JHipster provides out-of-the-box a CORS configuration:
+JHipster 提供 out-of-the-box a CORS 配置:
 
-- CORS can be configured using the `jhipster.cors` property, as defined in [the JHipster common application properties]({{ site.url }}/common-application-properties/)
+- CORS 可以用 `jhipster.cors` 属性设置, 这里 有定义描述：[the JHipster common application properties]({{ site.url }}/common-application-properties/) （译注：）
 - It is enabled by default in `dev` mode for monoliths and gateways. It is disabled by default for microservices as you are supposed to access them through a gateway.
-- It is disabled by default in `prod` mode, for security reasons.
+- 生产环境 `prod` 中默认关闭, for security reasons.
 
-## Using NGinx
+## 使用 NGinx
 
 Another solution to separate the front-end and back-end codes is to use a proxy server. This is very common in production, and some teams also use this technique in development.
 
