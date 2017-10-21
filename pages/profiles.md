@@ -11,47 +11,47 @@ sitemap:
 
 # <i class="fa fa-group"></i> Profiles
 
-JHipster comes with two [Spring profiles](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-profiles.html) :
+JHipster 配以两个 [Spring profiles](http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-profiles.html) :
 
-*   `dev` for development: it focuses on ease of development and productivity
-*   `prod` for production: it focuses on performance and scalability
+*   `dev` 开发环境: 关注与开发方便和高效
+*   `prod` 生产环境: 关注于高性能和可扩展性
 
-Those profiles come in two different configurations:
+这些 profile 以两种形式存在：
 
-*   The Maven/Gradle profiles are used at build time. For example `./mvnw -Pprod package` or `./gradlew bootRepackage -Pprod` will package a production application.
-*   The Spring profiles work at run time. Some Spring beans will behave differently, depending on the profile.
+*   Maven/Gradle 的 profile 在编译时使用。例如 `./mvnw -Pprod package` 或 `./gradlew bootRepackage -Pprod` 将打生产环境包。
+*   Spring 的 profile 在运行时使用。一些 Spring 的 Bean 在不同 profile 环境中表现不太一样。
 
-Spring profiles are set by Maven/Gradle, so we have a consistency between the two methods: you will have a `prod` profile on Maven/Gradle and Spring at the same time.
+Spring 的 profile 也由 Maven/Gradle 设置，所以我们具备一套一致的设置方式，你会得到一个生产环境 `prod` 的 profile 同时在 Maven/Gradle 和 Spring 上。
 
-_Note:_ Spring profiles are used to configure the JHipster application properties, so you should be interested in reading our [Common application properties documentation]({{ site.url }}/common-application-properties/).
+_注意:_ Spring 的 profile 用来设置 JHipster 应用的属性（propertie），感兴趣的话可以阅读 [应用属性配置说明]({{ site.url }}/common-application-properties/).
 
-## By default, JHipster will use the `dev` profile
+## 默认 JHipster 使用 `dev` profile
 
-If you run the application without Maven/Gradle, launch the "Application" class (you can probably run it easily from your IDE by right-clicking on it).
+如果你不用 Maven/Gradle 启动应用，启动 "Application" 类 (在 IDE 中右键类来运行)。
 
-If you run the application with Maven, run `./mvnw` to use our Maven Wrapper, or `mvn` to use your own Maven installation.
+如果使用 Maven 启动，运行 `./mvnw` 来使用 Maven Wrapper, 或者 `mvn` 使用已安装的 Maven。
 
-If you run the application with Gradle, run `./gradlew` to use our Gradle Wrapper, or `gradle` to use your own Gradle installation.
+如果使用 Gradle 启动应用，运行 `./gradlew` 来使用 Gradle Wrapper, 或者 `gradle` 使用已安装的 Gradle。
 
-When using Angular 2+ if you need to do a clean run with webpack compilation enabled for `dev` profile you can pass the `webpack` param as below
+当使用 Angular 2+，如果希望运行一次完整的 webpack 编译 `dev` profile，你可以传入 `webpack` 参数：
 
   `./mvnw -Pdev,webpack`
-  or
+  或
   `./gradlew -Pdev -Pwebpack`
 
-## In production, JHipster has to run with the `prod` profile
+## 在生产环境，JHipster 必须使用 `prod` profile
 
 You can run JHipster in production directly using Maven or Gradle:
 
 *   With Maven, run `./mvnw -Pprod` (or `mvn -Pprod`)
 *   With Gradle, run `./gradlew -Pprod` (or `gradle -Pprod`)
 
-If you want to package your application as an executable WAR file, you should provide Maven or Gradle with a profile. E.g.,:
+如果希望打包为可执行 WAR 文件，可以在 package 时传 profile 给 Maven or Gradle。例如：
 
 *   With Maven, run `./mvnw -Pprod package` (or `mvn -Pprod package`)
 *   With Gradle, run `./gradlew -Pprod bootRepackage` (or `gradle -Pprod bootRepackage`)
 
-When you run your production application from a WAR file, the default is to use the same profile(s) as used during packaging. If you want to override this, you can explicitly provide an alternative in VM argument:
+当以 WAR 文件运行生产环境应用，默认既使用打包时指定的 profile。如果你希望复写这个 profile，可以在 VM 参数上提供明确的声明：
 
 *   `./java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=...`
 

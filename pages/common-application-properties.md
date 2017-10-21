@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Common application properties
+title: 应用属性配置说明
 permalink: /common-application-properties/
 sitemap:
     priority: 0.7
     lastmod: 2016-12-29T00:00:00-00:00
 ---
 
-# <i class="fa fa-flask"></i> Common application properties
+# <i class="fa fa-flask"></i> 应用属性 (property) 配置说明
 
 JHipster generates a Spring Boot application, and can be configured using the standard Spring Boot properties mechanism.
 
@@ -15,39 +15,39 @@ Those properties are configured at generation-time by JHipster, and often have d
 
 In a JHipster application, there are three kinds of properties:
 
-1. [Spring Boot standard application properties](#1)
-2. [JHipster application properties](#2)
-3. [Application-specific properties](#3)
+1. [Spring Boot 标准属性](#1)
+2. [JHipster 属性](#2)
+3. [应用专有的属性](#3)
 
-## <a name="1"></a> Spring Boot standard application properties
+## <a name="1"></a> Spring Boot 标准属性
 
-Like any Spring Boot application, JHipster allows you to configure any standard [Spring Boot application property](http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html).
+JHipster 应用就是 Spring Boot 应用，所以你可以配置任何标准的 [Spring Boot 应用属性](http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html).
 
-## <a name="2"></a> JHipster application properties
+## <a name="2"></a> JHipster 属性
 
-JHipster provides specific application properties, which come from the [JHipster server-side library](https://github.com/jhipster/jhipster). Those properties are standard for all JHipster projects, but some of them only work depending on what you selected when you built your application: for example the `jhipster.cache.hazelcast` key only works if you selected Hazelcast as your 2nd-level Hibernate cache.
+JHipster 提供了一些属性，服务于 [JHipster 服务端库](https://github.com/jhipster/jhipster)。这些属性是所有 JHipster 项目的标准属性，但是其中一部分也依赖于你在构建项目时选择的组件，举例来说：`jhipster.cache.hazelcast` 属性只有在你选择了 Hazelcast 作为 Hibernate 二级缓存的时候才有效。
 
-Those properties are configured using the `io.github.jhipster.config.JHipsterProperties` class.
+这些属性实现在类 `io.github.jhipster.config.JHipsterProperties` 里。
 
-Here is a documentation for those properties:
+这里有一个这些属性的说明：
 
     jhipster:
 
-        # Thread pool that will be used for asynchronous method calls in JHipster
+        # 异步调用的线程池
         async:
-            core-pool-size: 2 # Initial pool size
-            max-pool-size: 50 # Maximum pool size
-            queue-capacity: 10000 # Queue capacity of the pool
+            core-pool-size: 2 # 初始化池大小
+            max-pool-size: 50 # 最大池大小
+            queue-capacity: 10000 # 池的 Queue 容量
 
-        # HTTP configuration
+        # HTTP 配置
         http:
-            # V_1_1 for HTTP/1.1 or V_2_0 for HTTP/2.
-            # To use HTTP/2 you will need SSL support (see the Spring Boot "server.ssl" configuration)
+            # V_1_1 for HTTP/1.1 或 V_2_0 for HTTP/2.
+            # 如果你要使用 SSL，设置 HTTP/2 (参考 the Spring Boot "server.ssl" configuration)
             version: V_1_1
             cache: # Used by io.github.jhipster.web.filter.CachingHttpHeadersFilter
                 timeToLiveInDays: 1461 # Static assets are cached for 4 years by default
 
-        # Hibernate 2nd level cache, used by CacheConfiguration
+        # Hibernate 二级缓存, used by CacheConfiguration
         cache:
             hazelcast: # Hazelcast configuration
                 time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
@@ -71,12 +71,12 @@ Here is a documentation for those properties:
                     time-to-live-seconds: 60 # By default objects stay 1 hour (in minutes) in the cache
                     max-entries: 100 # Number of objects in each cache entry
 
-        # E-mail properties
+        # E-mail 属性
         mail:
             from: jhipster@localhost # The default "from" address for e-mails
             base-url: http://127.0.0.1:8080 # URL to the application, used inside e-mails
 
-        # Spring Security specific configuration
+        # Spring Security 配置
         security:
             remember-me: # JHipster secure implementation of the remember-me mechanism, for session-based authentication
                 # security key (this key should be unique for your application, and kept secret)
@@ -92,7 +92,7 @@ Here is a documentation for those properties:
                     token-validity-in-seconds: 86400 # Token is valid 24 hours
                     token-validity-in-seconds-for-remember-me: 2592000 # Remember me token is valid 30 days
 
-        # Swagger configuration
+        # Swagger 配置
         swagger:
             default-include-pattern: /api/.*
             title: JHipster API
@@ -107,7 +107,7 @@ Here is a documentation for those properties:
             host:
             protocols:
 
-        # DropWizard Metrics configuration, used by MetricsConfiguration
+        # DropWizard Metrics 配置, used by MetricsConfiguration
         metrics:
             jmx: # Export metrics as JMX beans
                 enabled: true # JMX is enabled by default
@@ -127,7 +127,7 @@ Here is a documentation for those properties:
                 enabled: false
                 reportFrequency: 60 # frequency of reports in seconds
 
-        # Logging configuration, used by LoggingConfiguration
+        # Logging 配置, used by LoggingConfiguration
         logging:
             logstash: # Forward logs to Logstash over a socket
                 enabled: false # Logstash is disabled by default
@@ -137,7 +137,7 @@ Here is a documentation for those properties:
             spectator-metrics: # Reports Netflix Spectator metrics in the logs
                 enabled: false # Spectator is disabled by default
 
-        # Spring Social specific configuration, for Twitter/Facebook/Google authentication
+        # Spring Social 配置, for Twitter/Facebook/Google authentication
         social:
             redirect-after-sign-in: "/#/home" # Redirect URL after successful authentication
 
@@ -161,7 +161,7 @@ Here is a documentation for those properties:
             # Comma-separated list of profiles that display a ribbon
             display-on-active-profiles: dev
 
-## <a name="3"></a> Application-specific properties
+## <a name="3"></a> 应用专有的属性
 
 Your generated application can also have its own Spring Boot properties. This is highly recommended, as it allows type-safe configuration of the application, as well as auto-completion and documentation within an IDE.
 

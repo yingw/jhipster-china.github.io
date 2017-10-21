@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Separating the front-end and the API server
+title: 分离前端和 API 服务
 permalink: /separating-front-end-and-api/
 sitemap:
     priority: 0.7
@@ -15,7 +15,7 @@ JHipster is a "full-stack" development tool, and its goal is to make you work ef
 
 However, it is a common requirement to separate the front-end and the back-end codes, typically because they are developed by different teams and have a different lifecycle.
 
-**Pleae note** that this isn't the default JHipster way of working: this isn't complex to do, and works well, but this is an advanced topic. If you are just getting started with JHipster, we recommend that you begin by using our standard way of working.
+**请注意** 这并非 JHipster 默认的工作方式：这并不复杂，并且运行正常，但毕竟是属于高级主题。如果你是刚刚接触 JHipster，我们还是推荐你使用标准方式开始。
 
 ## 分别创建前端和后段程序
  
@@ -23,19 +23,20 @@ You can choose to generate only a JHipster back-end or JHipster front-end applic
 
 - `jhipster --skip-client` 会只创建后段应用 (这就类似一个典型的微服务应用)
 - `jhipster --skip-server` 将会创建前端应用
+
 ## 目录结构
  
-JHipster uses the standard Maven directory layout. When working on the back-end, you can just read the [Maven standard directory layout documentation](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html).
+JHipster 使用标准的 Maven 目录结构。在后端应用结构上，参考 [Maven 标准目录结构说明](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html).
 
-When working on the front-end, there are 2 directories you need to know:
+至于前端，有两个目录你需要了解：
 
-- `src/main/webapp` is where the client application will be developed
-- `target/www` is where your client application will be packaged
+- `src/main/webapp` 是存放客户端应用代码的地方
+- `target/www` 是客户端应用打包的地方
 
-If you have separate teams working on the front-end and back-end, you have two solutions:
+如果你的团队分为前端和后端，你有两种做法：
 
-- Both teams can work on the same project. As the directories are separated, there won't have much conflicts between teams. To make things even cleaner, both teams could work on separate branches.
-- The front-end code can be stored in a specific Git project, and then imported into the main back-end project as a Git sub-module. This would require to move the client-side build scripts, but this is a simple refactoring.
+- 两个团队可以在一个项目上工作。As the directories are separated, there won't have much conflicts between teams. To make things even cleaner, both teams could work on separate branches.
+- 前端代码可以存在一个单独的 Git 项目里，然后以 Git 子模块的形式导入后端项目。这样做需要删掉客户端打包脚本，这非常简单。
 
 ## HTTP 请求路由及缓存
  
