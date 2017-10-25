@@ -51,7 +51,7 @@ JHipster Registry 发布为一个可运行的 WAR 包，提供在我们的网页
 下载 WAR 文件，已普通 JHipster 应用的方式启动，设置你想要使用的 profile (看上面有关 profile 的章节)。例如, to run it using a Spring Cloud Config configuration stored in the `central-config` directory:
 
     ./jhipster-registry-<version>.war --security.user.password=admin --jhipster.security.authentication.jwt.secret=secret-key --spring.cloud.config.server.native.search-locations=file:./central-config
-（译注：windows 下不能这样运行）
+（译注：windows 下不能这样运行，windows 环境应该是：`java -jar jhipster-registry-<version>.war`）
 
 Note that it is important to provide a JWT secret key to the registry on startup, either via the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_SECRET` environment variable or with arguments as shown above. Another possible way is to set this value in the `application.yml` file of your centralized configuration source (which is loaded on startup by all your applications including the registry).
 

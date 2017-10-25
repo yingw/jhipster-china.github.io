@@ -1,50 +1,50 @@
 ---
 layout: default
-title: Monitoring your JHipster Applications
+title: 监控你的 JHipster 应用
 permalink: /monitoring/
 sitemap:
     priority: 0.7
     lastmod: 2016-03-17T00:00:00-00:00
 ---
-# <i class="fa fa-line-chart"></i> Monitoring your JHipster Applications
+# <i class="fa fa-line-chart"></i> 监控你的 JHipster 应用
 
 JHipster provides several options to monitor your applications at runtime.
 
-## Summary
+## 简述
 
-1. [Generated dashboards](#generated-dashboards)
+1. [自动创建的仪表盘](#generated-dashboards)
 2. [JHipster Registry](#jhipster-registry)
 3. [JHipster Console](#jhipster-console)
-4. [Forwarding metrics to a supported third party monitoring system (JMX, Graphite, Prometheus)](#metrics-exporters)
+4. [将度量值转发给第三方监控系统（JMX, Graphite, Prometheus）](#metrics-exporters)
 5. [Zipkin](#zipkin)
-6. [Alerting with Elastalert](#elastalert)
+6. [使用 Elastalert 告警](#elastalert)
 
-## <a name="generated-dashboards"></a> Generated dashboards
+## <a name="generated-dashboards"></a> 自动创建的仪表盘
 
-For monoliths and gateways, JHipster generates several dashboards to monitor each application. Those dashboards are available at runtime, and are the easiest way to do some simple monitoring.
+针对传统类应用和网关，JHipster 会自动生成几个仪表盘来监控这些应用。这些仪表盘会在运行时工作，并提供一些简单的监控以最简单的方式。
 
-![JHipster Metrics page][jhipster-metrics-page]
+![JHipster 度量页][jhipster-metrics-page]
 
-### The metrics dashboard
+### 度量仪表盘
 
-The metrics dashboard uses Dropwizard metrics to give a detailed view of the application performance.
+度量仪表盘使用 Dropwizard 度量工具来展示应用性能。
 
-It gives metrics on:
+它可以监控这些：
 
-- the JVM
-- HTTP requests
-- methods used in Spring Beans (using the `@Timed` annotation)
-- database connection pool
+- JVM
+- HTTP 请求
+- 在 Spring Beans 中使用的方法(使用 `@Timed` 注解)
+- 数据连接池
 
-By clicking on the eye next to the JVM thread metrics, you will get a stacktrace of the running application, which is very useful to find out blocked threads.
+点击 JVM 线程度量旁边的眼睛按钮，你将能获取到应用的 stacktrace，对找线程阻塞（blocked threads）非常有帮助。
 
-### The health dashboard
+### health 仪表盘
 
 The health dashboard uses Spring Boot Actuator's health endpoint to give health information on various parts of the application. Many health checks are provided out-of-the-box by Spring Boot Actuator, and it's also very easy to add application-specific health checks.
 
-### The logs dashboard
+### 日志仪表盘
 
-The logs dashboard allows to manage at runtime the Logback configuration of the running application. Changing the log level of a Java package is as simple as clicking on a button, which is very convenient both in development and in production.
+日志仪表盘可以将 Logback 配置的应用日志合并显示。点击旁边的按钮可以改变 Java 包上日志的记录等级。这在开发和生产环境中都非常方便有用。
 
 ## <a name="jhipster-registry"></a> JHipster Registry
 
@@ -54,37 +54,37 @@ It mostly provides the same monitoring dashboards as in the previous section, bu
 
 ## <a name="jhipster-console"></a> JHipster Console
 
-The dashboards described in the previous sections only show the current value of application metrics, when advanced users want to monitor the evolution of those values over time.
+该仪表盘The dashboards described in the previous sections only show the current value of application metrics, when advanced users want to monitor the evolution of those values over time.
 
 Therefore JHipster applications can be configured to forward their metrics to an external monitoring system where they can be graphed over time and analyzed.
 
 To achieve this, JHipster provide the JHipster Console, a custom monitoring solution based on the ELK stack and fully integrated with JHipster.
 
-### Forwarding logs to the JHipster Console
+### 将日志转发到 JHipster Console
 
-To configure a JHipster application to forward their logs to JHipster Console, enable logstash logging in their `application-dev.yml` or `application-prod.yml`:
+要配置 JHipster 应用转发日志到 JHipster Console，需要在 `application-dev.yml` 或 `application-prod.yml` 中打开 logstash 的 logging 参数：
 
     jhipster:
         logging:
             logstash:
                 enabled: true
-                host: localhost # If using a Virtual Machine on Mac OS X or Windows with docker-machine, use the Docker's host IP here
+                host: localhost # 如果使用 Mac 虚拟机或者 Windows 的 docker-machine，在这里配置 Docker 主机 IP
                 port: 5000
                 queueSize: 512
 
-To configure metrics monitoring, enable metrics log reporting in your JHipster application:
+要配置度量监控，打开度量的日志报告功能：
 
     jhipster:
         metrics:
             logs:
                 enabled: true
-        	    reportFrequency: 60 # seconds
+        	    reportFrequency: 60 # 秒
 
-Setting those properties will enrich your forwarded logs with metrics coming from Dropwizard metrics.
+设置这些属性就能将你的日志转发到 Dropwizard 度量工具。
 
-### Overview of the JHipster Console
+### JHipster Console 概况
 
-The JHipster Console is a monitoring tool based on the [ELK Stack](https://www.elastic.co/products). It provides ready-to-use dashboards and analytics tools to have a real-time overview of your infrastructure's performance.
+JHipster Console is a monitoring tool based on the [ELK Stack](https://www.elastic.co/products). It provides ready-to-use dashboards and analytics tools to have a real-time overview of your infrastructure's performance.
 
 It is an Open Source application, available on GitHub at [jhipster/jhipster-console](https://github.com/jhipster/jhipster-console).
 
@@ -107,35 +107,36 @@ The JHipster Console fully supports the monitoring of a JHipster microservice ar
 - Zipkin server and UI to visualize traces and spans
 - Linking between the Zipkin UI and Kibana so that you can jump to the logs corresponding to a particular trace ID (to use this, click on the <span class="btn btn-primary btn-xs badge">Logs</span> icon in the trace page)
 
-### Setting up JHipster Console
+### 安装 JHipster Console
 
 If you already have a JHipster [microservice architecture]({{ site.url }}/microservices-architecture/) set up with the Docker Compose workflow, the JHipster Console can be automatically set up by the Docker Compose sub-generator.
 
-If you are using the monolithic version of JHipster, you can get the JHipster Console's Docker-Compose file [from GitHub](https://github.com/jhipster/jhipster-console/blob/master/bootstrap/docker-compose.yml) or with the following command:
+如果你使用的是传统应用，可以使用 JHipster Console 的 Docker-Compose 定义 [GitHub](https://github.com/jhipster/jhipster-console/blob/master/bootstrap/docker-compose.yml) 或者用下面的命令启动：
 
     curl -O https://raw.githubusercontent.com/jhipster/jhipster-console/master/bootstrap/docker-compose.yml
 
-Then you will be able to start the console with:
+然后启动之：
 
     docker-compose up -d
 
-It will start Elasticsearch, Logstash, Kibana and ElastAlert all at once. You will then be able to access the JHipster Console at [http://localhost:5601](http://localhost:5601). It should automatically receive logs from your applications if they have been correctly configured to forward their logs and metrics to Logstash.
+这会一次性启动 Elasticsearch, Logstash, Kibana 以及 ElastAlert。
+通过 [http://localhost:5601](http://localhost:5601) 访问 JHipster Console。如果一切配置正确，它就能开始从应用接受日志并转发日志和度量结果到 Logstash 了。
 
 <div class="alert alert-warning"><i> Warning: </i>
-if you use docker-machine to create the Docker host, instead of http://localhost:5601 please use your Docker's host IP here i.e., http://&lt;docker-host-ip&gt;:5601
+如果使用的是 docker-machine 来创建的 Docker 主机，使用 Docker 的主机 IP，例如：http://&lt;docker-host-ip&gt;:5601，而不是 http://localhost:5601。
 </div>
 
-To stop everything, run:
+停止 Console：
 
     docker-compose stop
 
-Once stopped, you can remove the containers if you don't intend to start them again:
+停止后，如果你不再需要了的话可以删除容器：
 
     docker-compose rm
 
-You can combine the two previous commands in one by running: `docker-compose down`.
+可以把两条命令合并了使用：`docker-compose down`.
 
-### Using JHipster Console
+### 使用 JHipster Console
 
 Once your application is running with logs and metrics forwarding enabled, you can view a dashboards by clicking on the **Load Saved Dashboards** icon ( <i class="fa fa-folder-open-o"></i> ) in the **Dashboard** tab.
 

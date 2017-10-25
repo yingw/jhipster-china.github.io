@@ -7,31 +7,31 @@ sitemap:
     lastmod: 2017-05-03T00:00:00-00:00
 ---
 
-# <i class="fa fa-cloud"></i> Microservices in production
+# <i class="fa fa-cloud"></i> 生产环境中的微服务
 
-## <a name="elk"></a> Microservices monitoring
+## <a name="elk"></a> 微服务监控
 
 Please refer to our [JHipster Registry documentation]({{ site.url }}/jhipster-registry) for learning which runtime dashboards are available, and how to use them.
 
 Our [monitoring documentation]({{ site.url }}/monitoring) is also very important, to learn specific information on using:
 
-- The JHipster Console to use ELK with your microservices architecture
-- Zipkin to trace HTTP requests throughout your services
-- Elastalert to get alerted when an issue occurs
+- JHipster 控制台来使用 ELK；
+- Zipkin 来创建 HTTP 服务请求追踪；
+- 当有错误发生时，Elastalert（译注：？） 来获取告警
 
 When using the Docker-Compose sub-generator, you will be asked if you want to add monitoring to your infrastructure. This option will add the JHipster Console to your `docker-compose.yml` file. Once started, it will be available on [http://localhost:5601](http://localhost:5601) and start to gather your applications' logs and metrics.
 
 For gateways and microservices applications, additional features are provided to help you effectively monitor a microservices cluster. For example logs are enriched with each application's name, host, port and Eureka/Consul ServiceId so that you can trace from which service instance they are originating from. The JHipster Console also comes with default dashboards that give you an overview of all your services metrics.
 
-## <a name="docker_compose"></a> Using Docker Compose to develop and deploy
+## <a name="docker_compose"></a> 使用 Docker Compose 来开发和部署
 
-Working on a microservices architecture means you will need several different services and databases working together, and in that context Docker Compose is a great tool to manage your development, testing and production environments.
+使用微服务架构意味着你将会有好几个不同的服务和数据库，这种场景下使用 Docker Compose 将会是一个管理你开发、测试、生成环境的强大工具。
 
-A specific section on microservices is included in our [Docker Compose documentation]({{ site.url }}/docker-compose#microservices), and we highly recommend that you get familiar with it when working on a microservices architecture.
+在我们的 [Docker Compose 说明文档]({{ site.url }}/docker-compose#microservices) 有一个章节介绍微服务，我们强烈推荐使用微服务架构的你能熟悉这个文档。
 
-As Docker Swarm uses the same API as Docker Machine, deploying your microservices architecture in the cloud is exactly the same as deploying it on your local machine. Follow our [Docker Compose documentation]({{ site.url }}/docker-compose/) to learn more about using Docker Compose with JHipster.
+Docker Swarm，使用和 Docker Machine 一致的 API，使得在云平台内开发微服务架构就和在你本机上开发一样。查阅我们的 [Docker Compose 说明文档]({{ site.url }}/docker-compose/) 来了解更多关于 Docker Compose 和 JHipster。
 
-## <a name="cloudfoundry"></a> Going to production with Cloud Foundry
+## <a name="cloudfoundry"></a> Going to production with Cloud Foundry（译注：广告时间）
 
 The [Cloud Foundry sub-generator]({{ site.url }}/cloudfoundry/) works the same with a microservices architecture, the main difference is that you have more applications to deploy:
 
@@ -49,9 +49,9 @@ Two solutions are available to solve this issue:
 - Secure your Cloud Foundry using specific routes.
 - Keep everything public, but use HTTPS everywhere, and secure your JHipster Registry using Spring Security's basic authentication support
 
-## <a name="heroku"></a> Going to production with Heroku
+## <a name="heroku"></a> 使用 Heroku 生产环境
 
-The [Heroku sub-generator]({{ site.url }}/heroku/) works nearly the same with a microservices architecture, the main difference is that you have more applications to deploy:
+[Heroku sub-generator]({{ site.url }}/heroku/) works nearly the same with a microservices architecture, the main difference is that you have more applications to deploy:
 
 Deploy a JHipster Registry directly with one click:
 
