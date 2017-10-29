@@ -19,7 +19,7 @@ sitemap:
 *   "使用 Yarn 本地安装" 是典型的安装方式。所有需要的组件都会安装在你的机器上，设置稍微有点复杂，但是是大部分人的选择。如果不确定选择哪种安装方式，选择这个就是了。
 *   "使用 NPM 本地安装" 基本类似 "使用 Yarn 本地安装"，区别在于使用 NPM 而不是 [Yarn](https://yarnpkg.com/)
 *   基于 Vagrant "[development box](https://github.com/jhipster/jhipster-devbox)", 所有工具都安装在一个 Ubuntu 虚拟机中。
-*   基于 "[Docker](https://www.docker.io/)" 容器，提供更轻量的、虚拟容器的 JHipster 环境。
+*   基于 "[Docker](https://www.docker.io/)" 容器，提供更轻量的的 JHipster 环境。
 
 ## JHipster Online (为那些希望简单上手 JHipster 的用户)
 
@@ -33,41 +33,54 @@ In the future, we expect JHipster Online to provide more features, of course.
 
 ## 使用 Yarn 本地安装（推荐方式）
 
+### 使用 Angular 的设置
+
 1.  安装 Java 8 [Oracle 官网](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
-2.  (可选) 安装 Java 编译工具。
+2.  安装 Node.js [Node.js 官网](http://nodejs.org/) (建议选择 LTS 版本)
+3.  安装 Yarn [the Yarn 官网](https://yarnpkg.com/en/docs/install)
+4.  如果你打算使用 JHipster Marketplace, 安装 Yeoman: `yarn global add yo`
+5.  安装 JHipster: `yarn global add generator-jhipster`
+
+一旦 JHipster 安装好了，下一步就可以开始：[创建应用]({{ site.url }}/creating-an-app/)
+
+### 使用 AngularJS 1.x 的设置
+
+1.  安装 Java 8 [Oracle 官网](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
+2.  安装 Node.js [Node.js 官网](http://nodejs.org/) (建议选择 LTS 版本)
+3.  安装 Yarn [the Yarn 官网](https://yarnpkg.com/en/docs/install)
+4.  安装 Bower: `yarn global add bower`
+5.  安装 Gulp: `yarn global add gulp-cli`
+6.  如果你打算使用 JHipster Marketplace, 安装 Yeoman: `yarn global add yo`
+7.  安装 JHipster: `yarn global add generator-jhipster`
+
+一旦 JHipster 安装好了，下一步就可以开始：[创建应用]({{ site.url }}/creating-an-app/)
+
+### 可选安装
+
+1.  安装 Java 编译工具。
     *   无论你使用的是 [Maven](http://maven.apache.org/) 还是 [Gradle](http://www.gradle.org/)，你都不需要安装任何额外的工具，因为 JHipster 自动安装了 [Maven Wrapper](https://github.com/takari/maven-wrapper) 或 [Gradle Wrapper](http://gradle.org/docs/current/userguide/gradle_wrapper.html)。
     *   如果你不希望使用这些 wrapper，可以去官网下载独立安装 [Maven](http://maven.apache.org/) 或 [Gradle](http://www.gradle.org/)。
-3.  安装 Git [git-scm.com](http://git-scm.com/)。如果你是 Git 新手，我们也推荐你使用工具 [SourceTree](http://www.sourcetreeapp.com/)。
-4.  安装 Node.js [Node.js 官网](http://nodejs.org/) (建议选择 LTS 版本)
-5.  安装 Yarn [the Yarn 官网](https://yarnpkg.com/en/docs/install)
-6.  安装 Yeoman: `yarn global add yo`
-7.  如果在使用 AngularJS 1, 安装 Bower: `yarn global add bower`
-8.  如果在使用 AngularJS 1, 安装 Gulp: `yarn global add gulp-cli`
-9.  安装 JHipster: `yarn global add generator-jhipster`
+2.  安装 Git [git-scm.com](http://git-scm.com/)。如果你是 Git 新手，我们也推荐你使用工具 [SourceTree](http://www.sourcetreeapp.com/)。
+    * JHipster 会尝试提交你的项目到 Git。
+    * [JHipster 升级工具]({{ site.url }}/upgrading-an-application/) 需要用到 Git。
 
-说明：如果你在使用这些工具时遇到问题，务必确保你的环境变量 path 里有 `$HOME/.config/yarn/global/node_modules/.bin` 这个目录。
+### 问题
+
+说明：如果你在使用 Yarn 的时候遇到问题，务必确保你的环境变量 path 里有 `$HOME/.config/yarn/global/node_modules/.bin` 这个目录。
 
 在 Mac 或 Linux 上：```export PATH="$PATH:`yarn global bin`:$HOME/.config/yarn/global/node_modules/.bin"```
 
 JHipster 使用 [Yeoman](http://yeoman.io/) 来作为代码生成器。
 需要更多关于 Yeoman 的信息、帮助、使用技巧，请看一下 [the Yeoman "getting starting" guide](http://yeoman.io/learning/index.html)，在 [提交 Bug](https://github.com/jhipster/generator-jhipster/issues?state=open) 也请阅读 [Yarn documentation](https://yarnpkg.com/)。
 
-一旦 JHipster 安装好了，下一步就可以开始：[创建应用]({{ site.url }}/creating-an-app/)
-
 ## 使用 NPM 本地安装 (类似 Yarn)
 
-1.  安装 Java 8 [Oracle 官网](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
-2.  (可选) 安装 Java 编译工具。
-    *   无论你使用的是 [Maven](http://maven.apache.org/) 还是 [Gradle](http://www.gradle.org/)，你都不需要安装任何额外的工具，因为 JHipster 自动安装了 [Maven Wrapper](https://github.com/takari/maven-wrapper) 或 [Gradle Wrapper](http://gradle.org/docs/current/userguide/gradle_wrapper.html)。
-    *   如果你不希望使用这些 wrapper，可以去官网下载独立安装 [Maven](http://maven.apache.org/) 或 [Gradle](http://www.gradle.org/)。
-3.  安装 Git [git-scm.com](http://git-scm.com/)。如果你是 Git 新手，我们也推荐你使用工具 [SourceTree](http://www.sourcetreeapp.com/)。
-4.  安装 Node.js [Node.js 官网](http://nodejs.org/) (建议选择 LTS 版本)。安装 Node.js 的同时也会安装好 `npm`, 接下来的命令所需要的包管理工具。
-5.  (推荐) 升级 NPM: `npm install -g npm`
-6.  安装 Yeoman: `npm install -g yo`
-7.  如果在使用 AngularJS 1, 安装 Bower: `npm install -g bower`
-8.  如果在使用 AngularJS 1, 安装 Gulp: `npm install -g gulp-cli` (如果你之前有全局安装过 gulp, 请先运行 `npm rm -g gulp` 来确保老版本会不和新版本 `gulp-cli` 冲突)
-9.  安装 JHipster: `npm install -g generator-jhipster`
-10.  (可选) 安装 Yarn: `npm install -g yarn` (这么做的话，创建完一个项目，会自动使用 `yarn install` 来代替 `npm install`)
+安装方式和使用 Yarn 安装基本一致，除了这两处：
+
+1.  第三步不需要安装 yarn，而是升级 NPM: `npm install -g npm`
+2.  把所有 `yarn global add` 改成 `npm install -g`，例如：
+    * 安装 Yeoman：`npm install -g yo`
+    * 安装 JHipster：`npm install -g generator-jhipster`
 
 请查阅 [NPM 文档](https://docs.npmjs.com/).
 
