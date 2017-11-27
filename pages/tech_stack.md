@@ -46,7 +46,7 @@ sitemap:
 *   使用 [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) + Bean Validation
 *   使用 [Liquibase](http://www.liquibase.org/) 管理数据库版本
 *   使用 [Elasticsearch](https://github.com/elastic/elasticsearch) 提供全文搜索引擎
-*   使用 [MongoDB](http://www.mongodb.org) 作为基于文档格式的 NoSQL 数据库而不是使用 JPA
+*   使用 [MongoDB](http://www.mongodb.org)  或 [Couchbase](https://www.couchbase.com) 作为基于文档格式的 NoSQL 数据库而不是使用 JPA
 *   使用 [Cassandra](http://cassandra.apache.org/) 作为基于列对象的 NoSQL 数据库而不是使用 JPA
 *   使用 [Kafka](http://kafka.apache.org/) 使用发布-分发消息系统
 

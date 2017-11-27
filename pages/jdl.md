@@ -4,7 +4,7 @@ title: JHipster 领域模型语言
 permalink: /jdl/
 sitemap:
     priority: 0.5
-    lastmod: 2017-10-11T12:00:00-00:00
+    lastmod: 2017-11-27T12:00:00-00:00
 ---
 
 # <i class="fa fa-star"></i> JHipster 领域模型语言 (JDL 语法)
@@ -111,7 +111,7 @@ and *Voilà*, 就行了！
 ```
 entity A
 entity B
-entity C {}
+entity C
 entity D {
   name String required,
   address String required maxlength(100),
@@ -122,7 +122,7 @@ entity D {
 正则表达式的写法稍微特别些 (v1.3.6 版本开始支持):
 ```
 entity A {
-  myString required min(1) max(42) pattern(/[A-Z]+/)
+  myString String required minlength(1) maxlength(42) pattern(/[A-Z]+/)
 }
 ```
 如果你在使用 v4.9.X 之前的版本，你得这样使用正则表达式：`pattern('[A-Z]+')`.
@@ -153,11 +153,15 @@ JDL 设计的易用可读，如果你的实体是空的（没有属性），你�
 一本书，有一个必填的作者，一个作者，有多本书。
 
     entity Book
-    entity Author
+    entity Author {
+      name String required
+    }
 
     relationship OneToMany {
       Author{book} to Book{writer(name) required}
     }
+    
+在这个 `Book` 例子中，它有一个 **必填** 字段 `writer` 关联到 `Author` 的 `name` 属性。
 
 当然，在真实场景中，你会需要些一堆的关系并且不断重复写上面那三行代码感觉有点傻。
 所以，你可以这样合并了声明：
@@ -232,10 +236,8 @@ JHipster 中，你可以定义额外的选项来描述类似翻页或 DTO 等功
     entity A {
       name String required
     }
-
-    entity B {}
-
-    entity C {}
+    entity B
+    entity C
 
     dto A, B with mapstruct
 
@@ -259,9 +261,9 @@ JHipster 中，你可以定义额外的选项来描述类似翻页或 DTO 等功
 如果你的业务逻辑非常复杂且调用多个 repository，实现一个 serviceClass 是理想方式。
 Jhipster 不喜欢不必要的接口方式，不过如果你喜欢你还是可以实现他们。
 
-    entity A {}
-    entity B {}
-    entity C {}
+    entity A
+    entity B
+    entity C
 
     // no service for A
     service B with serviceClass
@@ -408,16 +410,16 @@ A 的 name 属性不会有注释，count 有。
 
 双向关系，Car 有一个 Driver, Driver 有一个 Car.
 
-    entity Driver {}
-    entity Car {}
+    entity Driver
+    entity Car
     relationship OneToOne {
       Car{driver} to Driver{car}
     }
 
 单向关系，Citizen 有一个 Passport, 但是 Passport 关联不到他的所有者。
 
-    entity Citizen {}
-    entity Passport {}
+    entity Citizen
+    entity Passport
     relationship OneToOne {
       Citizen{passport} to Passport
     }
@@ -427,8 +429,8 @@ A 的 name 属性不会有注释，count 有。
 
 双向关系，Owner 有一个、或没有、或多个 Car 对象，Car 关联它的所有者：
 
-    entity Owner {}
-    entity Car {}
+    entity Owner
+    entity Car
     relationship OneToMany {
       Owner{car} to Car{owner}
     }
@@ -436,8 +438,8 @@ A 的 name 属性不会有注释，count 有。
 单向关系，JHipster 还不支持，可以这样标识：
 （关于为什么不支持，参考另一个 关联关系 章节）
 
-    entity Owner {}
-    entity Car {}
+    entity Owner
+    entity Car
     relationship OneToMany {
       Owner{car} to Car
     }
@@ -449,8 +451,8 @@ A 的 name 属性不会有注释，count 有。
 （译注：应该是 one-to-many，many-to-one 都可以写的意思）
 单向关系，只有 Car 关联它的所有者：
 
-    entity Owner {}
-    entity Car {}
+    entity Owner
+    entity Car
     relationship ManyToOne {
       Car{owner} to Owner
     }
@@ -460,8 +462,8 @@ A 的 name 属性不会有注释，count 有。
 
 最后，Car 和 Driver 的多对多关系，可以互相访问：
 
-    entity Driver {}
-    entity Car {}
+    entity Driver
+    entity Car
     relationship ManyToMany {
       Car{driver} to Driver{car}
     }
@@ -623,7 +625,7 @@ JDL 支持如下类型：
   - `dto` (`mapstruct`)
   - `service` (`serviceClass`, `serviceImpl`)
   - `paginate` (`pager`, `pagination`, `infinite-scroll`)
-  - `searchEngine` (`elasticsearch`)
+  - `search` (`elasticsearch`)
   - `microservice` (custom value)
   - `angularSuffix` (custom value)
 

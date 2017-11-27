@@ -15,7 +15,7 @@ sitemap:
 
 ## 准备工作
 
-关联关系设置只适用于 JPA。如果你在使用 [Cassandra]({{ site.url }}/using-cassandra/) 或者 [MongoDB]({{ site.url }}/using-mongodb/)，该关系是不可用的。
+关联关系设置只适用于 JPA。如果你在使用 [Cassandra]({{ site.url }}/using-cassandra/) 或者 [MongoDB]({{ site.url }}/using-mongodb/) 或者 [Couchbase]({{ site.url }}/using-couchbase/)，该关系是不可用的。
 
 一个管理关系作用于两个实体对象之间，JHipster 会创建以下代码：
 

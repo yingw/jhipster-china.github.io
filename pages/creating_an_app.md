@@ -90,6 +90,7 @@ You can choose between:
 - An SQL database (H2, MySQL, MariaDB, PostgreSQL, MSSQL, Oracle), which you will access with Spring Data JPA
 - [MongoDB]({{ site.url }}/using-mongodb/)
 - [Cassandra]({{ site.url }}/using-cassandra/)
+- [Couchbase]({{ site.url }}/using-couchbase/)
 
 ### Which *production* database would you like to use? （生产环境使用哪种数据库）
 
@@ -122,7 +123,7 @@ This is a multi-select answer, to add one or several other technologies to the a
 
 #### Social login (Google, Facebook, Twitter)（社区登入功能）
 
-This option is only available if you selected an SQL database or a MongoDB database. It adds [Spring Social](http://projects.spring.io/spring-social/) support to JHipster, so end-users can log-in using their Google, Facebook or Twitter account.
+This option is only available if you selected an SQL, MongoDB, or Couchbase database. It adds [Spring Social](http://projects.spring.io/spring-social/) support to JHipster, so end-users can log-in using their Google, Facebook or Twitter account.
 
 #### API first development using swagger-codegen（API 优先开发模式，使用 swagger-codegen）
 
@@ -197,6 +198,7 @@ Here are the options you can pass:
 * `--skip-checks` - Skip the check of the required tools (Default: false)
 * `--jhi-prefix` - Add prefix before services, components and state/route names (Default: jhi)
 * `--npm` - Use NPM instead of Yarn (Default: false)
+* `--experimental` - Enable experimental features. Please note that these features may be unstable and may undergo breaking changes at any time
 
 ## <a name="4"></a> 小提示
 

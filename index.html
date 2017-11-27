@@ -68,7 +68,7 @@ sitemap:
         </div>
     </header>
     <!-- about and news section -->
-    <section id="about" class="home-section">
+    <section id="learn" class="padding-b-25 home-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -77,7 +77,7 @@ sitemap:
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 text-center">
                     <p>
                         <a href="https://twitter.com/mraible"><i>Matt Raible</i></a> 发布了一则视频关于用 Spring Boot + Angular 来开发 JHipster 4 的应用。
                     </p>
@@ -92,6 +92,8 @@ sitemap:
                 </div>
             </div>
         </div>
+    </section>
+    <section id="news" class="padding-t-25 padding-b-25 home-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -122,17 +124,12 @@ sitemap:
                             <li><b>JHipster Online 工具发布了！</b> <a href="https://start.jhipster.tech/" target="_blank">JHipster Online</a>，由 JHipster team 开发，使你不需要安装 JHipster 环境，就能生成 JHipster 项目。</li>
                             <li><b>寻找身边的聚会？</b> <a href="{{ site.url }}/meetups/">查看我们的聚会列表</a> 并加入我们！</li>
                         </ul>
-                        <h3>事件</h3>
-                        <ul>
-                            <li><b>2017年10月11日，爱尔兰，都柏林：</b> <a href="https://www.meetup.com/preview/JHipsterDublin/events/243330263" target="_blank">都柏林内第一次 JHipster 聚会！</a></li>
-                            <li><b>2017年10月18日，保加利亚，索非亚:</b> at <a href="https://2017.java2days.com/speaker/matt-raible/">Java2Days</a>, Matt Raible 演讲了 "Develop Hip APIs and Apps with Spring Boot and Angular"。</li>
-                            <li><b>2017年11月的6号至10号，比利时，安特卫普：</b> at <a href="https://devoxx.be/" target="_blank">Devoxx Belgium</a>, Julien Dubois, Deepu K Sasidharan, Matt Raible 和 Sendil Kumar N 举行了多场 JHipster 讨论，一晚上组织了个 BOF (Birds Of a Feather)。</li>
-                            <li><b>2017年11月15日，摩洛哥，卡萨布兰卡市：</b> at <a href="https://devoxx.ma/" target="_blank">Devoxx Morocco</a>, Matt Raible 演讲了 present "Developing PWAs and Mobile Apps with Ionic, Angular, and JHipster"</li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <section id="about" class="padding-t-25 padding-b-25 home-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -186,6 +183,8 @@ sitemap:
                 </div>
             </div>
         </div>
+    </section>
+    <section id="companies" class="padding-t-25 home-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -240,7 +239,7 @@ sitemap:
     </section>
 
     <!-- Stack Section -->
-    <section class="success home-section" id="opts">
+    <section class="blue home-section" id="opts">
         <div class="row no-margin">
             <div class="col-lg-12 text-center">
                 <h2 class="heading">客户端技术栈</h2>
@@ -262,12 +261,24 @@ sitemap:
                     <span class="title_sub_tech">Bootstrap</span>
                 </li>
                 <li class="clip img-circle new">
+                    <img src="images/logo/svg/typescript.svg" />
+                    <span class="title_sub_tech">TypeScript</span>
+                </li>
+                <li class="clip img-circle new">
                     <img src="images/logo/svg/angular.svg" />
                     <span class="title_sub_tech">AngularJS</span>
                 </li>
                 <li class="clip img-circle new">
                     <img src="images/logo/svg/angular.svg" />
                     <span class="title_sub_tech">Angular</span>
+                </li>
+                <li class="clip img-circle new">
+                    <img src="images/logo/svg/react.svg" />
+                    <span class="title_sub_tech">React</span>
+                </li>
+                <li class="clip img-circle new">
+                    <img src="images/logo/svg/redux.svg" />
+                    <span class="title_sub_tech">Redux</span>
                 </li>
                 <li class="clip img-circle">
                     <img src="images/logo/svg/jquery.svg" class="width invert-hover"/>
@@ -377,8 +388,16 @@ sitemap:
                     <span class="title_sub_tech">MongoDB</span>
                 </li>
                 <li class="clip img-circle new">
+                    <img src="images/logo/icons/couchbase.png" />
+                    <span class="title_sub_tech">Couchbase</span>
+                </li>
+                <li class="clip img-circle new">
                     <img src="images/logo/svg//cassandra.svg" class="invert-hover-white" />
                     <span class="title_sub_tech">Cassandra</span>
+                </li>
+                <li class="clip img-circle new">
+                    <img src="images/logo/svg//couchbase.svg"/>
+                    <span class="title_sub_tech">Couchbase</span>
                 </li>
                 <li class="clip img-circle new">
                     <img src="images/logo/icons/ehcache.png" />
@@ -509,7 +528,7 @@ sitemap:
     </section>
 
     <!-- Contact Section -->
-    <section class="success home-section" id="modules" ng-controller="ModuleListCtrl">
+    <section class="blue home-section" id="modules" ng-controller="ModuleListCtrl">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

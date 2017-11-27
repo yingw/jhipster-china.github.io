@@ -29,7 +29,7 @@ sitemap:
 
 ![Exclude]({{ site.url }}/images/configuring_ide_idea_1.png)
 
-同样的，`node_modules/` 目录只需要被 JHipster 本地调用，它也可以被排除掉。
+因为`node_modules/` 目录只需要被 JHipster 本地调用，它也可以被排除掉。
 
 _注意_ 在使用 AngularJS 1 时，一些开发者习惯于排除目录 `src/main/webapp/bower_components` ，因为那里面有很多 JavaScript 代码。但是，这个目录中包含着开发应用所需的框架和工具，所以简单的排除它们会引起 JavaScript 支持的一些错误。所以，这种情况下，_不建议_ 排除这个目录。
 
