@@ -11,9 +11,9 @@ sitemap:
 
 # 中文网站翻译说明
 
-大家好，这个网站是 JHipster 官网（）的中文化翻译，是译者本人在学习 JHipster 的过程中不断记录的产物，最终干脆将官网的部分页面做了汉化翻译后挂出来共享给所有国内热爱 JHipster 的同胞
+大家好，这个网站是 JHipster 官网（[http://www.jhipster.tech/](http://www.jhipster.tech/)）的中文化翻译，是译者本人在学习 JHipster 的过程中不断记录的产物，最终干脆将官网的部分页面做了汉化翻译后挂出来共享给所有国内热爱 JHipster 的同胞
 
-本站地址：[https://jhipster-china.github.io/](https://jhipster-china.github.io/)
+本站地址：[http://www.jhipster-cn.tech](http://www.jhipster-cn.tech) 或 [https://jhipster-china.github.io/](https://jhipster-china.github.io/)
 
 请了解一下鄙人的几个翻译原则：
 
