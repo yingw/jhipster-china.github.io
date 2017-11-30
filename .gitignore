@@ -10,3 +10,5 @@ npm-debug.log
 *.iws
 Gemfile.lock
 .jekyll-metadata
+
+_book

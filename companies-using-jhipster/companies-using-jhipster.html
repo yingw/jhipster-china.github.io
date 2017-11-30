@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Companies using JHipster
+title: 使用 JHipster 的公司
 permalink: /companies-using-jhipster/
 redirect_from:
   - /companies-using-jhipster/companies-using-jhipster.html
@@ -14,22 +14,22 @@ sitemap:
 <h1><i class="fa fa-thumbs-up"></i> 使用 JHipster 的公司</h1>
 
 <p>
-    JHipster has got a <a href="http://www.npm-stats.com/~packages/generator-jhipster" target="_blank">lot of downloads</a>, and as it's Open Source it's impossible to have a complete list of who uses it. We have made this list from what people tell us, and from resources available on the Internet (conferences, GitHub tickets, StackOverflow questions).
+    JHipster 已经 <a href="http://www.npm-stats.com/~packages/generator-jhipster" target="_blank">被下载了好多次</a>，并且可以收集到一个完整的使用对象的列表。我们通过互联网上的各种资源（conferences, GitHub 星标, StackOverflow 问题)，以及用户告知我们，来制作了这个列表。
 </p>
 <p>
-    If you want to add a company to the list, please <a href="https://docs.google.com/forms/d/1-Ut-U2NtOAcT9yEZcETnxsxMAsyS-DkBK9zlXLGW1zs" target="_blank">Fill up this form</a>.
+    如果你希望将你的公司添加到下面的列表上，请 <a href="https://docs.google.com/forms/d/1-Ut-U2NtOAcT9yEZcETnxsxMAsyS-DkBK9zlXLGW1zs" target="_blank">填写这个表格</a>。
 </p>
 
 <div ng-app="jhipster.users">
     <div ng-controller="UsersCtrl">
         <div class="form-group search-form ng-scope">
-            <input class="form-control search-field" ng-model="searchText" placeholder="Filter by name or keyword" id="search-field">
+            <input class="form-control search-field" ng-model="searchText" placeholder="根据名称或关键字过滤" id="search-field">
             <label class="fa fa-search inline-search" for="search-field"></label>
         </div>
         <div ng-cloak>
             <div class="margin-bottom">
                 <ul class="nav nav-pills">
-                    <li role="userlist" ng-class="{active: showFeatured == true}"><a href="#" ng-click="showFeatured = true">Featured <span class="badge">{(filteredUsers.length)}</span></a></li>
+                    <li role="userlist" ng-class="{active: showFeatured == true}"><a href="#" ng-click="showFeatured = true">特别的 <span class="badge">{(filteredUsers.length)}</span></a></li>
                     <li role="userlist" ng-class="{active: showFeatured == false}"><a href="#" ng-click="showFeatured = false">所有 <span class="badge">{(allUsers.length)}</span></a></li>
                 </ul>
             </div>

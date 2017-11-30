@@ -11,14 +11,14 @@ What's new
 
 This release features [115 closed tickets and pull requests](https://github.com/jhipster/generator-jhipster/issues?q=milestone%3A4.11.0+is%3Aclosed), here are the more important ones:
 
-- [Use jhipster-dependencies BOM](https://github.com/jhipster/generator-jhipster/pull/6509), that should greatly simplifies future application upgrades.
-- [Couchbase support](https://github.com/jhipster/generator-jhipster/issues/6086), in addition to our current MongoDB and Cassandra support (and of course MySQL, PostgreSQL, MariaDB, Oracle, SQL Server!).
+- [开始使用 jhipster-dependencies BOM](https://github.com/jhipster/generator-jhipster/pull/6509), 这将大大简化为了程序的升级方式。
+- [Couchbase 支持](https://github.com/jhipster/generator-jhipster/issues/6086), 除了目前 MongoDB 和 Cassandra，(以及 MySQL, PostgreSQL, MariaDB, Oracle, SQL Server!)，又多了一种选择。
 - [Switch back from Chromium to PhantomJS](https://github.com/jhipster/generator-jhipster/issues/6567) - this is going to impact everyone: if you ever had any issue downloading or running Puppeteer, we've switched back to our old system, which was running faster and smoother. Of course, in the long term, the plan is still to move to Puppeteer.
 
-We also added React support as an "experimental" feature, as we know a lot of people are waiting for it:
+我们将 React 支持作为一个 "实验性" 的特性加入，我们知道很多人都在等待这个特性：
 
 - Please note this is **experimental**. Don't expect it to work if you use non-default options, for example.
-- To enable experimental features, we have a specific `--experimental` flag: if you run `jhipster --experimental` you will have the new React option when selecting your front-end framework.
+- 要使用实验性特性，我们增加了一个 `--experimental` 标志：如果你运行 `jhipster --experimental` 你就能在选择前端框架的时候选择 React 选项了。
 - We need help to test and finish this implementation, so don't hesitate to participate!
 
 Closed tickets and merged pull requests
