@@ -13,9 +13,9 @@ sitemap:
 
 大家好，这个网站是 JHipster 官网（[http://www.jhipster.tech/](http://www.jhipster.tech/)）的中文化翻译，是译者本人在学习 JHipster 的过程中不断记录的产物，最终干脆将官网的部分页面做了汉化翻译后挂出来共享给所有国内热爱 JHipster 的同胞
 
-本站地址：[http://www.jhipster-cn.tech](http://www.jhipster-cn.tech) 或 [https://jhipster-china.github.io/](https://jhipster-china.github.io/)
+本站地址：[http://www.jhipster-cn.tech](http://www.jhipster-cn.tech) 或 [https://yingw.github.io/](https://jhipster-china.github.io/)
 
-请了解一下鄙人的几个翻译原则：
+请了解一下这里的几个翻译原则：
 
 - 不会所有的网页都完整翻译，译者基本上是挑选了用到过的特性和未用到但觉得比较重要的特性进行翻译
 - 尽量会和官网的更新保持一致，基本上是在每次版本发布后两三天做一次 PR 后翻译
@@ -30,30 +30,30 @@ sitemap:
 
 - [x] 首页（100%）
 - [x] 发布记录（除了一些重大更新，别的大部分不翻译）
-- [ ] JHipster 几分钟上手（%）
-    - [x] 技术栈（%）
-    - [ ] 官方幻灯片（%）
-    - [x] JHipster 5 个截屏（%）
-    - [ ] 视频教程 (12 分钟)（%）
-    - [x] 使用 JHipster 的公司（%）
-    - [x] JHipster 应用展示（%）
-- [ ] 配置开发环境（%）
-    - [ ] 安装 JHipster（50%）
+- [x] JHipster 几分钟上手（%）
+    - [x] 技术栈（100%）
+    - [ ] 官方幻灯片（50%）
+    - [x] JHipster 5 个截屏（100%）
+    - [x] 视频教程 (12 分钟)（不翻译）
+    - [x] 使用 JHipster 的公司（100%）
+    - [x] JHipster 应用展示（100%）
+- [x] 配置开发环境（%）
+    - [x] 安装 JHipster（50%）
     - [ ] 配置代理（%）
-    - [ ] 设置 IDE（20%）
+    - [x] 设置 IDE（50%）
     - [ ] Docker Compose（%）
     - [ ] Shell Plugins（%）
-- [ ] JHipster 核心任务（%）
-    - [ ] 创建应用（50%）
-    - [ ] 创建模型（20%）
+- [x] JHipster 核心任务（%）
+    - [x] 创建应用（50%）
+    - [x] 创建模型（20%）
     - [ ] 创建 Spring controller（%）
     - [ ] 创建 Spring Service（%）
     - [ ] 创建 DTO（%）
-    - [ ] 管理关联关系（50%）
+    - [x] 管理关联关系（50%）
     - [ ] 国际化（10%）
     - [ ] 升级应用（10%）
 - [ ] 微服务（%）
-    - [ ] 概述（90%）
+    - [x] 概述（90%）
     - [ ] API 网关（20%）
     - [ ] Traefik（%）
     - [ ] JHipster 注册中心（20%）
@@ -75,8 +75,8 @@ sitemap:
     - [ ] 使用 Kafka（%）
 - [ ] 开发（%）
     - [ ] 开发相关技术（%）
-    - [ ] 管理 profile（50%）
-    - [ ] 一些应用配置项（80%）
+    - [x] 管理 profile（50%）
+    - [x] 一些应用配置项（80%）
     - [ ] 分离的前端以及 API（50%）
     - [ ] 使用 AngularJS（%）
     - [ ] 使用 Angular（%）

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Configuring your IDE
+title: 配置你的 IDE
 permalink: /configuring-ide/
 redirect_from:
   - /configuring_ide.html

@@ -13,6 +13,7 @@ What's new
 - As the entity sub-generator goes too far for some simple use-cases, we have a new [Spring MVC REST controller sub-generator]({{ site.url }}/creating-a-spring-controller/). For consistency reasons, we also renamed our "Service sub-generator" to become the [Spring service sub-generator]({{ site.url }}/creating-a-spring-service/). Please note that we focus on the Spring Boot generators, as on the client-side you can use [Angular CLI](https://github.com/angular/angular-cli) with JHipster. For more information, see [#6451](https://github.com/jhipster/generator-jhipster/pull/6451).
 - After project generation, if Git is installed, the generator now automatically initializes a Git repository and commits the generated application. See [#6453](https://github.com/jhipster/generator-jhipster/issues/6453).
 - Our recent support for [Zalando problem-spring-web](https://github.com/zalando/problem-spring-web) had been greatly improved, for example with [#6404](https://github.com/jhipster/generator-jhipster/issues/6404) and [#6411](https://github.com/jhipster/generator-jhipster/pull/6411).
+- 译者补充：从此版本开始翻译，且加入[补丁](https://github.com/jhipster/generator-jhipster/pull/6476)支持中文 entity generator。
 
 Roadmap
 ----------

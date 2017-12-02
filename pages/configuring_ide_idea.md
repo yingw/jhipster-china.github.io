@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Configuring Intellij IDEA
+title: 配置 Intellij IDEA
 permalink: /configuring-ide-idea/
 redirect_from:
   - /configuring_ide_idea.html
@@ -47,11 +47,12 @@ _注意_ 在使用 AngularJS 1 时，一些开发者习惯于排除目录 `src/m
 
 ![Spring Application Context]({{ site.url }}/images/configuring_ide_idea_4.png)
 
-点击 `OK`, and Spring should be configured with proper code assistance.
+点击 `OK`，Spring 支持就被配置好并且会有代码提示助手功能了。
 
-Now click on the original `+` button which you used to add Spring in the first place, and add Hibernate. You do not need to add any files on this one, just adding it there will give you Hibernate based code assistance. Remember to click `OK` on the Project structure dialog.
+现在点击原来那个添加 Spring 支持的 `+` 按钮，选择添加 Hibernate。你不需要添加任何
+文件，只需要添加就能完成 Hibernate 支持的代码提示了。记得点击 Project structure 对话框上的 `OK`。
 
-You should now have Spring support for most of the codebase. You have to repeat this step every time you start a new project, as these settings are project-specific.
+现在你应该能具备代码库里的 Spring 支持。每次新建一个项目你都需要这么做一次，因为这些设置是项目特定的。
 
 ## JavaScript 代码支持 (注意 IDEA CE 版本不支持)
 
@@ -59,13 +60,15 @@ You should now have Spring support for most of the codebase. You have to repeat 
 
 ![Settings]({{ site.url }}/images/configuring_ide_idea_5.png)
 
-导航到 `Languages & Frameworks → Javascript → Bower` (or type "Bower" on the top search bar)
+导航到 `Languages & Frameworks → Javascript → Bower` (或者在最上面的搜索栏搜索 "Bower")
 
 ![Navigate to Bower]({{ site.url }}/images/configuring_ide_idea_6.png)
 
 指向你的 `bower.json` 文件，该文件在你的项目根目录下。项目的一些包，比如 Angular.js，应该就能自动识别到了。
 
-After configuring this you should have fairly extensive code support for the Javascript libraries in JHipster.
+（译注：新版本使用 Yarn 生成的项目没有这个 bower.json 文件的）
+
+配置完后，你就能获得非常完善的 JHipster 的 JavaScript 代码支持了。
 
 ## 使用 Spring Boot devtools 来使项目支持 "热重启" 
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Configuring Eclipse with Maven
+title: 配置 Eclipse with Maven
 permalink: /configuring-ide-eclipse/
 redirect_from:
   - /configuring_ide_eclipse.html
@@ -9,59 +9,59 @@ sitemap:
     lastmod: 2015-05-22T18:40:00-00:00
 ---
 
-# <i class="fa fa-keyboard-o"></i> Configuring Eclipse
+# <i class="fa fa-keyboard-o"></i> 配置 Eclipse
 
-Importing your JHipster application in Eclipse will require a few manual steps. You will need to do some configuration:
+在 Eclipse 里配置 JHipster 应用需要一些手工步骤。你需要做以下设置：
 
-- on the Maven side (for Maven users)
-- on the JavaScript side (so Eclipse can ignore a couple of folders for static files)
+- 设置 Maven
+- 设置 JavaScript (让 Eclipse 能忽略一些静态文件的目录)
 
-## 1. Import your project as a Maven project
+## 1. 以 Maven 项目导入
 
-- Select File -> Import
-- Choose "Existing Maven Projects"
-- Select your project
-- Click on "Finish"
+- 选择 File -> Import
+- 选择 "Existing Maven Projects"
+- 选择 your project
+- 点击 "Finish"
 
 ![Import]({{ site.url }}/images/configuring_ide_eclipse_1.png)
 
 ![Select]({{ site.url }}/images/configuring_ide_eclipse_2.png)
 
 
-At the end of the import phase, you can expect to see the below dialog.  "Maven plugin connectors" are an extension for m2eclipse. That one should be installed and Eclipse will need to restart after completion.
+在导入的最后，你会看到这个对话框。"Maven plugin connectors" 是 m2eclipse 的扩展。需要安装且 Eclipse 在安装完会重启。
 
-If you have installed it already, you will be good to go and do not need to do anything.
+如果你之前已经装过了，你就可以继续不需要做任何额外的操作。
 
 ![Select]({{ site.url }}/images/configuring_ide_eclipse_maven_processor.png)
 
-__Note__: if you already have an existing JHipster project and have not installed the corresponding connector, you should see the below error:
+__Note__: 如果你已经有一个 JHipster 项目且没有安装管理的 connector，你会看到如下错误：
 
 `Plugin execution not covered by lifecycle configuration: org.bsc.maven:maven-processor-plugin:2.2.4:process (execution: process, phase: generate-sources)`
 
-Just select Quick Fix/Ctrl+1 (Cmd+1 on Mac) on the error marker and select "Discover new m2e connectors"
+点击 Quick Fix/Ctrl+1 (Cmd+1 on Mac) ，选择 "Discover new m2e connectors"
 
-## 2. Excluding generated static folders
-At this stage you should not have any Java error but should still see some JavaScript errors. This is because you have some JavaScript files that Eclipse cannot parse properly. Those files are used at execution time only and do not need to be visible in your workspace. They should be excluded.
+## 2. 排除生成的静态资源目录
+现阶段你应该还没有看到任何 Java 代码报错，但是会有些 JavaScript 错误。这是因为有些 JavaScript 文件 Eclipse 不能正常解析。这些文件是运行时需要的，它们不需要在你的工作空间使用。他们可以被排除掉。
 
 
-### Exclude the ‘node_modules’ folder
+### 排除 ‘node_modules’ 目录
 
-- Right-click on Project -> Properties -> Resource -> Resource Filters
-- Select: Exclude all, Applies to folders, Name matches node_modules
-- Press "Ok"
+- 右键你的项目 -> Properties -> Resource -> Resource Filters
+- 选择: Exclude all, Applies to folders, Name matches 输入 node_modules
+- 点击 "Ok"
 
 ![Right-click]({{ site.url }}/images/configuring_ide_eclipse_3.png)
 
 ![Exclude]({{ site.url }}/images/configuring_ide_eclipse_4.png)
 
 
-### Exclude 'app' from src/main/webapp
+### 排除 'app' 在目录 src/main/webapp 里
 
-- Right click on Project -> Properties -> Javascript -> Include path
-- Click on the “source” tab and select your_project/src/main/webapp
-- Select “Excluded: (None) -> Edit -> Add multiple
-- Select  `app` and click “Ok”
-- The following folders should have been automatically excluded (if not, exclude them manually):
+- 右键你的项目 -> Properties -> Javascript -> Include path
+- 点击 “source” 标签，选择你的项目目录 /src/main/webapp
+- 选择 “Excluded: (None) -> Edit -> Add multiple
+- 选择  `app` 点击 “Ok”
+- 这些目录应该会自动被排除（如果没有，手动排除一些）:
     - `bower_components`
     - `node_modules/`
 
@@ -73,9 +73,10 @@ At this stage you should not have any Java error but should still see some JavaS
 
 ### Maven IDE profile
 
-If you are using Maven, you need to activate the `IDE` profile in Eclipse. This is used for applying IDE-specific tweaks, which currently only includes applying the MapStruct annotation processor.
+如果你在使用 Maven, 你还要激活 `IDE` profile。This is used for applying IDE-specific tweaks, which currently only includes applying the MapStruct annotation processor.
 
-- Right click on Project -> Properties -> Maven
-- In "Active Maven Profiles", type `dev,IDE`
+- 右键你的项目 -> Properties -> Maven
+- 在 "Active Maven Profiles" 里，输入 `dev,IDE`
 
-With this configuration, you will be using both the JHipster `dev` and `IDE` profiles.
+配置完成后，你就能使用 JHipster 的 `dev` 和 `IDE` profiles 了。
+

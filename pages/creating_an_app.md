@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Creating an application
+title: 创建应用
 permalink: /creating-an-app/
 redirect_from:
   - /creating_an_app.html
@@ -32,55 +32,56 @@ _**请查看我们的 [视频教程]({{ site.url }}/video-tutorial/) 来学习�
 
 `jhipster`
 
-Answer the questions asked by the generator to create an application tailored to your needs. Those options are described in [the next section](#2).
+回答生成器问的一些问题来根据你的需要创建项目。这些问题将在 [下一小节](#2) 介绍。
 
 一旦项目创建完成，你可以使用 Maven（Linux/MacOS/Windows PowerShell 上执行 `./mvnw`，在 Windows Cmd 里执行 `mvnw`） 或 Gradle (在 Linux/MacOS/Windows PowerShell 上执行 `./gradlew`，在 Windows Cmd 里执行 `gradlew`).
 
 应用启动在： [http://localhost:8080](http://localhost:8080)
 
-**重要** 如果你希望使用 "动态加载" JavaScript/TypeScript 代码的功能，你需要执行 `gulp` (JavaScript/AngularJS 1) 或 `yarn start` (TypeScript/Angular 2+). You can go to the [Using JHipster in development]({{ site.url }}/development/) page for more information.
+**重要** 如果你希望使用 "动态加载" JavaScript/TypeScript 代码的功能，你需要执行 `gulp` (JavaScript/AngularJS 1) 或 `yarn start` (TypeScript/Angular 2+)。你可以去 [JHipster 开发的相关技术]({{ site.url }}/development/) 也了解更多信息。
 
 ## <a name="2"></a> 创建应用的各选项
 
-_Some questions change depending on the previous choices you have made. For example, you won't need to configure an Hibernate cache if you didn't select an SQL database._
+_部分问题的选项会根据你之前的选择有所变化。比如你不需要设置 Hibernate 缓存如果你之前没有选择使用 SQL 数据库。_
 
 ### Which *type* of application would you like to create? （你要创建的应用类型）
 
-Your type of application depends on whether you wish to use a microservices architecture or not. A full explanation on microservices is [available here]({{ site.url }}/microservices-architecture/), if unsure use the default "Monolithic application".
+你的应用类型取决于你是否需要使用微服务架构。关于微服务的使用 [这里]({{ site.url }}/microservices-architecture/) 有完整的说明，如果不是很确定，就选择默认的 "Monolithic application"。
 
-You can either use:
+你可以使用这些：
 
-*   Monolithic application: this a classical, one-size-fits-all application. It's easier to use and develop, and is our recommended default.
-*   Microservice application: in a microservices architecture, this is one of the services.
-*   Microservice gateway: in a microservices architecture, this is an edge server that routes and secures requests.
-*   JHipster UAA server: in a microservices architecture, this is an OAuth2 authentication server that secures microservices. Refer <a href="/using-uaa/">JHipster UAA documentation</a> for more information.
+*   巨石类应用（Monolithic application，也可翻译为传统类应用）: 这个是经典的、通用的应用类型。比较容易使用和开发，是我们推荐的默认类型。
+*   微服务应用（Microservice application）: 在微服务架构中，这是一个服务。
+*   微服务网关（Microservice gateway）: 在微服务架构中，这个是边缘服务，提供请求的路由和安全控制。
+*   JHipster UAA 服务：在微服务架构中，这里提供了 OAuth2 认证，安全控制。参考 <a href="/using-uaa/">JHipster UAA 文档</a>。
 
 ### What is the base name of your application? （应用名称）
 
-This is the name of your application.
+你项目的名称。
+（译注：只能大小写、数字，没有特殊符号等）
 
 ### What is your default Java package name? （Java 包名）
 
-Your Java application will use this as its root package. This value is stored by Yeoman so that the next time you run the generator the last value will become default. Of course you can override it by providing a new value.
+项目的根目录包设置。这个值存在 Yeoman 中，所以下一次你运行 generator 命令时该值为成为默认值。当然你也可以修改的。
 
 ### Do you want to use the JHipster Registry to configure, monitor and scale your application? （是否需要使用 JHipster Registry 来配置、监控和扩展你的应用）
 
-The [JHipster Registry]({{ site.url }}/jhipster-registry/) is an Open Source tool used to manage your application at runtime.
+[JHipster Registry]({{ site.url }}/jhipster-registry/) 是一个开源的工具，用于管理你的应用。
 
-It is required when using a microservices architecture (this is why this question is only asked when generating a monolith).
+在使用微服务架构时是必要的 (所以在在创建巨石类应用是询问为可选的)。
 
 ### Which *type* of authentication would you like to use? （使用哪种认证）
 
-Answers to this question depend on previous answers. For example, if you selected the [JHipster Registry]({{ site.url }}/jhipster-registry/) above, you can only use JWT authentication.
+这个问题也依赖于之前的回答。比如说，如果你选择了 [JHipster Registry]({{ site.url }}/jhipster-registry/) ，你就只能选择 JWT 认证方式了。
 
-Here are all the possible options:
+一共有着这些可选项：
 
-*   JWT authentication: use a [JSON Web Token (JWT)](https://jwt.io/), which is the default choice
-*   HTTP Session Authentication: the classical session-based authentication mechanism, like we are used to do in Java (this is how most people use [Spring Security](http://docs.spring.io/spring-security/site/index.html)). You can use this option with Spring Social, which will enable you to use "social login" (such as Google, Facebook, Twitter): this is configured by Spring Boot's support of Spring Social.
-*   OAuth 2.0 / OIDC Authentication: this uses an OpenID Connect server, like [Keycloak](http://www.keycloak.org/) or [Okta](https://www.okta.com), which handles authentication outside of the application.
-*   Authentication with JHipster UAA server: this uses a <a href="/using-uaa/">JHipster UAA server</a> that must be generated separately, and which is an OAuth2 server that handles authentication outside of the application.
+*   JWT authentication: 使用 [JSON Web Token (JWT)](https://jwt.io/)，这个是默认值。
+*   HTTP Session Authentication: 经典的基于 session 的认证方式，好比我们在 Java 中的用法 (这是大部分用户使用使用 [Spring Security](http://docs.spring.io/spring-security/site/index.html) 的方式)。你可以和 Spring Social 配套使用这个选项，能让你使用 "social login" (如 Google, Facebook, Twitter) 特性：这个是由 Spring Boot 的 Spring Social 支持来实现的。
+*   OAuth 2.0 / OIDC Authentication: 这个选项使用 OpenID Connect server, 比如 [Keycloak](http://www.keycloak.org/) 或者 [Okta](https://www.okta.com)，可以在引用外部处理认证。（译注：应该还能支持 [CAS](https://www.apereo.org/projects/cas)）
+*   Authentication with JHipster UAA server: 这使用的 <a href="/using-uaa/">JHipster UAA server</a> 需要被独立的创建，同时也是 OAuth2 server 在应用外处理认证。
 
-You can find more information on our [securing your application]({{ site.url }}/security/) page.
+你可以到 [应用安全]({{ site.url }}/security/) 章节获取更多信息。
 
 ### Which *type* of database would you like to use? （使用哪种数据库）
 
@@ -105,6 +106,8 @@ This is the database you will use with your "development" profile. You can eithe
 *   H2, running in-memory. This is the easiest way to use JHipster, but your data will be lost when you restart your server.
 *   H2, with its data stored on disk. This is currently in BETA test (and not working on Windows), but this would eventually be a better option than running in-memory, as you won't lose your data upon application restart.
 *   The same database as the one you chose for production: it's a bit more complex to set up, but it should be better in the end to work on the same database as the one you will use in production. This is also the best way to use liquibase-hibernate as described in [the development guide]({{ site.url }}/development/).
+
+（译注：推荐3，和生产库使用同样的数据库，而不是 H2，驱动不说，丢数据麻烦。只是需要设置一下数据库位置而已）
 
 To configure it, please modify your `src/main/resources/config/application-dev.yml` file.
 

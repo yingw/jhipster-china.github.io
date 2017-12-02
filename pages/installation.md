@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Installing JHipster
+title: 安装 JHipster
 permalink: /installation/
 redirect_from:
   - /installation.html
@@ -27,9 +27,9 @@ sitemap:
 
 目的适用于那些第一次尝试 JHipster 的用户，或者简单看一下 JHipster 能力的用户。
 
-虽然使用上简单，但这个并非 "完整的 JHipster 体验", and once your application is generated you will still need to follow most of the steps from the next section ("Local installation with Yarn"), as you will still need Java (to run your application) and Yarn (to manage your front-end code).
+虽然使用上简单，但这个并非 "完整的 JHipster 体验", 一旦你的应用创建好了你还是需要根据后面章节（使用 Yarn 本地安装）的大部分步骤，就如你也需要 Java (来运行你的程序) 和 Yarn (来管理你的前端)。
 
-In the future, we expect JHipster Online to provide more features, of course.
+我们希望在为了给 JHipster Online 提供更多的功能。
 
 ## 使用 Yarn 本地安装（推荐方式）
 

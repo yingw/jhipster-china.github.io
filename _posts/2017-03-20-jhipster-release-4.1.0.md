@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release 4.1.0
+title: Release 4.1.0（迁移至 Yeoman）
 ---
 
 JHipster release 4.1.0

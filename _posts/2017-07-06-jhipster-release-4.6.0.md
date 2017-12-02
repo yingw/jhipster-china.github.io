@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release 4.6.0
+title: Release 4.6.0 （Angular 4 支持正式发布）
 ---
 
 JHipster release 4.6.0

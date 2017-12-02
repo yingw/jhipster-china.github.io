@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release 4.11.0
+title: Release 4.11.0 （支持 React；新的 JHipster 依赖 POM）
 ---
 
 JHipster release 4.11.0

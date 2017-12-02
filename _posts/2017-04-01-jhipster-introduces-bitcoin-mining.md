@@ -1,6 +1,6 @@
 ---
 layout: default
-title: JHipster introduces Bitcoin mining (April Fools 2017)
+title: JHipster introduces Bitcoin mining (April Fools 2017)（比特币支持，愚人节更新）
 ---
 
 April Fools 2017

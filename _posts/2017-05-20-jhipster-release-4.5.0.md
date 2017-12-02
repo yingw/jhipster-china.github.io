@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release 4.5.0
+title: Release 4.5.0（新的 JHipster CLI）
 ---
 
 JHipster release 4.5.0
