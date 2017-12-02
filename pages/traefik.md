@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Traefik
+title: Traefik 简介
 permalink: /traefik/
 sitemap:
     priority: 0.7
@@ -11,50 +11,50 @@ sitemap:
 
 ## Traefik 简介
 
-[Traefik](https://traefik.io/) is a modern HTTP reverse proxy and load balancer made to deploy microservices with ease.
+[Traefik](https://traefik.io/) 是一个现代化的 HTTP 反向代理及负载均衡来使微服务的部署更加方便
 
-It can route HTTP requests like Zuul, so it has some overlap with a [JHipster gateway]({{ site.url }}/api-gateway/), but it works on a lower level than an API Gateway: it only routes HTTP requests and does not provide rate limiting, security or Swagger documentation aggregation.
+它可以像 Zuul 一样路由 HTTP 请求，所以也有一部分和 [JHipster gateway]({{ site.url }}/api-gateway/) 重叠的功能，但是它比 API 网关工作在更底层：它只会路由 HTTP 请求，并不提供限速、安全、或 Swagger 文档集成。
 
-One of the benefits of Traefik is that is can work with many different service discovery solutions: with JHipster, however, it only works with [Consul]({{ site.url }}/consul/) by default.
+用 Traefik 的一个好处就是它可以和许多不同的服务发现方案协同工作：但是和 JHipster 一起，它默认只能使用 [Consul]({{ site.url }}/consul/)。
 
-It can be used in two different architecture styles, described below.
+它可以工作在两种不同模式的架构中，如下所描述：
 
-## Architecture diagram 1: default configuration
+## 架构图 1: 默认设置
 
-As Traefik is a reverse proxy and load balancer, it supercedes Zuul, and it routes directly all HTTP requests to the correct service.
+Traefik 是一个反向代理及负载均衡器，它可以代替 Zuul，并且直接将 HTTP 请求路由到对应的服务上。
 
 <img src="{{ site.url }}/images/microservices_architecture_detail.004.png" alt="Diagram" style="width: 800; height: 600" class="img-responsive"/>
 
-In that architecture, a JHipster "gateway" is not a real gateway anymore, it is mostly here to serve the Angular application.
+在该架构中，JHipster 的网关（Gateway）不是我们之前说的网关程序，它在这里只服务于 Angular 程序。
 
-This is our default configuration.
+这是我们的默认设置。
 
-## Architecture diagram 2: Traefik and Zuul
+## 架构图 2: Traefik 和 Zuul
 
-Traefik can also work with Zuul: in that case, an HTTP request to a microservice goes through Traefik and then through Zuul before reaching its destination.
+Traefik 也可以和 Zuul 一起工作：在这个例子中，到微服务的 HTTP 请求先通过 Traefik 再通过 Zuul 最终到达它的目的地。
 
 <img src="{{ site.url }}/images/microservices_architecture_detail.005.png" alt="Diagram" style="width: 800; height: 600" class="img-responsive"/>
 
-This makes one more network request, and thus is less efficient than the previous architecture. However, this allows to use a JHipster gateway to its full potential: it can handle rate limiting or Swagger documentation aggregation.
+这将需要消耗多一次的网络请求，显而易见没有上一个架构方式有效。但是，这种情形下允许使用 JHipster 的网关程序的所有能力：可以处理限速、或者 Swagger 文档聚合功能。
 
-As a result, Traefik can be used as an edge service, which allows to scale JHipster gateways.
+结果是，Traefik 可以作为边缘服务使用，这使得 JHipster 网关程序可扩展。
 
-This configuration works out-of-the-box with JHipster: the only issue is that client-side applications use an absolute URL, so for example, for "microservice1":
+这个配置是 JHipster 开箱即用的：唯一的问题是客户端程序使用的是绝对路径 URL，比如，对于 "microservice1"：
 
-- The default URL is "/microservice1", which goes only through Traefik (this is the "default configuration" above).
-- The "/gateway/microservice1" URL would use the "gateway" application configured in Traefik, which would then use Zuul to reach the "microservice1" application.
+- 默认 URL 是 "/microservice1"，只经过 Traefik (这是上面的默认设置)。
+- "/gateway/microservice1" URL 将使用设置在 Traefik 里的 "gateway" 网关程序，这将通过 Zuul 来到达 "microservice1" 应用。
 
-## Getting started
+## 开始
 
-Please note that Traefik only works with [Consul]({{ site.url }}/consul/), so this cannot work if you use a [JHipster Registry]({{ site.url }}/jhipster-registry/).
+请注意，Traefik 只能和 [Consul]({{ site.url }}/consul/) 一起工作，所以如果你使用的是 [JHipster Registry]({{ site.url }}/jhipster-registry/) 它将无法工作。
 
-To use Traefik in a microservice architecture, run the [docker-compose sub-generator]({{ site.url }}/docker-compose/) and select Traefik when you have the question asking you which gateway you want to use.
+要使用 Traefik 在微服务架构中，运行 [docker-compose sub-generator]({{ site.url }}/docker-compose/) 并在其问你使用哪种网管材程序的时候选择 Traefik。
 
-This will generate a `traefik.yml` configuration for running Traefik in Docker, as well as a `traefik/traefik.toml` file, which is Traefik's configuration file.
+这将会创建一个 `traefik.yml` 配置文件来运行 Traefik 在 Docker 里，以及一个 `traefik/traefik.toml` 文件，这个是 Traefik 的配置文件。
 
-This configuration file is set up so that:
+这个配置文件设置了：
 
-- Traefik runs on port `80`, so if you have an application called `gateway`, you can reach it by going to [http://localhost/gateway](http://localhost/gateway).
-- The Traefik administration UI is available on port `8080`, so you can visit it at [http://localhost:8080](http://localhost:8080).
+- Traefik 运行在端口 `80` 上，所以如果你的网关程序叫做 `gateway`，你可以通过 [http://localhost/gateway](http://localhost/gateway) 来访问它。
+- Traefik 管理控制台工作在端口 `8080` 上，你可以通过 [http://localhost:8080](http://localhost:8080) 访问它。
 
-As Traefik is using Consul, it will also be useful to check the Consul administration UI, which is available on port `8500`: [http://localhost:8500](http://localhost:8500).
+由于 Traefik 使用了 Consul，检查 Consul 管理控制台也很有用，它工作在端口 `8500` 上：[http://localhost:8500](http://localhost:8500)。
