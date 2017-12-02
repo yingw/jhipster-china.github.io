@@ -13,7 +13,7 @@ sitemap:
 
 使用 JHipster 时，第一个问题就是询问你选择哪种类型的应用。你可以选择两种应用架构风格：
 
-- "巨石（monolithic）" 类架构使用一个单一的、one-size-fits-all 的应用，其内部包含前端的 Angular 代码，以及后端的 Spring Boot 代码。
+- "巨石（monolithic）" 类架构使用一个单一的、通用的应用，其内部包含前端的 Angular 代码，以及后端的 Spring Boot 代码。
 - "微服务（microservices）" 架构将前端和后端拆分开来，使你的应用 to scale and survive infrastructure issues.
 
 "巨石 monolithic" 应用比较容易上手，所以如果你不是有特别的需要，这还是我们的推荐方式，也是 JHipster 的默认选项。
