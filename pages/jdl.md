@@ -12,7 +12,7 @@ sitemap:
 
 JDL 是 JHipster 特质的 domain 语言，我们提供了能在一个文件（或多个）中来描述所有实体对象及其关系的能力，并且只需要很简单的、友好的语法。
 
-可以使用我们的在线工具 [JDL-Studio]({{ site.url }}/jdl-studio/) 来创建 JDL 及其 UML 视图。你还可以创建、导出、或分享你的模型。
+可以使用我们的在线工具 [JDL-Studio](https://start.jhipster.tech/jdl-studio/) 来创建 JDL 及其 UML 视图。你还可以创建、导出、或分享你的模型。
 
 一旦你创建了项目（现有的或者用 `jhipster` 命令工具创建的), 接下来你可以使用命令 `import-jdl` 来从 JDL 文件生成实体对象，执行：`jhipster import-jdl your-jdl-file.jh` (确保在 JHipster 项目目录下执行)。
 你还能用 [JHipster UML]({{ site.url }}/jhipster-uml/) 来创建实体对象并导出为 JDL 文件，执行 `jhipster-uml your-xmi-file.xmi --to-jdl`  (确保在 JHipster 项目目录下执行)。要了解更多关于如何安装和使用 JHipster UML, 访问 [JHipster UML documentation]({{ site.url }}/jhipster-uml/).
@@ -49,7 +49,7 @@ _如果你喜欢 JDL Studio，也不要吝啬给我们再来一颗 [GitHub](http
 
 # <a name="sample"></a> JDL 样例
 
-我们将 Oracle 的 "人力资源" 样例程序翻译成了 JDL，放在 [这里](https://github.com/jhipster/jhipster-core/blob/master/lib/dsl/example.jh). 并且该程序是 [JDL-Studio]({{ site.url }}/jdl-studio/) 默认加载的模型。
+我们将 Oracle 的 "人力资源" 样例程序翻译成了 JDL，放在 [这里](https://github.com/jhipster/jhipster-core/blob/master/lib/dsl/example.jh). 并且该程序是 [JDL-Studio](https://start.jhipster.tech/jdl-studio/) 默认加载的模型。
 
 ## <a name="howtojdl"></a> 如何使用
 
@@ -58,7 +58,7 @@ _如果你喜欢 JDL Studio，也不要吝啬给我们再来一颗 [GitHub](http
 你可以使用 JDL 文件来生成实体对象：
 
   - 创建一个后缀为 '.jh' 或 '.jdl' 的文件，
-  - 声明实体对象和关联关系，或者从 [JDL-Studio]({{ site.url }}/jdl-studio/) 下载该文件，
+  - 声明实体对象和关联关系，或者从 [JDL-Studio](https://start.jhipster.tech/jdl-studio/) 下载该文件，
   - 在 JHipster 应用的根目录中，执行：`jhipster import-jdl my_file.jdl` 或者 `jhipster-uml my_file.jdl`.
 
 and *Voilà*, 就行了！
@@ -146,7 +146,6 @@ JDL 设计的易用可读，如果你的实体是空的（没有属性），你�
   - `<relationship name>` 是关系在另一边对象内属性的名称，
   - `<display field>` 是关系在选择列表中显示的属性字段 (默认是: `id`),
   - `required` 是指属性是否是必填的。
-
 
 这是个例子：
 

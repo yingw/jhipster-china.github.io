@@ -9,6 +9,8 @@ sitemap:
 
 # <i class="fa fa-cloud"></i> 生产环境中的微服务
 
+Microservices are a specific kind of JHipster applications. Please refer to our main [Using JHipster in production documentation]({{ site.url }}/production) for more information on doing a production build, optimizing it and securing it.
+
 ## <a name="elk"></a> 微服务监控
 
 Please refer to our [JHipster Registry documentation]({{ site.url }}/jhipster-registry) for learning which runtime dashboards are available, and how to use them.

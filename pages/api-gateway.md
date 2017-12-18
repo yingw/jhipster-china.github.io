@@ -43,6 +43,8 @@ JHipster 可以用来创建 API 网关应用。一个网关应用是一个普通
 
 ## <a name="security"></a> 安全
 
+Standard JHipster security options are detailed on [this security documentation page]({{ site.url }}/security/). However, securing a microservice architecture has some specific tunings and options, which are detailed here.
+
 ### JWT (JSON Web Token)
 
 JWT (JSON Web Token) 是一种标准，具有简单易用的方法来防护微服务应用。
@@ -57,18 +59,33 @@ JHipster 使用 [JJWT library](https://github.com/jwtk/jjwt)，由 Okta 公司�
 
 - 对于每一个应用，默认的令牌都是唯一的，由 JHipster 创建。存储在 `.yo-rc.json` 文件里。（译注：jwtSecretKey 配置）
 - 可以在配置文件 `src/main/resources/config/application.yml` 中设置令牌在配置 `jhipster.security.authentication.jwt.secret` 上。
-- 为了共享这个配置到各应用，复制网关程序中的这个配置到各微服务程序中，或者通过 JHipster Registry 的 Spring Config Server（配置中心）共享。
+- 为了共享这个配置到各应用，复制网关程序中的这个配置到各微服务程序中，或者通过 [JHipster Registry]({{ site.url }}/jhipster-registry/) 的 Spring Config Server（配置中心）共享。 or [JHipster's specific configuration of the Consul K/V store]({{ site.url }}/consul/). This is one of the main reasons why people use those central configuration servers.
 - 一个好的经验是在开发和生产环境中使用不同的 key。
 
-### OAuth2
+### OpenID Connect
 
-该功能目前是 **测试** 阶段，所以其文档还未完成。
+JHipster provides OpenID Connect support, as detailed [in our OpenID Connect documentation]({{ site.url }}/security/#oauth2).
+
+When selecting this option, you will use Keycloak by default, and you will probably want to run your complete microservice architecture using Docker Compose: be sure to read our [Docker Compose documentation]({{ site.url }}/docker-compose/), and configure correctly your `/etc/hosts` for Keycloak.
+
+When using OpenID Connect, the JHipster gateway will send OAuth2 tokens to microservices, which will accept those tokens as they are also connected to Keycloak.
+
+Unlike JWT, those tokens are not self-sufficient, and should be stateful, which causes 2 main issues:
+
+- A performance issue in microservices: as it is very common to look for the current user's security information (otherwise we wouldn't be using any security option from the beginning), each microservice will call the OpenID Connect server to get that data. So in a normal setup, those calls will be made by each microservice, each time they get a request, and this will quickly cause a performance issue.
+  - If you have selected a caching option ([here is the "Using a cache" documentation]({{ site.url }}/using-cache/)) when generating your JHipster microservice, a specific `CachedUserInfoTokenServices` Spring Bean will be generated, which will cache those calls. When properly tuned, this will remove the performance issue.
+  - If you want more information on this "user info" request, it is configured using the standard Spring Boot configuration key `security.oauth2.resource.userInfoUri` in your `src/main/resources/application.yml` configuration file.
+- Authentication is not automatically synchronized between the application and Keycloak. Please note that this the standard OpenID Connect workflow, and that we expect to do some specific improvements in JHipster on this matter. As a result:
+  - When a user logs out of the application, he will be automatically logged in again if he refreshes his browser: this is because he is still logged in Keycloak, which provides automatic authentication.
+  - When a user's session is invalidated in Keycloak, if the user is already logged into the application, he will still be able to use the application for a while. This is because OpenID Connect is a stateful mechanism, and the application doesn't know immediately that the session has been invalidated.
+
+### JHipster UAA
 
 JHipster 提供了一种创建 "UAA" (User Account and Authentication，用户账户和认证) 服务程序的方式，基于 Spring Security。该服务提供 OAuth2 令牌来防护网关程序。
 
-你可以在 <a href="/using-uaa/">使用 JHipster UAA 作为微服务安全的服务</a> 章节找到所有和 UAA 相关的信息。
+你可以在 [JHipster UAA documentation]({{ site.url }}/using-uaa/) 章节找到所有和 UAA 相关的信息。
 
-还有，网关程序使用 Spring Security 的实现来发送 JWT 令牌给微服务程序。
+还有，网关程序使用 Spring Security 的实现来发送 JWT 令牌给微服务程序, so this works basically the same as with the JWT configuration detailed above.
 
 ## <a name="documentation"></a> 自动生成文档
 

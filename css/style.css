@@ -111,6 +111,17 @@ input.gsc-search-button {
 .label.keyword {
   margin-right: 3px; }
 
+.navbar-top.navbar {
+  text-transform: uppercase;
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700; }
+  .navbar-top.navbar a:focus {
+    outline: 0; }
+  .navbar-top.navbar .navbar-nav {
+    letter-spacing: 1px; }
+    .navbar-top.navbar .navbar-nav li a:focus {
+      outline: 0; }
+
 .navbar {
   z-index: 10001;
   padding-left: 60px;
@@ -152,7 +163,6 @@ input.gsc-search-button {
       height: 60px;
       background-color: transparent;
       border: 0px;
-      position: absolute;
       right: 0;
       -moz-transition: all 0.25s linear;
       -webkit-transition: all 0.25s linear;
@@ -1484,6 +1494,7 @@ footer {
 .btn-outline {
   margin-top: 15px;
   border: solid 2px #fff;
+  border-radius: 25px;
   font-size: 20px;
   color: #fff;
   background: 0 0;
@@ -1492,6 +1503,9 @@ footer {
     border: solid 2px #fff;
     color: #3E8ACC;
     background: #fff; }
+  .btn-outline.blue {
+    color: #3E8ACC;
+    border-color: #3E8ACC; }
 
 .team-member {
   max-width: 250px !important;
