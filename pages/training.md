@@ -9,7 +9,7 @@ sitemap:
     lastmod: 2014-08-27T00:00:00-00:00
 ---
 
-# <i class="fa fa-graduation-cap "></i> 培训
+# <i class="fa fa-graduation-cap"></i> 培训
 
 如果你希望得到 JHipster 相关的帮助，你可以选择参加我们的其中一项培训课程！
 
@@ -17,5 +17,7 @@ sitemap:
 
 ## JHipster Master Class
 
-*   [United States](http://www.ipponusa.com/training/jhipster-master/)
+*   [United States](https://www.ippon.tech/training/jhipster-master/)
 *   [France](http://www.ippon.fr/formation/jhipster-master-class/)
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

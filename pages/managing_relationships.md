@@ -30,7 +30,7 @@ This page describes how to create关系s with JHipster using the standard comman
 在这一章节，有两个可行选项：
 
 - [JHipster UML]({{ site.url }}/jhipster-uml/), 使你能够使用 UML 编辑器。
-- [JDL Studio]({{ site.url }}/jdl-studio/), 这是我们的在线实体对象及管理关系编辑工具，使用我们的 DSL （domain-specific language）。
+- [JDL Studio](https://start.jhipster.tech/jdl-studio/), 这是我们的在线实体对象及管理关系编辑工具，使用我们的 DSL （domain-specific language）。
 
 你可以从一个 JDL 文件来使用 `import-jdl` sub-generator 创建实体对象及关联关系, 执行命令：`jhipster import-jdl your-jdl-file.jh`.
 

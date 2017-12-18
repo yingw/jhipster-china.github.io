@@ -20,12 +20,39 @@ To use Spring Security with a Single Web Page Application, like the ones generat
 *   "user", 普通用户，记录以 "ROLE_USER"。默认密码是："user"；
 *   "admin", 超级管理员，拥有 "ROLE_USER" 和 "ROLE_ADMIN" 两种角色。默认密码是 "admin"
 
-For security reasons, you should change those default passwords.
+For security reasons, you should change those default passwords in production.
 
-## 基于 HTTP Session 认证
+JHipster provides 4 main security mechanisms:
+
+1. [JSON Web Tokens (JWT)](#jwt)
+2. [Session-based authentication](#session)
+3. [OAuth2 and OpenID Connect](#oauth2)
+4. [JHipster User Account and Authentication (UAA)]({{ site.url }}/using-uaa/) (which has a separate documentation page as this is more complex)
+
+## <a name="jwt"></a> JWT 认证
+
+[JSON Web Token (JWT)](https://jwt.io/) JWT 认证是一种无状态安全机制，所以这是一个非常棒的选择如果你希望扩展你的应用到多个服务器上。
+
+请注意，当使用 [微服务架构]({{ site.url }}/microservices-architecture/) 时这是默认选项。
+
+这个认证机制不是 Spring Security 默认提供的，而是 JHipster 提供的 [Java JWT 项目](https://github.com/jwtk/jjwt) 集成。 
+
+解决方案是使用一个安全令牌，保存了用户的登录名和权限。当令牌被签发后，是不可以被修改的。
+
+### Securing JWT
+
+- 安全秘钥可以在 `application.yml` 里设置，`jhipster.security.authentication.jwt.secret` 也是。 As this key must be kept secret, you **should** store it in a secure way for your production profile. It can be set up using the usual Spring Boot property configuration: using a Spring Cloud Config server like the [JHipster Registry]({{ site.url }}/jhipster-registry/) (our recommended option), using an environment variable, or even a specific `application-prod.yml` file which is SCP'd by a sysadmin into the same directory as your application's executable WAR file.
+- You **should** change the default "user" and "admin" passwords. The easiest way to do this is to deploy your application, login as "user/user" and then "admin/admin", and for each of them use the "Account > Password" menu to change the password.
+
+## <a name="session"></a> 基于 HTTP Session 认证
 
 经典的 Spring Security 认证机制，我们优化过了不少。这种方式使用 HTTP Session，所以是有状态（stateful）的方式：如果你希望
 在多个服务器上扩展你的应用，你需要一个负载均衡器并 sticky（持久化？）session 来让用户停留在同一个服务器上。
+
+### Securing Session-based authentication
+
+- For remember-me authentication, the remember-me key is configured in the `application-dev.yml` and `application-prod.yml` files, as the `jhipster.security.remember-me.key` property. As this key must be kept secret, you **should** store it in a secure way for your production profile. It can be set up using the usual Spring Boot property configuration: using a Spring Cloud Config server like the [JHipster Registry]({{ site.url }}/jhipster-registry/) (our recommended option), using an environment variable, or even a specific `application-prod.yml` file which is SCP'd by a sysadmin into the same directory as your application's executable WAR file.
+- You **should** change the default "user" and "admin" passwords. The easiest way to do this is to deploy your application, login as "user/user" and then "admin/admin", and for each of them use the "Account > Password" menu to change the password.
 
 ### 优化过的 remember-me 机制
 
@@ -44,29 +71,23 @@ Spring Security 和 AngularJS 都具备 CSRF 内建（开箱即用）的保护�
 
 JHipster 提供第三方登录功能，用的是 Spring Social 框架，用户可以通过他们的 Google, Facebook 或 Twitter 认证来连接到你的应用。这功能用到 Sping Boot 的 starter 模块。
 
-## JWT 认证
-
-[JSON Web Token (JWT)](https://jwt.io/) JWT 认证是一种无状态安全机制，所以这是一个非常棒的选择如果你希望扩展你的应用到多个服务器上。
-
-请注意，当使用 [微服务架构]({{ site.url }}/microservices-architecture/) 时这是默认选项。
-
-这个认证机制不是 Spring Security 默认提供的，而是 JHipster 提供的 [Java JWT 项目](https://github.com/jwtk/jjwt) 集成。 
-
-解决方案是使用一个安全令牌，保存了用户的登录名和权限。当令牌被签发后，是不可以被修改的。
-
-安全秘钥可以在 `application.yml` 里设置，`jhipster.security.authentication.jwt.secret` 也是。
-
-## OAuth 2.0 认证
+## <a name="oauth2"></a> OAuth 2.0 认证
 
 OAuth 是一种有状态的安全机制，类似 HTTP Session。Spring Security 提供了 OAuth 2.0 的支持，
 , and this is leveraged by JHipster with its `@EnableOAuthSso` annotation.  
 如果你不清楚什么是 OAuth 或 OpenID 连接器 (OIDC) ，请参考这篇文章 [What the Heck is OAuth?](https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth)
+
+### Keycloak
+
+[Keycloak](https://keycloak.org) is the default OpenID Connect server configured with JHipster.
 
 为了登入你的应用，你需要启动一个 [Keycloak](https://keycloak.org) 应用使之运行。JHipster 团队已经创建了一个 Docker 容器的镜像，包含了一些用户和角色。如下方式启动 Keycloak 服务：
 
 ```
 docker-compose -f src/main/docker/keycloak.yml up
 ```
+
+If you want to use Keycloak with Docker Compose, be sure to read our [Docker Compose documentation]({{ site.url }}/docker-compose/), and configure correctly your `/etc/hosts` for Keycloak.
 
 这些配置文件 `src/main/resources/application.yml` 已经为这个镜像配置好了。
 

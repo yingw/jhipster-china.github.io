@@ -123,6 +123,15 @@ JHipster is developed by a team of people around the world. We have a lot of con
     </div>
     <div class="col-xs-3 team-member">
         <div class="thumbnail no-margin-bottom">
+            <img src="https://avatars.githubusercontent.com/u/3100637?v=3" class="img-responsive">
+            <div class="caption">
+                <h3>Erik Kemperman</h3>
+                <p><a href="https://twitter.com/erikkemperman"><i>@erikkemperman</i></a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3 team-member">
+        <div class="thumbnail no-margin-bottom">
             <img src="https://avatars.githubusercontent.com/u/1577727?v=3" class="img-responsive">
             <div class="caption">
                 <h3>William Marques</h3>
@@ -200,7 +209,11 @@ JHipster is developed by a team of people around the world. We have a lot of con
 
 We do most of our work on [the project's GitHub page](https://github.com/jhipster/generator-jhipster).
 
-We also have our own mailing list: it is publicly viewable, as everything we do in JHipster is public, but only the board of developers can send e-mails to the list. It is available [here](https://groups.google.com/forum/?hl=en#!forum/jhipster-dev).
+Internal team discussions happen in the following channels :
+- The [jhipster-dev mailing list](https://groups.google.com/forum/?hl=en#!forum/jhipster-dev)
+- The [jhipster-dev-team Gitter chat](https://gitter.im/jhipster/jhipster-dev-team)
+
+Those discussion channels are publicly viewable, as everything we do in JHipster is public, but only the board of developers can participate. The mailing list archives can be found on the [Google groups page](https://groups.google.com/forum/?hl=en#!forum/jhipster-dev) and the [chat archives](https://gitter.im/jhipster/jhipster-dev-team/archives/all) are available on Gitter.
 
 # How to join the board of developers?
 

@@ -53,7 +53,7 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 *   巨石类应用（Monolithic application，也可翻译为传统类应用）: 这个是经典的、通用的应用类型。比较容易使用和开发，是我们推荐的默认类型。
 *   微服务应用（Microservice application）: 在微服务架构中，这是一个服务。
 *   微服务网关（Microservice gateway）: 在微服务架构中，这个是边缘服务，提供请求的路由和安全控制。
-*   JHipster UAA 服务：在微服务架构中，这里提供了 OAuth2 认证，安全控制。参考 <a href="/using-uaa/">JHipster UAA 文档</a>。
+*   JHipster UAA 服务：在微服务架构中，这里提供了 OAuth2 认证，安全控制。参考 [JHipster UAA documentation]({{ site.url }}/using-uaa/)。
 
 ### What is the base name of your application? （应用名称）
 
@@ -79,7 +79,7 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 *   JWT authentication: 使用 [JSON Web Token (JWT)](https://jwt.io/)，这个是默认值。
 *   HTTP Session Authentication: 经典的基于 session 的认证方式，好比我们在 Java 中的用法 (这是大部分用户使用使用 [Spring Security](http://docs.spring.io/spring-security/site/index.html) 的方式)。你可以和 Spring Social 配套使用这个选项，能让你使用 "social login" (如 Google, Facebook, Twitter) 特性：这个是由 Spring Boot 的 Spring Social 支持来实现的。
 *   OAuth 2.0 / OIDC Authentication: 这个选项使用 OpenID Connect server, 比如 [Keycloak](http://www.keycloak.org/) 或者 [Okta](https://www.okta.com)，可以在引用外部处理认证。（译注：应该还能支持 [CAS](https://www.apereo.org/projects/cas)）
-*   Authentication with JHipster UAA server: 这使用的 <a href="/using-uaa/">JHipster UAA server</a> 需要被独立的创建，同时也是 OAuth2 server 在应用外处理认证。
+*   Authentication with JHipster UAA server: 这使用的 [JHipster UAA server]({{ site.url }}/using-uaa/) 需要被独立的创建，同时也是 OAuth2 server 在应用外处理认证。
 
 你可以到 [应用安全]({{ site.url }}/security/) 章节获取更多信息。
 
