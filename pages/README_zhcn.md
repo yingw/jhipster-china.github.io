@@ -6,14 +6,14 @@ redirect_from:
   - /README_zhcn.html
 sitemap:
     priority: 0.4
-    lastmod: 2014-02-17T00:00:00-00:00
+    lastmod: 2017-12-02T00:00:00-00:00
 ---
 
 # 中文网站翻译说明
 
 大家好，这个网站是 JHipster 官网（[http://www.jhipster.tech/](http://www.jhipster.tech/)）的中文化翻译，是译者本人在学习 JHipster 的过程中不断记录的产物，最终干脆将官网的部分页面做了汉化翻译后挂出来共享给所有国内热爱 JHipster 的同胞
 
-本站地址：[http://www.jhipster-cn.tech](http://www.jhipster-cn.tech) 或 [https://yingw.github.io/](https://jhipster-china.github.io/)
+本站地址：[http://www.jhipster-cn.tech](http://www.jhipster-cn.tech) 或 [https://yingw.github.io/](https://yingw.github.io/)
 
 请了解一下这里的几个翻译原则：
 
@@ -21,7 +21,7 @@ sitemap:
 - 尽量会和官网的更新保持一致，基本上是在每次版本发布后两三天做一次 PR 后翻译
 - 部分关键术语的翻译不一定准确也是因为目前国内没有特别公认的叫法，所以我会将这些词的中英文写在一起，并在最后附上词汇表，比如（monolithic）
 
-如果你喜欢这个网站、或者想跟我联系、或者有错误想指出，可以加我 Q 2288237，或者在本站 GitHub 地址（https://github.com/jhipster-china/jhipster-china.github.io）上发起 PR 来贡献翻译，谢谢。
+如果你喜欢这个网站、或者想跟我联系、或者有错误想指出，可以加我 Q 2288237，或者在本站 GitHub 地址（[https://github.com/yingw/yingw.github.io](https://github.com/yingw/yingw.github.io)）上发起 PR 来贡献翻译，谢谢。
 
 目前的翻译进度如下：
 
@@ -53,9 +53,9 @@ sitemap:
     - [ ] 国际化（10%）
     - [ ] 升级应用（10%）
 - [ ] 微服务（%）
-    - [x] 概述（90%）
-    - [ ] API 网关（20%）
-    - [ ] Traefik（%）
+    - [x] 概述（100%）
+    - [x] API 网关（100%）
+    - [x] Traefik（100%）
     - [ ] JHipster 注册中心（20%）
     - [ ] Consul（%）
     - [ ] JHipster UAA（%）
