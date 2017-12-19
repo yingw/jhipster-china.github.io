@@ -306,15 +306,6 @@ public interface PersistenceAuditEventRepository extends JpaRepository&lt;Persis
                         </ul>
                     </section>
                     <section>
-                        <h1>Couchbase</h1>
-                        <h3>NoSQL for scalability</h3>
-                        <ul>
-                            <li>Alternative to the SQL database and JPA choice</li>
-                            <li>Similar code: Spring Data Couchbase works the same as Spring Data JPA</li>
-                            <li>More scalable, easier to use</li>
-                        </ul>
-                    </section>
-                    <section>
                         <h1>Cassandra</h1>
                         <h3>可扩展的 NoSQL</h3>
                         <ul>
@@ -429,63 +420,63 @@ public void saveAccount(@RequestBody UserDTO userDTO) {
                         <h3>为什么？</h3>
                     </section>
                     <section>
-                        <h3>We've seen lots of cool technologies</h3>
+                        <h3>我们见过很多很棒的技术</h3>
                         <ul>
-                            <li>Can Webpack and Maven be friends?</li>
-                            <li>Can Angular and Spring MVC REST be friends?</li>
-                            <li>Can Netflix OSS and Spring be friends?</li>
-                            <li>We can <i>guarantee</i> you that having everything working together smoothly, with security, caching and monitoring, isn't easy...</li>
+                            <li>Webpack 和 Maven 可以友好地协作吗？</li>
+                            <li>Angular 和 Spring MVC REST 呢？</li>
+                            <li>Netflix OSS 和 Spring 呢？</li>
+                            <li>我们 <i>保证</i> 你想要舒服地一起使用上这些技术，并且安全、并且缓存、监控，这不会轻松的……</li>
                         </ul>
                     </section>
                     <section>
-                        <h3>JHipster makes everything just work together</h3>
+                        <h3>JHipster 将他们工作在一起</h3>
                         <ul>
-                            <li>JHipster creates a complete working application, with all those technologies</li>
-                            <li>Everthing just works out-of-the-box</li>
-                            <li>You have your Webpack tasks working great with your Maven goals!</li>
-                            <li>You have Docker configuration to run everything smoothly!</li>
+                            <li>JHipster 创建了一个完整的应用工程，集成了所有这些技术</li>
+                            <li>所有组件都是开箱即用的</li>
+                            <li>你的 Webpack task 和 Maven goals 可以一起工作！</li>
+                            <li>你可以使用 Docker 来平滑地运行所有！</li>
                         </ul>
                     </section>
                     <section>
-                        <h3>But wait, there's more!</h3>
+                        <h3>等等，还有更多！</h3>
                         <ul>
-                            <li><strong>"entity"</strong> sub-generator to generate a complete JPA entity, from database to Angular</li>
-                            <li><strong>"import-jdl"</strong> sub-generator to generate a complex entity model using <a href="https://start.jhipster.tech/jdl-studio/" target="_blank">JDL Studio</a></li>
-                            <li><strong>"service"</strong> sub-generator to generate a Spring business service</li>
-                            <li><strong>"languages"</strong> sub-generator to add languages for i18n</li>
-                            <li>Great support for Spring Security: Ajax endpoints, secured remember-me, audits...</li>
-                            <li>Great monitoring screen using Metrics</li>
+                            <li><strong>"entity"</strong> 命令行代码构建工具可以创建完整的 JPA 模型，从数据库到 Angular</li>
+                            <li><strong>"import-jdl"</strong> 工具可以导入 <a href="https://start.jhipster.tech/jdl-studio/" target="_blank">JDL Studio</a> 生成的 JDL 来创建完整的实体模型</li>
+                            <li><strong>"service"</strong> 工具可以创建 Spring 业务服务对象</li>
+                            <li><strong>"languages"</strong> 工具来添加国际化支持的语言</li>
+                            <li>极好地支持了 Spring Security: Ajax endpoints, 加密的 remember-me 功能, 审计...</li>
+                            <li>使用 Metrics 的监控页面</li>
                         </ul>
                     </section>
                     <section>
-                        <h3>It's not over yet, there's even more!</h3>
+                        <h3>如果还不够，这里还有更多特性！</h3>
                         <ul>
-                            <li>Great support for creating microservices and gateways</li>
-                            <li>JHipster Registry (Netflix Eureka + Spring cloud config server) provided out of the box</li>
-                            <li>JHipster Console with ELK (Elasticsearch + Logstash + Kibana) monitoring out of the box</li>
-                            <li>Great support for Docker</li>
-                            <li>Additional JHipster <a href="http://www.jhipster.tech/modules/marketplace/" target="_blank">Modules</a> to add more features</li>
+                            <li>完整支持创建微服务和网关应用</li>
+                            <li>JHipster Registry (Netflix Eureka + Spring cloud config server)，开箱即用</li>
+                            <li>JHipster Console 使用 ELK (Elasticsearch + Logstash + Kibana) 监控，开箱即用</li>
+                            <li>支持 Docker</li>
+                            <li>更多的 JHipster <a href="http://www.jhipster.tech/modules/marketplace/" target="_blank">插件</a> 来获取更多特性</li>
                         </ul>
                     </section>
                     <section>
-                        <h3>Production-ready</h3>
+                        <h3>生产环境功能</h3>
                         <ul>
-                            <li>Specific Spring profile with GZipping and HTTP caching headers</li>
-                            <li>TypeScript &amp; CSS optimization and minification by Webpack</li>
-                            <li>Executable or standard WAR file, with monitoring enabled</li>
-                            <li>Sub-generators for deploying automatically to Cloud Foundry, Heroku and AWS</li>
-                            <li><strong>"docker-compose"</strong> sub-generator to generate Docker configurations for deploying microservices to production</li>
+                            <li>特定的 Spring profile，支持 GZipping 和 HTTP caching headers</li>
+                            <li>用 Webpack 优化，压缩的 TypeScript &amp; CSS </li>
+                            <li>可执行的 WAR 文件，支持监控</li>
+                            <li>自动部署到 Cloud Foundry, Heroku 和 AWS 的工具</li>
+                            <li><strong>"docker-compose"</strong> 工具用于生成 Docker 配置文件来发布微服务应用的生产环境</li>
                         </ul>
                     </section>
                 </section>
 
                 <section>
                     <section data-background="#4d7e65" data-background-transition="slide">
-                        <h1>Let's build our first app</h1>
-                        <h3>10 minutes tutorial</h3>
+                        <h1>来构建第一个应用吧</h1>
+                        <h3>10 分钟教程</h3>
                     </section>
                     <section>
-                        <h1>Install Yeoman</h1>
+                        <h1>安装 Yeoman</h1>
                         <pre>
                             <code data-trim contenteditable>
 yarn global add yo
@@ -494,9 +485,9 @@ yarn global add generator-jhipster
                         </pre>
                     </section>
                     <section>
-                        <h1>Create an application</h1>
-                        <p>And use the embedded Maven wrapper to run it<br>
-                            <i>(hot reload of your application will work automatically)</i>
+                        <h1>创建应用</h1>
+                        <p>使用内置的 Maven 运行<br>
+                            <i>(并具有自动重载功能)</i>
                         </p>
                         <pre>
                             <code data-trim contenteditable>
@@ -506,9 +497,9 @@ jhipster
                         </pre>
                     </section>
                     <section>
-                        <h1>Client-side live reload</h1>
+                        <h1>客户端自动重载</h1>
                         <p>
-                            Live reload of your client-side code (HTML, CSS, TypeScript) works thanks to Webpack and Browsersync. Edit any file and your browser will refresh automatically:
+                            自动重载客户端代码 (HTML, CSS, TypeScript)，使用 Webpack 和 Browsersync。编辑文件，浏览器会自动刷新：
                       </p>
                         <pre>
                             <code data-trim contenteditable>
@@ -517,7 +508,7 @@ yarn start
                         </pre>
                     </section>
                     <section>
-                        <h1>Add an entity</h1>
+                        <h1>添加一个模型</h1>
                         <pre>
                             <code data-trim contenteditable>
 jhipster entity Foo
@@ -526,8 +517,8 @@ jhipster entity Foo
                     </section>
 
                     <section>
-                        <h1>Run in production</h1>
-                        <p><i>(Using Docker to run the database)</i></p>
+                        <h1>运行到生产环境</h1>
+                        <p><i>(使用 Docker 运行数据库)</i></p>
                         <pre>
                             <code data-trim contenteditable>
 ./mvnw -Pprod package
@@ -540,7 +531,7 @@ java -jar target/*.war
                 </section>
 
                 <section>
-                    <h1>Thank you for your attention</h1>
+                    <h1>感谢您的关注</h1>
                     <p>
                         <a href="http://www.jhipster.tech">http://www.jhipster.tech</a>
                     </p>
