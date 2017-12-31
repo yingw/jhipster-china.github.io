@@ -72,7 +72,7 @@ _注意_ 在使用 AngularJS 1 时，一些开发者习惯于排除目录 `src/m
 
 ## 使用 Spring Boot devtools 来使项目支持 "热重启" 
 
-[Spring Boot devtools](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html) is configured by JHipster, and will "hot restart" your application when classes from your project are compiled. This is a must-have feature, as it makes your application updated on the fly.
+JHipster 配置了 [Spring Boot devtools](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html) ，它可以让你的项目在类编译后自动“热启动”。这是个非常棒的特性，可以让你开发效率大大提升。
 
 默认情况下，IntelliJ IDEA 设置为不会自动编译项目文件。如果要打开 "Compile on save" 设置:
 

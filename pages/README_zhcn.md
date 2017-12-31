@@ -46,7 +46,7 @@ sitemap:
 - [x] JHipster 核心任务（%）
     - [x] 创建应用（50%）
     - [x] 创建模型（20%）
-    - [ ] 创建 Spring controller（%）
+    - [x] 创建 Spring controller（100%）
     - [ ] 创建 Spring Service（%）
     - [ ] 创建 DTO（%）
     - [x] 管理关联关系（50%）

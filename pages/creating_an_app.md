@@ -85,31 +85,31 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 
 ### Which *type* of database would you like to use? （使用哪种数据库）
 
-You can choose between:
+你可以选择：
 
-- No database (only available when using a [microservice application]({{ site.url }}/microservices-architecture/))
-- An SQL database (H2, MySQL, MariaDB, PostgreSQL, MSSQL, Oracle), which you will access with Spring Data JPA
+- No database，不使用数据库 (只在使用 [微服务应用]({{ site.url }}/microservices-architecture/) 时可选)
+- SQL 数据库 (支持 H2, MySQL, MariaDB, PostgreSQL, MSSQL, Oracle)，通过 Spring Data JPA 来访问数据库
 - [MongoDB]({{ site.url }}/using-mongodb/)
 - [Cassandra]({{ site.url }}/using-cassandra/)
 - [Couchbase]({{ site.url }}/using-couchbase/)
 
 ### Which *production* database would you like to use? （生产环境使用哪种数据库）
 
-This is the database you will use with your "production" profile. To configure it, please modify your `src/main/resources/config/application-prod.yml` file.
+这个是你将在生产环境使用的数据库。在配置文件 `src/main/resources/config/application-prod.yml` 中配置。
 
-If you want to use Oracle, you will need to [install the Oracle JDBC driver manually]({{ site.url }}/using-oracle/).
+如果你希望使用 Oracle，你还需要 [手动安装 Oracle JDBC 驱动]({{ site.url }}/using-oracle/).
 
 ### Which *development* database would you like to use? （开发环境使用哪种数据库）
 
-This is the database you will use with your "development" profile. You can either use:
+这个是在开发环境中使用的数据库，你可以使用：
 
-*   H2, running in-memory. This is the easiest way to use JHipster, but your data will be lost when you restart your server.
-*   H2, with its data stored on disk. This is currently in BETA test (and not working on Windows), but this would eventually be a better option than running in-memory, as you won't lose your data upon application restart.
-*   The same database as the one you chose for production: it's a bit more complex to set up, but it should be better in the end to work on the same database as the one you will use in production. This is also the best way to use liquibase-hibernate as described in [the development guide]({{ site.url }}/development/).
+*   H2 数据库，运行在内存中。这是运行 JHipster 最简单的方法，但是在服务重启后你所有的数据都会丢失。
+*   H2 数据库，数据存储于磁盘上。目前还在 BETA 测试阶段（并且在 Windows 上不能工作），但是比运行在内存中的方式要好些，因为你不会丢失数据了。
+*   和生产环境一样的数据库：这种方式设置稍微复杂，但这样和生产一致是更好的方式。这也是在使用 liquibase-hibernate [the development guide]({{ site.url }}/development/) 时最好的方式。
 
 （译注：推荐3，和生产库使用同样的数据库，而不是 H2，驱动不说，丢数据麻烦。只是需要设置一下数据库位置而已）
 
-To configure it, please modify your `src/main/resources/config/application-dev.yml` file.
+在配置文件 `src/main/resources/config/application-dev.yml` 中进行设置。
 
 ### Do you want to use Hibernate 2nd level cache? （是否使用 Hibernate 二级缓存）
 
@@ -188,19 +188,19 @@ You can also run JHipster with some optional command-line options. Reference for
 Here are the options you can pass:
 
 * `--help` - 输出所有选项和使用帮助
-* `--skip-cache` - Do not remember prompt answers (Default: false)
-* `--skip-git` - Do not add the generated project to Git automatically (Default: false)
-* `--skip-install` - Do not automatically install dependencies (Default: false)
-* `--skip-client` - Skip the client-side application generation, so you only have the Spring Boot back-end code generated (Default: false). This is same as running server sub-generator with `jhipster server`.
-* `--skip-server` - Skip the server-side application generation, so you only have the front-end code generated (Default: false). This is same as running client sub-generator with `jhipster client`.
-* `--skip-user-management` - Skip the user management generation, both on the back-end and on the front-end (Default: false)
-* `--i18n` - Disable or enable i18n when skipping client side generation, has no effect otherwise (Default: true)
+* `--skip-cache` - 不要记住之前提示的回答 (默认: false)
+* `--skip-git` - 不要创建 Git 仓库 (默认: false)
+* `--skip-install` - 不要自动安装依赖 (默认: false)
+* `--skip-client` - 跳过生成客户端程序，这样就可以只创建 Spring Boot 的后端程序 (默认: false)。这和使用 server 工具命令类似：`jhipster server`。
+* `--skip-server` - 跳过生成服务端程序，这样就可以只创建前端程序 (默认: false)。这和使用 client 工具命令类似：`jhipster client`。
+* `--skip-user-management` - 跳过生成用户管理功能，同时作用于前端和后端 (默认: false)
+* `--i18n` - 开启或关闭国际化（i18n）功能，when skipping client side generation, has no effect otherwise (默认: true)
 * `--auth` - Specify the authentication type when skipping server side generation, has no effect otherwise but mandatory when using `skip-server`
-* `--db` - Specify the database when skipping server side generation, has no effect otherwise but mandatory when using `skip-server`
+* `--db` - 在跳过 Server 端代码时指定数据库类型，其他情况无效，但是在使用 `skip-server` 时是必填的。
 * `--with-entities` - Regenerate the existing entities if they were already generated (using their configuration in the `.jhipster` folder) (Default: false)
-* `--skip-checks` - Skip the check of the required tools (Default: false)
-* `--jhi-prefix` - Add prefix before services, components and state/route names (Default: jhi)
-* `--npm` - Use NPM instead of Yarn (Default: false)
+* `--skip-checks` - 跳过必要工具的检查 (默认: false)
+* `--jhi-prefix` - 在 service，components，state/route 前加的前缀 (默认: jhi)
+* `--npm` - 使用 NPM 替代 Yarn (默认: false)
 * `--experimental` - Enable experimental features. Please note that these features may be unstable and may undergo breaking changes at any time
 
 ## <a name="4"></a> 小提示

@@ -1,34 +1,34 @@
 ---
 layout: default
-title: Creating a service
+title: 创建控制器
 permalink: /creating-a-spring-controller/
 sitemap:
     priority: 0.7
     lastmod: 2017-10-17T00:00:00-00:00
 ---
 
-# <i class="fa fa-bolt"></i> Creating a Spring Controller
+# <i class="fa fa-bolt"></i> 创建控制器
 
-## Introduction
+## 简介
 
-_Note: this sub-generator is much simpler than the [entity sub-generator]({{ site.url }}/creating-an-entity/) that creates full CRUD entities_
+_说明: 此工具比 [entity 工具]({{ site.url }}/creating-an-entity/) 更简单，entity 是创建完整的 CRUD 实体操作的。_
 
-This is sub-generator generates a Spring MVC REST Controller. It is also able to create simple REST methods.
+这是个创建 Spring MVC REST 控制器的工具，也可以用来创建简单的 REST 方法。
 
-In order to generate a "Foo" Spring MVC REST controller, just type:
+比如需要创建一个名为 "Foo" 的 Spring MVC REST 控制器：
 
 `jhipster spring-controller Foo`
 
-The sub-generator will ask you which method you want to generate: just answer the method name and the HTTP verb you want to use, and a simple method will be generated.
+该命令工具会询问你需要用创建哪个方法：你只需要回答方法名和需要的 HTTP 参数，方法就创建好了。
 
-## Can we document this Spring MVC REST Controller with Swagger?
+## 可以用 Swagger 来定义 Spring MVC REST 控制器的文档吗？
 
-Yes! In fact it's already done! In `dev` mode, just use the `Administration > API` menu to access Swagger UI and start using the generated controller.
+可以！事实上这已经做好了！在 `dev` 模式中，用菜单 `Administration > API` 来访问 Swagger UI 来早点你创建的控制器吧。
 
-## Can we add security to Spring MVC REST Controllers?
+## 可以给 Spring MVC REST 控制器加上权限控制吗？
 
-Yes! Just add Spring Security's `@Secured` annotation on your class or on your methods, and use the provided `AuthoritiesConstants` class to restrict access to specific user authorities.
+可以的！只需要给你的类或者方法上增加 Spring Security 的 `@Secured` 注解，并用 `AuthoritiesConstants` 类来配置用户权限。
 
-## Can we monitor Spring MVC REST Controllers?
+## 可以监控 Spring MVC REST 控制器吗？
 
-Yes! Just add Metrics' `@Timed` annotations on the methods you want to monitor.
+可以！给需要监控的方法加上 Metrics 的 `@Timed` 注解即可。
