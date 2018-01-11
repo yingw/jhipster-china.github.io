@@ -99,4 +99,14 @@ sitemap:
             </div>
         </div>
     </div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="thumbnail no-margin-bottom">
+            <div class="video-container">
+                <img width="560" height="315" src="{{ site.url }}/images/showcase/motorsports-database.racing.png" />
+            </div>
+            <div class="caption">
+                <h3 id="thumbnail-label"><a href="https://www.motorsports-database.racing" target="_blank">Motorsports Database</a></h3>
+            </div>
+        </div>
+    </div>
 </div>

@@ -130,9 +130,15 @@ Validation has a few limitations:
 
 Entity relationships are only available for SQL databases. It is a fairly complex subject, which has its own documentation page: [Managing relationships]({{ site.url }}/managing-relationships/).
 
+## Generating a separate service class for your business logic
+
+Having a separate service class allows to have more complex logic that just using a Spring REST Controller directly. Having a service layer (with or without an interface) will allow you to use DTOs (see next section).
+
+This is the same logic as using the [Spring service sub-generator]({{ site.url }}/creating-a-spring-service/), so we recommend to read its documentation to have more information.
+
 ## 数据传输对象 (DTOs)
 
-JHipster 默认不会生成 DTOs, but they are available as an option. Here is the documentation: [Using DTOs]({{ site.url }}/using-dtos/).
+JHipster 默认不会生成 DTOs，但是如果你选择了创建 Service 层（参考上面的章节），他们也是可选的。文档：[使用 DTOs]({{ site.url }}/using-dtos/).
 
 ## 过滤
 

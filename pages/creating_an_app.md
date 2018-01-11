@@ -111,10 +111,15 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 
 在配置文件 `src/main/resources/config/application-dev.yml` 中进行设置。
 
+### Do you want to use the Spring cache abstraction?
+
+The Spring cache abstraction allows to use different cache implementations: you can use [ehcache](http://ehcache.org/) (local cache), [Hazelcast](http://www.hazelcast.com/) (distributed cache), or [Infinispan](http://infinispan.org/) (another distributed cache). This can have a very positive impact on your application's performance, and hence it is a recommended option.
+
 ### Do you want to use Hibernate 2nd level cache? （是否使用 Hibernate 二级缓存）
 
-[Hibernate](http://hibernate.org/) is the JPA provider used by JHipster. For performance reasons, we highly recommend you to use a cache, and to tune it according to your application's needs.
-If you choose to do so, you can use either [ehcache](http://ehcache.org/) (local cache) or [Hazelcast](http://www.hazelcast.com/) (distributed cache, for use in a clustered environnement)
+This option will only be available if you selected to use an SQL database (as JHipster will use Spring Data JPA to access it) and selected a cache provider in the previous question.
+
+[Hibernate](http://hibernate.org/) is the JPA provider used by JHipster, and it can use a cache provider to greatly improve its performance. As a result, we highly recommend you to use this option, and to tune your cache implementation according to your application's needs.
 
 ### Would you like to use Maven or Gradle? （使用 Maven 或 Gradle）
 

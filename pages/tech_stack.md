@@ -61,7 +61,6 @@ sitemap:
 
 *   监控：[Metrics](http://metrics.dropwizard.io/) 及 [the ELK Stack](https://www.elastic.co/products)
 *   缓存：[ehcache](http://ehcache.org/) (本地缓存), [hazelcast](http://www.hazelcast.com/) 或 [Infinispan](http://infinispan.org/)
-*   可选的 HTTP session 集群：[hazelcast](http://www.hazelcast.com/)
 *   优化静态资源 (gzip 过滤, HTTP cache headers)
 *   日志管理：[Logback](http://logback.qos.ch/), 可运行时配置
 *   连接池管理：[HikariCP](https://github.com/brettwooldridge/HikariCP) 来优化性能
