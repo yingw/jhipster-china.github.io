@@ -4,7 +4,7 @@ title: 创建控制器
 permalink: /creating-a-spring-controller/
 sitemap:
     priority: 0.7
-    lastmod: 2017-10-17T00:00:00-00:00
+    lastmod: 2017-12-28T00:00:00-00:00
 ---
 
 # <i class="fa fa-bolt"></i> 创建控制器
