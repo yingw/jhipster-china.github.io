@@ -13,11 +13,12 @@ sitemap:
 
 ## 安装方式
 
-我们提供了 5 种安装 JHipster 的方式：
+我们提供了 6 种安装 JHipster 的方式。如有不确定选择哪种，请选择第二种“使用 Yarn 本地安装”：
 
 *   [JHipster Online](https://start.jhipster.tech/) 是一个最简单的方式来使用 JHipster 生成应用，甚至不需要安装本地 JHipster。
 *   "使用 Yarn 本地安装" 是典型的安装方式。所有需要的组件都会安装在你的机器上，设置稍微有点复杂，但是是大部分人的选择。如果不确定选择哪种安装方式，选择这个就是了。
 *   "使用 NPM 本地安装" 基本类似 "使用 Yarn 本地安装"，区别在于使用 NPM 而不是 [Yarn](https://yarnpkg.com/)
+*   "Installation with a package manager" is only available for Mac OS X and Windows. This is a very simple installation method, if you use a package manager, but it is still in BETA.
 *   基于 Vagrant "[development box](https://github.com/jhipster/jhipster-devbox)", 所有工具都安装在一个 Ubuntu 虚拟机中。
 *   基于 "[Docker](https://www.docker.io/)" 容器，提供更轻量的的 JHipster 环境。
 
@@ -83,6 +84,30 @@ JHipster 使用 [Yeoman](http://yeoman.io/) 来作为代码生成器。
     * 安装 JHipster：`npm install -g generator-jhipster`
 
 请查阅 [NPM 文档](https://docs.npmjs.com/).
+
+## Installation with a package manager
+
+__Please note this is a BETA feature!__ If you selected this installation, don't hesitate to send us a [bug report](https://github.com/jhipster/generator-jhipster/issues) or feedback on [@java_hipster](https://twitter.com/java_hipster).
+
+### Installation with Homebrew on Mac OS X
+
+JHipster provides a [Homebrew](https://brew.sh/) package, available on [http://formulae.brew.sh/formula/jhipster](http://formulae.brew.sh/formula/jhipster).
+
+To install JHipster (as well as Node and Yarn), just type:
+
+    brew install jhipster
+
+New versions of this package are published each time a new JHipster release is created, but it might take time for the Homebrew team to validate this package - so if you have an older JHipster release, please be patient or use the Yarn installation above.
+
+### Installation with Chocolatey on Windows
+
+JHipster provides a [Chocolatey](https://chocolatey.org/) package, available on [https://chocolatey.org/packages/jhipster](https://chocolatey.org/packages/jhipster).
+
+To install JHipster (as well as Node, Yarn, Yeoman, Java and Git), just type:
+
+    choco install jhipster
+
+New versions of this package are published each time a new JHipster release is created, but it might take time for the Chocolatey team to validate this package - so if you have an older JHipster release, please be patient or use the Yarn installation above.
 
 ## Vagrant box 安装
 
