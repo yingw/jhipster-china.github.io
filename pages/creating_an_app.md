@@ -32,9 +32,9 @@ _**请查看我们的 [视频教程]({{ site.url }}/video-tutorial/) 来学习�
 
 `jhipster`
 
-回答生成器问的一些问题来根据你的需要创建项目。这些问题将在 [下一小节](#2) 介绍。
+接下来生成器会问你关于项目的一些问题，来根据你的需要创建项目。这些问题将在 [下一小节](#2) 介绍。
 
-一旦项目创建完成，你可以使用 Maven（Linux/MacOS/Windows PowerShell 上执行 `./mvnw`，在 Windows Cmd 里执行 `mvnw`） 或 Gradle (在 Linux/MacOS/Windows PowerShell 上执行 `./gradlew`，在 Windows Cmd 里执行 `gradlew`).
+一旦项目创建完成，你可以运行 Maven（Linux/MacOS/Windows PowerShell 上执行 `./mvnw`，在 Windows Cmd 里执行 `mvnw`），或 Gradle (在 Linux/MacOS/Windows PowerShell 上执行 `./gradlew`，在 Windows Cmd 里执行 `gradlew`)。
 
 应用启动在： [http://localhost:8080](http://localhost:8080)
 
@@ -111,7 +111,7 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 
 在配置文件 `src/main/resources/config/application-dev.yml` 中进行设置。
 
-### Do you want to use the Spring cache abstraction?
+### Do you want to use the Spring cache abstraction? （是否使用 Spring 缓存）
 
 The Spring cache abstraction allows to use different cache implementations: you can use [ehcache](http://ehcache.org/) (local cache), [Hazelcast](http://www.hazelcast.com/) (distributed cache), or [Infinispan](http://infinispan.org/) (another distributed cache). This can have a very positive impact on your application's performance, and hence it is a recommended option.
 
