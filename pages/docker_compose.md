@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Docker and Docker Compose
+title: Docker 和 Docker Compose
 permalink: /docker-compose/
 redirect_from:
   - /docker_compose.html
@@ -9,163 +9,163 @@ sitemap:
     lastmod: 2016-12-01T00:00:00-00:00
 ---
 
-# <i class="fa fa-music"></i> Docker and Docker Compose
+# <i class="fa fa-music"></i> Docker 和 Docker Compose
 
 ## Summary
 
-Using Docker and Docker Compose is highly recommended in development, and is also a good solution in production.
+推荐在开发环境中使用 Docker 或 Docker Compose，即使在生产环境中，docker 也是个非常好的解决方案。
 
-1. [Description](#1)
-2. [Prerequisites](#2)
-3. [Building a Docker image of your application](#3)
-4. [Generating a custom Docker-Compose configuration for multiple applications](#docker-compose-subgen)
-5. [Working with databases](#4)
+
+1. [描述](#1)
+2. [准备工作](#2)
+3. [制作应用的 docker 镜像](#3)
+4. [制作多个应用的 Docker-Compose 配置](#docker-compose-subgen)
+5. [使用数据库](#4)
 6. [Elasticsearch](#5)
 7. [Sonar](#6)
 7. [Keycloak](#7)
-8. [Common commands](#8)
-9. [Memory Tweaking](#9)
+8. [常用命令](#8)
+9. [内存调整](#9)
 
-## <a name="1"></a> Description
+## <a name="1"></a> 描述
 
-_Please note: this Docker configuration is used to run your generated application(s) inside a container image. It's completely different from the [Docker setup]({{ site.url }}/installation/) that JHipster also provides, which is for running the JHipster generator inside a container_
+_请注意：这里描述的 Docker 设置是为了容器化运行应用的。这和在 [Docker 设置]({{ site.url }}/installation/) 章节描述的不是一个含义，那是指在容器中运行 JHipster 的 generator 环境_
 
-JHipster provides a complete Docker support, in order to:
+JHipster 提供了完整的 Docker 支持，为了：
 
-- Facilitate development, as you can start a full infrastructure very easily, even when using a complex microservices architecture
-- For people using Docker Swarm, deploying to production directly, as it uses the same Docker Compose configuration
+- 帮助开发，可以使你非常方便的构建起完整的基础架构，即使在使用了复杂的微服务架构的场景下
+- 对于使用了 Docker Swarm 的场景，可以直接部署到生产环境，得益于其使用了相同的 Docker Compose 配置
 
-One great feature of using Docker Compose is that you can easily scale your containers, using the `docker-compose scale` command. This is very interesting if you use JHipster with a [a microservices architecture](#3).
+使用 Docker Compose 的一个好处是你可以非常方便的扩展（scale）容器，使用命令 `docker-compose scale`。这在使用 JHipster 的 [微服务架构](#3) 时非常有趣。
 
-When generating your application, JHipster generates for you:
+生成一个新项目时，JHipster 已经自动生成好了：
 
-- A `Dockerfile` for building a Docker image and running your application inside a container
-- Several Docker Compose configurations to help you run your application with third-party services, for example a database
+- 一个 `Dockerfile` 用于编译 Docker 以及在容器中启动应用
+- 多个 Docker Compose 配置来帮助你启动应用所需的第三方服务，比如数据库
 
-Those files are located inside folder `src/main/docker/`.
+这些文件在 `src/main/docker/` 目录下。
 
-## <a name="2"></a> Prerequisites
+## <a name="2"></a> 准备工作
 
-You have to install Docker and Docker Compose:
+先安装 Docker 和 Docker Compose：
 
 - [Docker](https://docs.docker.com/installation/#installation)
 - [Docker Compose](https://docs.docker.com/compose/install)
 
-<div class="alert alert-info"><i>Tip: </i>
+<div class="alert alert-info"><i>小提示：</i>
 
-On Windows and Mac OS X, Kitematic is an easy-to-use graphical interface provided with the Docker Toolbox, which will makes using Docker a lot easier.
-
-</div>
-
-<div class="alert alert-warning"><i>Warning: </i>
-
-If you are using Docker Machine on Mac or Windows, your Docker daemon has only limited access to your OS X or Windows file system. Docker Machine tries to auto-share your /Users (OS X) or C:\Users\&lt;username&gt; (Windows) directory. So you have to create the project folder under this directory to avoid any issues especially if you are using the <a href="{{ site.url }}/monitoring/">JHipster Console</a> for monitoring.
+在 Windows 和 Mac OS X 环境下，Kitematic 是个非常方便的图形化管理工具，集成在 Docker Toolbox 里。
 
 </div>
 
+<div class="alert alert-warning"><i>警告：</i>
 
-If you encounter the error `npm ERR! Error: EACCES: permission denied` when installing JHipster UML (or any unbundled package), your container may not have `sudo` installed (for instance, sudo isn't bundled with Ubuntu Xenial).
+如果在 Mac 或 Windows 上使用 Docker Machine，Docker 的守护进程只有访问 OS X 或 Windows 文件系统的有限权限。Docker Machine 尝试自动共享 /Users 目录 (OS X) 或 C:\Users\&lt;username&gt; 目录 (Windows)。所以必须将项目建立在该目录下，才能避免一些问题，尤其是当你在使用 <a href="{{ site.url }}/monitoring/">JHipster Console</a> 监控。
 
-__Solution 1__
+</div>
 
-The NPM documentation recommends not installing any NPM package as root. Follow the [official documentation](https://docs.npmjs.com/getting-started/fixing-npm-permissions) to fix this.
+如果在安装 JHipster UML （或者其他 unbundled package）时碰到错误 `npm ERR! Error: EACCES: permission denied`，可能是你的容器没有用 `sudo` 安装（比如，sudo isn't bundled with Ubuntu Xenial).
 
-__Solution 2__
+__解决方案 1__
+
+NPM 的文档建议不要用 root 安装任何包。参考 [官方说明](https://docs.npmjs.com/getting-started/fixing-npm-permissions) 来修复这个问题。
+
+__解决方案 2__
 
   - `docker container exec -u root -it jhipster bash`,
   - `npm install -g YOUR_PACKAGE`,
-  - then exit and log into the container normally: `docker container exec -it jhipster bash`
+  - 退出然后重新进入容器：`docker container exec -it jhipster bash`
 
-## <a name="3"></a> Building and running a Docker image of your application
+## <a name="3"></a> 制作应用的 docker 镜像
 
-To create a Docker image of your application, and push it into your Docker registry:
+制作应用的 Docker 镜像，并且提交到 Docker registry：
 
-- With Maven, type: `./mvnw package -Pprod dockerfile:build`
-- With Gradle, type: `./gradlew bootRepackage -Pprod buildDocker`
+- 使用 Maven，执行：`./mvnw package -Pprod dockerfile:build`
+- 使用 Gradle，执行：`./gradlew bootRepackage -Pprod buildDocker`
 
-This will package your application with the `prod` profile, and install the image.
+这将使用 profile `prod` 打包你的应用，并且生成镜像。
 
-On Windows, due to [lack of named pipes](https://github.com/spotify/docker-client/issues/875), you may have to tune settings for Docker and turn on “Expose daemon on tcp://localhost:2375 without TLS”.
+在 Windows 上，由于 [lack of named pipes](https://github.com/spotify/docker-client/issues/875)，你需要调整设置，打开 “Expose daemon on tcp://localhost:2375 without TLS”。
 
-To run this image, use the Docker Compose configuration located in the `src/main/docker` folder of your application:
+运行镜像，可以使用 `src/main/docker` 目录下的 Docker Compose 配置：
 
 - `docker-compose -f src/main/docker/app.yml up`
 
-This command will start up your application and the services it relies on (database, search engine, JHipster Registry...).
+该命令将会启动你的应用及所需的服务 (database, search engine, JHipster Registry...).
 
-If you chose OAuth 2.0 for authentication, be sure to read our [Keycloak section on this documentation](#7).
+如果你选择了 OAuth 2.0 作为认证方案，请参阅 [Keycloak section on this documentation](#7).
 
-## <a name="docker-compose-subgen"></a> Generating a custom Docker-Compose configuration for multiple applications
+## <a name="docker-compose-subgen"></a> 制作多个应用的 Docker-Compose 配置
 
-If your architecture is composed of several JHipster applications, you can use the specific `docker-compose` sub-generator, which will generate a global Docker Compose configuration for all selected applications. This will allow you to deploy and scale your complete architecture with one command.
-To use the `docker-compose` subgenerator:
+如果你的架构由多个 JHipster 应用组成，你可以使用 JHipster 的 `docker-compose` 命令，它会为所有应用生成一个全局的 Docker Compose 配置。这将让你能够只用一条命令就可以部署和扩展你的架构。
+要使用 `docker-compose` 命令：
 
-- You need to have all your monolith(s), gateway(s) and microservices in the same directory.
-- Create another directory, for example `mkdir docker-compose`.
-- Go into that directory: `cd docker-compose`.
-- Run the sub-generator: `jhipster docker-compose`.
-- The sub-generator will ask you which application you want to have in your architecture, and if you want to setup monitoring with ELK or Prometheus.
+- 将你所有的 monolith(s), 网关以及微服务项目，放在同一个目录下。
+- 创建另一个目录，比如 `mkdir docker-compose`。
+- 进入：`cd docker-compose`。
+- 执行命令：`jhipster docker-compose`。
+- 该命令会询问你的架构中的那些项目有哪些，以及是否需要设置 ELK 或 Prometheus。
 
-This will generate a global Docker Compose configuration, type `docker-compose up` to run it, and have all your services running at once.
+创建好了全局的 Docker Compose 配置，执行 `docker-compose up` 来启动它，你的所有服务就会一起启动了。
 
-In the case of a microservice architecture, this configuration will also pre-configure a JHipster Registry or Consul, that will configure your services automatically:
+在使用微服务架构的场景中，该配置还会设置个 JHipster Registry 或者 Consul, that will configure your services automatically:
 
-- Those services will wait until the JHipster Registry (or Consul) is running to start. This can be configured in your `bootstrap-prod.yml` file using the `spring.cloud[.consul].config.fail-fast` and `spring.cloud[.consul].config.retry` keys.
-- The registry will configure your applications, for example it will share the JWT secret token between all services.
-- Scaling each service is done using Docker Compose, for example type `docker-compose scale test-app=4` to have 4 instances of application "test" running. Those instances will be automatically load-balanced by the gateway(s), and will automatically join the same Hazelcast cluster (if Hazelcast is your Hibernate 2nd-level cache).
+- 所有的服务都会等待直到 JHipster Registry (或 Consul) 启动好。可以通过配置文件 `bootstrap-prod.yml` 中的 `spring.cloud[.consul].config.fail-fast` 和 `spring.cloud[.consul].config.retry` 配置项设置。
+- Registry 会设置你的应用，例如它会在所有服务中共享 JWT 秘钥令牌。
+- 使用 Docker Compose 来扩展服务，例如执行 `docker-compose scale test-app=4` 来配置名为 "test" 的应用运行 4 个实例。这些实例自动由网关负载平衡，并且会加入同一个 Hazelcast 群（如果你选择了 Hazelcast 作为 Hibernate 二级缓存）。
 
 
-## <a name="4"></a> Working with databases
+## <a name="4"></a> 使用数据库
 
-### MySQL, MariaDB, PostgreSQL, Oracle, MongoDB or Cassandra
+### MySQL, MariaDB, PostgreSQL, Oracle, MongoDB 或 Cassandra
 
-Running `docker-compose -f src/main/docker/app.yml up` already starts up your database automatically.
+执行 `docker-compose -f src/main/docker/app.yml up` 已经自动启动了数据库。
 
-If you just want to start your database, and not the other services, use the Docker Compose configuration of your database:
+如果你希望启动自己的数据库，而不是另一个服务，使用这些数据库的 Docker Compose 配置：
 
-- With MySQL: `docker-compose -f src/main/docker/mysql.yml up`
-- With MariaDB: `docker-compose -f src/main/docker/mariadb.yml up`
-- With PostgreSQL: `docker-compose -f src/main/docker/postgresql.yml up`
-- With Oracle: `docker-compose -f src/main/docker/oracle.yml up`
-- With MongoDB: `docker-compose -f src/main/docker/mongodb.yml up`
-- With Cassandra: `docker-compose -f src/main/docker/cassandra.yml up`
-- With Couchbase: `docker-compose -f src/main/docker/couchbase.yml up`
+- 使用 MySQL: `docker-compose -f src/main/docker/mysql.yml up`
+- 使用 MariaDB: `docker-compose -f src/main/docker/mariadb.yml up`
+- 使用 PostgreSQL: `docker-compose -f src/main/docker/postgresql.yml up`
+- 使用 Oracle: `docker-compose -f src/main/docker/oracle.yml up`
+- 使用 MongoDB: `docker-compose -f src/main/docker/mongodb.yml up`
+- 使用 Cassandra: `docker-compose -f src/main/docker/cassandra.yml up`
+- 使用 Couchbase: `docker-compose -f src/main/docker/couchbase.yml up`
 
-### MongoDB Cluster Mode
+### MongoDB 集群节点
 
-If you want to use MongoDB with a replica set or shards and a shared configuration between them, you need to build and set up manually MongoDB images.
-Follow these steps to do so:
+如果你希望使用 MongoDB with a replica set or shards 及一个共享的配置，你需要手动编辑编译 MongoDB 的镜像。
+执行以下步骤：
 
-- Build the image: `docker-compose -f src/main/docker/mongodb-cluster.yml build`
-- Run the database: `docker-compose -f src/main/docker/mongodb-cluster.yml up -d`
-- Scale the MongoDB node service (you have to choose an odd number of nodes): `docker-compose -f src/main/docker/mongodb-cluster.yml scale <name_of_your_app>-mongodb-node=<X>`
-- Init the replica set (parameter X is the number of nodes you input in the previous step, folder is the folder where the YML file is located, it's `docker` by default): `docker container exec -it <yml_folder_name>_<name_of_your_app>-mongodb-node_1 mongo --eval 'var param=<X>, folder="<yml_folder_name>"' init_replicaset.js`
+- 编译镜像：`docker-compose -f src/main/docker/mongodb-cluster.yml build`
+- 运行数据库：`docker-compose -f src/main/docker/mongodb-cluster.yml up -d`
+- 扩展 MongoDB 节点（你需要选择奇数数量的节点数）：`docker-compose -f src/main/docker/mongodb-cluster.yml scale <name_of_your_app>-mongodb-node=<X>`
+- 初始化 replica set (parameter X is the number of nodes you input in the previous step, folder is the folder where the YML file is located, it's `docker` by default): `docker container exec -it <yml_folder_name>_<name_of_your_app>-mongodb-node_1 mongo --eval 'var param=<X>, folder="<yml_folder_name>"' init_replicaset.js`
 - Init the shard: `docker container exec -it <yml_folder_name>_<name_of_your_app>-mongodb_1 mongo --eval 'sh.addShard("rs1/<yml_folder_name>_<name_of_your_app>-mongodb-node_1:27017")'`
-- Build a Docker image of your application: `./mvnw package -Pprod dockerfile:build`
-- Start your application: `docker-compose -f src/main/docker/app.yml up -d <name_of_your_app>-app`
+- 编译应用的镜像：`./mvnw package -Pprod dockerfile:build`
+- 启动应用：`docker-compose -f src/main/docker/app.yml up -d <name_of_your_app>-app`
 
-If you want to add or remove some MongoDB nodes, just repeat step 3 and 4.
+如果需要添加或者移除一些 MongoDB 节点，只需要重复步骤 3 和步骤 4。
 
 ### Couchbase Cluster Mode
 
 If you want to use Couchbase with multiple nodes, you need to build and set up manually Couchbase images.
 Follow these steps to do so:
 
-- Build the image: `docker-compose -f src/main/docker/couchbase-cluster.yml build`
-- Run the database: `docker-compose -f src/main/docker/couchbase-cluster.yml up -d`
-- Scale the Couchbase node service (you have to choose an odd number of nodes): `docker-compose -f src/main/docker/couchbase-cluster.yml scale <name_of_your_app>-couchbase-node=<X>`
-- Build a Docker image of your application: `./mvnw package -Pprod dockerfile:build`
-- Start your application: `docker-compose -f src/main/docker/app.yml up -d <name_of_your_app>-app`
+- 编译镜像：`docker-compose -f src/main/docker/couchbase-cluster.yml build`
+- 运行数据库：`docker-compose -f src/main/docker/couchbase-cluster.yml up -d`
+- 扩展 Couchbase 节点（你需要选择奇数数量的节点数）：`docker-compose -f src/main/docker/couchbase-cluster.yml scale <name_of_your_app>-couchbase-node=<X>`
+- 编译应用的镜像：`./mvnw package -Pprod dockerfile:build`
+- 启动应用：`docker-compose -f src/main/docker/app.yml up -d <name_of_your_app>-app`
 
 ### Cassandra
 
-Unlike the other databases, where the schema migrations are executed by the application itself, Cassandra schema migrations are executed by a dedicated Docker container.
+不像其他数据库，schema migrations 是由应用执行的；Cassandra 的 schema migrations 需要由一个专用的 Docker 容器来执行。
 
-#### <a name="cassandra-in-development"></a>Cassandra in development
-To start a Cassandra cluster to run your application locally, you can use the docker_compose file for development use:
+#### <a name="cassandra-in-development"></a>Cassandra 开发环境
+要本地启动 Cassandra 集群，可以使用 docker_compose 文件：
 `docker-compose -f src/main/docker/cassandra.yml up -d`
 
-Docker-compose will start 2 services:
+Docker-compose 会启动 2 个服务：
 
 - `<name_of_your_app>-cassandra`:  a container with the Cassandra node contact point
 - `<name_of_your_app>-cassandra-migration`: a container to automatically apply all CQL migrations scripts (create the Keyspace, create the tables, all data migrations, ...)
@@ -182,62 +182,62 @@ One big difference between Cassandra and the other databases, is that you can sc
 
 ### Microsoft SQL Server
 
-If you want to use the MSSQL Docker image with JHipster, there are a few steps to follow:
+如果要使用 MSSQL 的 Docker 镜像，执行这几步：
 
-- Increase the RAM available to Docker to at least 3.25GB
-- Run the database: `docker-compose -f src/main/docker/mssql.yml up -d`
-- Create the database with a MSSQL client of your choice
-- Start your application: `docker-compose -f src/main/docker/app.yml up -d <name_of_your_app>-app`
+- 提示运行 Docker 的 RAM 到至少 3.25GB
+- 运行数据库：`docker-compose -f src/main/docker/mssql.yml up -d`
+- 用 MSSQL 客户端来创建数据库
+- 启动应用：`docker-compose -f src/main/docker/app.yml up -d <name_of_your_app>-app`
 
 ## <a name="5"></a> Elasticsearch
 
-Running `docker-compose -f src/main/docker/app.yml up` already starts up your search engine automatically.
+执行 `docker-compose -f src/main/docker/app.yml up` 就已经启动了该搜索引擎了。
 
-If you just want to start your Elasticsearch node, and not the other services, use its specific Docker Compose configuration:
+如果你希望启动自己的 Elasticsearch 节点，而不启动其他服务，使用该 Docker Compose 配置：
 
 - `docker-compose -f src/main/docker/elasticsearch.yml up`
 
 ## <a name="6"></a> Sonar
 
-A Docker Compose configuration is generated for running Sonar:
+启动 Sonar 的 Docker Compose 配置：
 
 - `docker-compose -f src/main/docker/sonar.yml up`
 
-To analyze your code, run Sonar on your project:
+检查代码，在项目目录里执行：
 
 - With Maven: `./mvnw sonar:sonar`
 - With Gradle: `./gradlew sonar`
 
-The Sonar reports will be available at: [http://localhost:9000](http://localhost:9000)
+Sonar 的报告会生成在：[http://localhost:9000](http://localhost:9000)
 
 ## <a name="7"></a> Keycloak
 
-If you chose OAuth 2.0 as your authentication, Keycloak is used as the default identity provider. Running `docker-compose -f src/main/docker/app.yml up` starts up Keycloak automatically.
+如果你选择了 OAuth 2.0 作为认证方案，将 Keycloak 作为默认的身份提供。执行 `docker-compose -f src/main/docker/app.yml up` 来启动 Keycloak。
 
-To make things work, you'll need to make sure to add the following to your hosts file (`/etc/hosts` on Mac/Linux, `c:\Windows\System32\Drivers\etc\hosts` on Windows).
+另外还需要设置 hosts ( Mac/Linux 的 `/etc/hosts`，或者 Windows 的 `c:\Windows\System32\Drivers\etc\hosts`）。
 
 ```
 127.0.0.1	keycloak
 ```
 
-This is because you will access your application with a browser on your machine (which name is localhost, or `127.0.0.1`), but inside Docker it will run in its own container, which name is `keycloak`.
+这是由于你通过物理机浏览器访问应用 (名为 localhost，或 `127.0.0.1`)，但在 Docker 内部会运行在它自己的容器里，名称为 `keycloak`。
 
-If you just want to start Keycloak, and not the other services, use its specific Docker Compose configuration:
+如果希望独立启动 Keycloak，而不启动其他服务，使用该 Docker Compose 配置：
 
 - `docker-compose -f src/main/docker/keycloak.yml up`
 
-## <a name="8"></a> Common commands
+## <a name="8"></a> 常用命令
 
-### List the containers
+### 列出所有容器
 
-You can use `docker container ps -a` to list all the containers
+使用命令：`docker container ps -a` 来列出所有容器（译注：不加 -a 是列出所有运行中容器）
 
     $ docker container ps -a
     CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
     fc35e1090021        mysql               "/entrypoint.sh mysql"   4 seconds ago       Up 4 seconds        0.0.0.0:3306->3306/tcp   sampleApplication-mysql
 
-### Docker stats for containers
-`docker container stats` or {% raw %}`docker container stats $(docker container ps --format={{.Names}})`{% endraw %} to list all running containers with CPU, Memory, Networking I/O and Block I/O stats.
+### 容器的状态
+`docker container stats` 或 {% raw %}`docker container stats $(docker container ps --format={{.Names}})`{% endraw %} 来列出所有容器以及它们的 CPU，内存，网络 I/O ，及 Block I/O 的状态。
 
     $ docker container stats {% raw %}$(docker container ps --format={{.Names}}){% endraw %}
     CONTAINER                 CPU %               MEM USAGE / LIMIT     MEM %               NET I/O               BLOCK I/O             PIDS
@@ -250,42 +250,42 @@ You can use `docker container ps -a` to list all the containers
     msmongo-mongodb           0.34%               44.8 MB / 7.966 GB    0.56%               49.72 kB / 48.08 kB   33.97 MB / 811 kB     18
     gateway-mysql             0.03%               202.7 MB / 7.966 GB   2.54%               60.84 kB / 31.22 kB   27.03 MB / 297 MB     37
 
-### Scale a container
+### 扩展容器
 
-Run `docker-compose scale test-app=4` to have 4 instances of application "test" running.
+执行 `docker-compose scale test-app=4` 将 "test" 应用扩展到 4 个实例。
 
-### Stop containers
+### 停止容器
 
 `docker-compose -f src/main/docker/app.yml stop`
 
-You can also use directly Docker:
+也可以用 Docker 的命令：
 
 `docker container stop <container_id>`
 
-When you stop a container, the data is not deleted, unless you delete the container.
+停止容器后，数据不会被删除，除非你删了容器。
 
-### Delete a container
+### 删除容器
 
-Be careful! All data will be deleted:
+小心！所有的数据都会被删除：
 
 `docker container rm <container_id>`
 
 
-## <a name="9"></a> Memory Tweaking
+## <a name="9"></a> 内存调整
 
-In order to optimize memory usage for applications running in the container, you can setup Java memory parameters on `Dockerfile` or `docker-compose.yml`
+为了调整优化内存使用，可以设置 Java 的内存参数，在 `Dockerfile` 或 `docker-compose.yml` 内配置
 
-### Adding memory parameters to Dockerfile
+### 添加内存参数到 Dockerfile 配置
 
-Set the environment variable.
+设置环境变量：
 
     ENV JAVA_OPTS=-Xmx512m -Xms256m
 
-### Adding memory parameters to docker-compose.yml
+### 添加内存参数到 docker-compose.yml 配置
 
 This solution is desired over Dockerfile. In this way, you have a single control point for your memory configuration on all containers that compose you application.
 
-Add the `JAVA_OPTS` into `environment` section.
+添加 `JAVA_OPTS` 配置到 `environment` 段落下：
 
 ```
     environment:
@@ -293,7 +293,7 @@ Add the `JAVA_OPTS` into `environment` section.
       - JAVA_OPTS=-Xmx512m -Xms256m
 ```
 
-Depending on the Docker base image, `JAVA_OPTS` won't work. In this case, try to use `_JAVA_OPTIONS` instead:
+根据 Docker 的基础镜像，`JAVA_OPTS` 可能不工作。如果这样的话，尝试使用 `_JAVA_OPTIONS` 配置：
 
 ```
     environment:

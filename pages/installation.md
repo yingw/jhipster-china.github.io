@@ -87,127 +87,127 @@ JHipster 使用 [Yeoman](http://yeoman.io/) 来作为代码生成器。
 
 ## 使用包管理器安装
 
-__Please note this is a BETA feature!__ If you selected this installation, don't hesitate to send us a [bug report](https://github.com/jhipster/generator-jhipster/issues) or feedback on [@java_hipster](https://twitter.com/java_hipster).
+__请注意目前是 BETA 功能！__ 如果你选择这种安装方式，请给我们您的 [bug report](https://github.com/jhipster/generator-jhipster/issues) 或反馈 [@java_hipster](https://twitter.com/java_hipster)。
 
-### Installation with Homebrew on Mac OS X
+### 在 Mac OS X 上用 Homebrew 安装
 
-JHipster provides a [Homebrew](https://brew.sh/) package, available on [http://formulae.brew.sh/formula/jhipster](http://formulae.brew.sh/formula/jhipster).
+JHipster 提供了一个 [Homebrew](https://brew.sh/) 包，在 [http://formulae.brew.sh/formula/jhipster](http://formulae.brew.sh/formula/jhipster)。
 
-To install JHipster (as well as Node and Yarn), just type:
+安装 JHipster (以及 Node 和 Yarn)，键入：
 
     brew install jhipster
 
-New versions of this package are published each time a new JHipster release is created, but it might take time for the Homebrew team to validate this package - so if you have an older JHipster release, please be patient or use the Yarn installation above.
+这个包的新版本会在每一个 JHipster 发布后自动创建，但是需要 Homebrew 团队一点时间来验证 - 所以如果你拿到的一个较老的 JHipster 版本，请耐心或者使用上面的 Yarn 来安装。
 
 ### Installation with Chocolatey on Windows
 
-JHipster provides a [Chocolatey](https://chocolatey.org/) package, available on [https://chocolatey.org/packages/jhipster](https://chocolatey.org/packages/jhipster).
+JHipster 提供了一个 [Chocolatey](https://chocolatey.org/) 包，在 [https://chocolatey.org/packages/jhipster](https://chocolatey.org/packages/jhipster)。
 
-To install JHipster (as well as Node, Yarn, Yeoman, Java and Git), just type:
+安装 JHipster (以及 Node，Yarn，Yeoman，Java，Git)，键入：
 
     choco install jhipster
 
-New versions of this package are published each time a new JHipster release is created, but it might take time for the Chocolatey team to validate this package - so if you have an older JHipster release, please be patient or use the Yarn installation above.
+这个包的新版本会在每一个 JHipster 发布后自动创建，但是需要 Chocolatey 团队一点时间来验证 - 所以如果你拿到的一个较老的 JHipster 版本，请耐心或者使用上面的 Yarn 来安装。
 
 ## Vagrant box 安装
 
-The [JHipster development box](https://github.com/jhipster/jhipster-devbox) project gives you a virtual machine with all the necessary tools to develop your JHipster project.
+[JHipster development box](https://github.com/jhipster/jhipster-devbox) 提供了一个完整的开发 JHipster 工具的虚拟机环境。
 
-It's an easy way to get up and running very quickly with JHipster.
+这是个设置和运行 JHipstert 的便捷方法。
 
-Besides JHipster, this virtual machine includes many development tools, as well as Docker, so you should have everything ready for working.
+除了 JHipster，这个虚拟机中还包含了许多其他开发工具，诸如 Docker，所以可以说是开发工作环境已万事俱备。
 
-Please go to the [JHipster development box page](https://github.com/jhipster/jhipster-devbox) for installation and configuration information.
+请查看文档 [JHipster development box page](https://github.com/jhipster/jhipster-devbox) 获取安装和设置信息。
 
 ## Docker 安装 (限高级用户使用)
 
-_Please note: this Docker image is for running the JHipster generator inside a container. It's completely different from the [Docker and Docker Compose configurations]({{ site.url }}/docker-compose/) that JHipster will generate, which goal is to run your generated application inside a container_
+_请注意：这里描述的 Docker 镜像是指在容器中运行 JHipster 的 generator 环境。这和 [Docker 和 Docker Compose]({{ site.url }}/docker-compose/) 章节中描述的不是一个含义，那是指在容器中运行你的应用_
 
 ### 信息
 
-JHipster has a specific [Dockerfile](https://github.com/jhipster/generator-jhipster/blob/master/Dockerfile), which provides a [Docker](https://www.docker.io/) image.
+JHipster 定义了一个 [Dockerfile](https://github.com/jhipster/generator-jhipster/blob/master/Dockerfile)，由此提供 [Docker](https://www.docker.io/) 镜像。
 
-It makes a Docker "Automated build" that is available on: [https://hub.docker.com/r/jhipster/jhipster/](https://hub.docker.com/r/jhipster/jhipster/)
+它提供了一个自动编译好的镜像在：[https://hub.docker.com/r/jhipster/jhipster/](https://hub.docker.com/r/jhipster/jhipster/) 上。
 
-This image will allow you to run JHipster inside Docker.
+该镜像将让你能在容器中运行 JHipster。
 
 ### 前提
 
-This depends on your operating system.
+根据你的操作系统镜像不同的设置：
 
-1.  **Linux:** Linux supports Docker out-of-box. You just need to follow the tutorial on the [Docker](https://docs.docker.com/installation/#installation) website.
-2.  **Mac & Windows:** install the [Docker Toolbox](https://www.docker.com/docker-toolbox) to get Docker installed easily.
+1.  **Linux:** Linux 是原生支持 Docker 的。你只需要根据 [Docker](https://docs.docker.com/installation/#installation) 官网上的指引安装 Docker。
+2.  **Mac & Windows:** 安装 [Docker Toolbox](https://www.docker.com/docker-toolbox) 来获取 Docker。
 
-As the generated files are in your shared folder, they will not be deleted if you stop your Docker container. However, if you don't want Docker to keep downloading all the Maven and NPM dependencies every time you start the container, you should commit its state or mount a volume.
+由于 Docker 生成的文件是保存在你的共享目录中的，在你关闭 Docker 容器后它们不会被删除。如果你不希望 Docker 每次都下载 Maven 或 NPM 依赖文件，你可以提交他们的状态或者挂载一个卷。
 
-<div class="alert alert-warning"><i>Warning: </i>
+<div class="alert alert-warning"><i>警告：</i>
 
-Based on your OS, your <code>DOCKER_HOST</code> will differ. On Linux, it will be simply your localhost.
-For Mac/Windows, you will have to obtain the IP using following command: <code>docker-machine ip default</code>
-
-</div>
-
-<div class="alert alert-info"><i>Tip: </i>
-
-Kitematic is an easy-to-use graphical interface provided with the Docker Toolbox, which will makes this installation a lot easier.
+根据你的操作系统，<code>DOCKER_HOST</code> 参数是不一样的。在 Linux 上，这就是 localhost。
+在 Mac/Windows 上，你需要用命令获取 IP 地址：<code>docker-machine ip default</code>
 
 </div>
 
-On Linux, you might need to run the `docker` command as root user if your user is not part of docker group. It's a good idea to add your user to docker group so that you can run docker commands as a non-root user. Follow the steps on [http://askubuntu.com/a/477554](http://askubuntu.com/a/477554) to do so.
+<div class="alert alert-info"><i>小贴士：</i>
+
+Kitematic 是个非常好用图形化管理工具，集成在 Docker Toolbox 中，这会让安装更方便。
+
+</div>
+
+在 Linux 上，如果你的用户不是 docker 组，你需要以 root 用户来运行 `docker` 命令。所以推荐将你的用户加入到 docker 组，就可以以非 root 用户来运行 docker 命令了。参考这里的步骤：[http://askubuntu.com/a/477554](http://askubuntu.com/a/477554)。
 
 ### Linux/Mac Windows 使用说明 (使用 Docker Toolbox)
 
 #### 拉取镜像
 
-Pull the latest JHipster Docker image:
+拉取最新的 JHipster 镜像：
 
 `docker image pull jhipster/jhipster`
 
-Pull the development JHipster Docker image:
+拉取最新的开发版 JHipster 镜像：
 
 `docker image pull jhipster/jhipster:master`
 
-You can see all tags [here](https://hub.docker.com/r/jhipster/jhipster/tags/)
+查看所有的版本 [这里](https://hub.docker.com/r/jhipster/jhipster/tags/)
 
 #### 运行容器
 
-<div class="alert alert-warning"><i>Warning: </i>
+<div class="alert alert-warning"><i>警告：</i>
 
-If you are using Docker Machine on Mac or Windows, your Docker daemon has only limited access to your OS X or Windows file system. Docker Machine tries to auto-share your /Users (OS X) or C:\Users\&lt;username&gt; (Windows) directory. So you have to create the project folder under these directory to avoid any volume mounting issues.
+如果你是在 Mac 或 Windows 上运行 Docker 的话，Docker 的进程只能访问受限的文件。Docker Machine 会尝试共享你的 /Users (OS X) 目录或者 C:\Users\&lt;username&gt; (Windows) 目录。所以你需要在这些目录下创建项目来避免一些卷挂载的问题。
 
 </div>
 
 
-Create a "jhipster" folder in your home directory:
+在你的 home 目录中创建一个 "jhipster" 目录：
 
 `mkdir ~/jhipster`
 
-Run the Docker image, with the following options:
+运行 Docker 镜像，加上下面这些选项：
 
-*   The Docker "/home/jhipster/app" folder is shared to the local "~/jhipster" folder
-*   Forward all ports exposed by Docker (8080 for the Java application, 9000 for BrowserSync, 3001 for the BrowserSync UI)
+*  Docker 的 "/home/jhipster/app" 目录和本地的 "~/jhipster" 目录共享
+*  转发 Docker 的端口 (Java 应用：8080，BrowserSync：9000, BrowserSync UI：3001)
 
 `docker container run --name jhipster -v ~/jhipster:/home/jhipster/app -v ~/.m2:/home/jhipster/.m2 -p 8080:8080 -p 9000:9000 -p 3001:3001 -d -t jhipster/jhipster`
 
-<div class="alert alert-info"><i>Tip: </i>
+<div class="alert alert-info"><i>提示：</i>
 
-If you have already started the container once before, you do not need to run the above command, you can simply start/stop the existing container.
+如果曾经已经启动过容器了，不需要运行上面的命令，只需要重新 start/stop 容器。
 
 </div>
 
 #### 检查容器是否正常运行
 
-To check that your container is running, use the command `docker container ps`:
+检查容器是否正常运行：`docker container ps`:
 
     CONTAINER ID    IMAGE               COMMAND                 CREATED         STATUS          PORTS                                                       NAMES
     4ae16c0539a3    jhipster/jhipster   "tail -f /home/jhipst"  4 seconds ago   Up 3 seconds    0.0.0.0:9000-3001->9000-3001/tcp, 0.0.0.0:8080->8080/tcp    jhipster
 
 #### 一些常规操作
 
-*   To stop the container execute: `docker container stop jhipster`
-*   And to start again, execute: `docker container start jhipster`
+*   停止容器：`docker container stop jhipster`
+*   启动容器：`docker container start jhipster`
 
-In case you update the Docker image (rebuild or pull from the Docker hub), it's better to remove the existing container, and run the container all over again. To do so, first stop the container, remove it and then run it again:
+如果需要更新 Docker 镜像 (重新编译的或者从 Docker hub 重新拉取的)，最好将现有容器移除，再重新运行。先停止容器，删除，然后重新运行：
 
 1.  `docker container stop jhipster`
 2.  `docker container rm jhipster`
@@ -216,57 +216,57 @@ In case you update the Docker image (rebuild or pull from the Docker hub), it's 
 
 ### 访问容器
 
-<div class="alert alert-warning"><i>Warning: </i>
+<div class="alert alert-warning"><i>警告：</i>
 
-On Windows, you need to execute the Docker Quick Terminal as Administrator to be able to create symlinks during the `yarn install` step.
+在 Windows 上，需要以 Administrator 管理员来执行 Docker Quick Terminal，以便在 `yarn install` 步骤时创建 symlinks。
 
 </div>
 
-The easiest way to log into the running container is by executing following command:
+最简单的进入容器的命令是：
 
 `docker container exec -it <container_name> bash`
 
-If you copy-pasted the above command to run the container, notice that you have to specify `jhipster` as the container name:
+复制粘贴的请注意将上面的容器名改为 `jhipster`：
 
 `docker container exec -it jhipster bash`
 
-You will log in as the "jhipster" user.
+你会以 "jhipster" 用户登入。
 
-If you want to log in as "root", as the `sudo` command isn't available in Ubuntu Xenial, you need to run:
+如果你希望以 "root" 用户登入，由于 `sudo` 命令在 Ubuntu Xenial 是不可用的，你需要这样：
 
 `docker container exec -it --user root jhipster bash`
 
 ### 第一个项目
 
-You can then go to the /home/jhipster/app directory in your container, and start building your app inside Docker:
+进入容器的 /home/jhipster/app 目录，开始构建你的第一个项目：
 
 `cd /home/jhipster/app`
 
 `jhipster`
 
-<div class="alert alert-info"><i>Tip: </i>
+<div class="alert alert-info"><i>提示：</i>
 
-If you are having issues with Yarn, you can use <code>jhipster --npm</code>, to use NPM instead of Yarn.
+如果使用 Yarn 有些问题，你可以运行 <code>jhipster --npm</code> 来使用 NPM 而不是 Yarn。
 
 </div>
 
-Once your application is created, you can run all the normal gulp/bower/maven commands, for example:
+一旦你的应用创建好了，你就可以正常运行 gulp/bower/maven 等相关命令，比如：
 
 `./mvnw`
 
 **恭喜你! 你已经成功在 Docker 里运行了一个 JHipster 应用！**
 
-On your host machine, you should be able to :
+在你的主机上，你可以：
 
-*   Access the running application at `http://DOCKER_HOST:8080`
-*   Get all the generated files inside your shared folder
+*   在 `http://DOCKER_HOST:8080` 地址上访问你的应用
+*   在共享文件夹中获取项目的所有文件
 
-<div class="alert alert-warning"><i>Warning: </i>
-    By default, Docker is not installed inside the <code>jhipster/jhipster</code> image.
+<div class="alert alert-warning"><i>警告：</i>
+    默认情况下，在 <code>jhipster/jhipster</code> 镜像内是没有安装 Docker 的。
     <br/>
-    So you won't be able to:
+    所以你不能：
     <ul>
-        <li>use the docker-compose files</li>
-        <li>build a Docker image (Maven goal: <code>dockerfile:build</code> or Gradle task: <code>buildDocker</code>)</li>
+        <li>运行 docker-compose</li>
+        <li>创建 Docker 镜像 (Maven 的 goal: <code>dockerfile:build</code> 或 Gradle task: <code>buildDocker</code>)</li>
     </ul>
 </div>

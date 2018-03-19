@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Creating a module
+title: 开发插件
 permalink: /modules/creating-a-module/
 redirect_from:
   - /creating_a_module.html
@@ -10,13 +10,13 @@ sitemap:
     lastmod: 2015-12-05T18:40:00-00:00
 ---
 
-# <i class="fa fa-cube"></i> Creating a module
+# <i class="fa fa-cube"></i> 开发插件
 
-A JHipster module is a Yeoman generator that is [composed](http://yeoman.io/authoring/composability.html) with a specific JHipster sub-generator to inherit some of the common functionality from JHipster. A JHipster module can also register itself to act as a hook from the JHipster generator.
+A JHipster 插件是一个 Yeoman 的 generator，和 JHipster 命令工具（sub-generator）[composed](http://yeoman.io/authoring/composability.html) ，集成了 JHipster 的一些通用功能。JHipster 插件还能将自己注册为一个 JHipster generator 的钩子程序。
 
-JHipster modules are listed on the [JHipster marketplace]({{ site.url }}/modules/marketplace/).
+JHipster 插件库在 [JHipster marketplace]({{ site.url }}/modules/marketplace/)。
 
-This allows to create third-party generators that have access to the JHipster variables and functions, and act like standard JHipster sub-generators.
+运行创建第三方插件并能访问 JHipster 的变量和功能，并且表现得和标准 JHipster sub-generators 一样。
 The hook mechanism invokes third-party generators before and after app generation and entity generation.
 
 ## Example

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Shell plugins
+title: Shell 插件
 permalink: /shell-plugins/
 redirect_from:
   - /shell-plugins.html
@@ -9,11 +9,11 @@ sitemap:
     lastmod: 2016-08-14T18:40:00-00:00
 ---
 
-# <i class="fa fa-terminal"></i> JHipster Shell Plugins
+# <i class="fa fa-terminal"></i> JHipster Shell 插件
 
-Shell plugins bring additional shortcuts for using JHipster, which makes it faster and easier to use. If you've seen people having a beautiful shell, with nice auto-completion and ultra-fast shortcuts, the magic comes from here!
+Shell 的插件可以用来给 JHipster 提供一些代码提示，用起来会更快更方便。如果你发现有人在用些漂亮的 shell，具有自动补全和超快的快捷键，那就是用了这些插件了！
 
-Currently there are two shell plugins:
+目前有两个 shell 插件：
 
-* [Oh-My-Zsh JHipster plugin]({{ site.url }}/oh-my-zsh/) for [Oh-My-Zsh](http://ohmyz.sh/)
-* [Fisherman JHipster plugin]({{ site.url }}/fisherman/) for [Fisherman](http://fisherman.sh/)
+* [Oh-My-Zsh JHipster plugin]({{ site.url }}/oh-my-zsh/) 用来支持 [Oh-My-Zsh](http://ohmyz.sh/)
+* [Fisherman JHipster plugin]({{ site.url }}/fisherman/) 用来支持 [Fisherman](http://fisherman.sh/)

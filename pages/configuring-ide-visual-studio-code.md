@@ -7,59 +7,59 @@ sitemap:
     lastmod: 2016-09-15T17:13:00-00:00
 ---
 
-# <i class="fa fa-keyboard-o"></i> Configuring Visual Studio Code
+# <i class="fa fa-keyboard-o"></i> 配置 Visual Studio Code
 
-Visual Studio Code is an Open Source text editor made by Microsoft. It has excellent support for TypeScript, so many people want to use it for developing Angular 2 applications.
+Visual Studio Code 是一个微软开发的开源文本编辑器。它对 TypeScript 的非常完善，所以大家喜欢用它来开发 Angular 2 的应用。
 
 ![Screenshot]({{ site.url }}/images/configuring_ide_visual_studio_code_1.png)
 
-## Yeoman Support
+## Yeoman 支持
 
-**Warning! At the time of this writing, this extension is broken**
+**警告！目前改插件尚有些问题**
 
-Visual Studio Code has a Yeoman extension, which should help you run JHipster commands.
+Visual Studio Code 有 Yeoman 的扩展插件，可以用来运行 JHipster 命令。
 
-You can install it by using the Visual Studio Code marketplace:
+可以在 Visual Studio Code 的插件库中查找安装：
 
 ![Screenshot]({{ site.url }}/images/configuring_ide_visual_studio_code_2.png)
 
-## Java Code Support
+## Java 支持
 
-Visual Studio Code has a Java extension developped by Red Hat. It has a good Java support, using Maven (so it won't work if you select the Gradle option with JHipster).
+Visual Studio Code 还有个由 Red Hat 提供的 Java 插件。它具有非常好的 Java 支持功能，并且使用 Maven。（如果选择使用 Gradle 就无法工作了）。
 
-You can install it by using the Visual Studio Code marketplace:
+可以在 Visual Studio Code 的插件库中查找安装：
 
 ![Screenshot]({{ site.url }}/images/configuring_ide_visual_studio_code_3.png)
 
-## Common tasks: compiling, running and packaging the code
+## 通用任务：编译，运行，打包
 
-The Visual Studio Code Java extension can't be used to run commands: it can't compile, run the code, or package the application.
+Visual Studio Code 的 Java 插件不能用来执行这些命令：不能编译、运行、或者打包应用。
 
-For all those tasks, there are 2 solutions:
+有两种方式来完成这些任务：
 
-- Use the [JHipster App]({{ site.url }}/jhipster-app), which offers a graphical interface for all those commands
-- Use the terminal, for instance the internal terminal provided by Visual Studio Code, to run those commands manually
+- 使用 [JHipster App]({{ site.url }}/jhipster-app)，提供了图形界面来支持这些命令
+- 或者使用终端，例如使用 Visual Studio Code 提供的内部终端来手动运行这些命令
 
-## Application "hot restart" with Spring Boot devtools
+## 使用 Spring Boot devtools 的 “热部署” 功能
 
-[Spring Boot devtools](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html) is configured by JHipster, and will "hot restart" your application when classes from your project are compiled. This is a must-have feature, as it makes your application updated on the fly.
+JHipster 默认配置了 [Spring Boot devtools](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html)，它能让你的应用在类编译的时候自动“热部署”。这是个非常棒的功能，可以让你的开发非常顺畅。
 
-To use it within Visual Studio Code, you need to:
+要在 Visual Studio Code 内使用这个功能，需要：
 
-- Run your application in a terminal, typically by typing `./mvnw`
-- In another terminal, compile your application: `./mvnw compile`
+- 在一个终端中运行程序，一般是执行： `./mvnw`
+- 在另一个终端中，编译：`./mvnw compile`
 
-In the first terminal, your JHipster application should automatically redeploy, and use your new code.
+在第一个终端中，JHipster 程序为自动重新部署。
 
-If you use the JHipster App, this is only a matter of clicking on 2 buttons (one for running the application, the other for compiling it), and your application will automatically redeploy in the same way.
+如果使用了 JHipster App，就只需要点击 2 个按钮（一个用来运行程序，另一个编译），应用也会自动重新部署了。
 
-## Custom settings
+## 定制化配置
 
-For best performance, it's recommended to exclude some folders, in your project's `.vscode` folder create a `settings.json` file as below:
+为了得到更好的体验，建议排除一些目录，在项目根目录下的 `.vscode` 文件夹内创建一个 `settings.json`：
 
 ```
 {
-    // Configure glob patterns for excluding files and folders.
+    // 设置排除的文件和目录。
     "files.exclude": {
         "**/.git": true,
         "**/.idea": true,
@@ -68,7 +68,7 @@ For best performance, it's recommended to exclude some folders, in your project'
         "**/.hg": true,
         "**/.DS_Store": true
     },
-    // Configure glob patterns for excluding files and folders in searches. Inherits all glob patterns from the files.exclude setting.
+    // 设置搜索时排除的文件和目录。继承了 files.exclude 配置中的设置。
     "search.exclude": {
         "**/node": true,
         "**/node_modules": true,
