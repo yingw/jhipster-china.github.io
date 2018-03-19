@@ -146,10 +146,10 @@ __解决方案 2__
 
 如果需要添加或者移除一些 MongoDB 节点，只需要重复步骤 3 和步骤 4。
 
-### Couchbase Cluster Mode
+### Couchbase 集群模式
 
-If you want to use Couchbase with multiple nodes, you need to build and set up manually Couchbase images.
-Follow these steps to do so:
+如果你想要使用 Couchbase 多节点模式，你需要手动编译和设置 Couchbase 的镜像。
+步骤：
 
 - 编译镜像：`docker-compose -f src/main/docker/couchbase-cluster.yml build`
 - 运行数据库：`docker-compose -f src/main/docker/couchbase-cluster.yml up -d`
@@ -167,16 +167,16 @@ Follow these steps to do so:
 
 Docker-compose 会启动 2 个服务：
 
-- `<name_of_your_app>-cassandra`:  a container with the Cassandra node contact point
-- `<name_of_your_app>-cassandra-migration`: a container to automatically apply all CQL migrations scripts (create the Keyspace, create the tables, all data migrations, ...)
+- `<name_of_your_app>-cassandra`:  Cassandra node contact point 容器
+- `<name_of_your_app>-cassandra-migration`: 自动应用所有 CQL 迁移脚本的容器 (创建 Keyspace, 创建表, 所有的数据迁移, ...)
 
-See the [Cassandra page]({{ site.url }}/using-cassandra/) for more information on how to add new CQL scripts without restarting the local cluster.
+参考 [使用 Cassandra]({{ site.url }}/using-cassandra/) 来了解更多关于如何不重启直接添加新的 CQL 的方式。
 
-#### Cassandra in production:
-The `app.yml` docker-compose file uses `cassandra-cluster.yml` to configure the cluster.
-The application starts after few seconds (see _JHIPSTER_SLEEP_ variable) to gives the time to the cluster to start and the migrations to be executed.
+#### Cassandra 生产环境：
+`app.yml` docker-compose 文件使用了 `cassandra-cluster.yml` 来配置集群。
+应用会在几秒钟 (参考 _JHIPSTER_SLEEP_ 变量) 后启动来给集群足够的时间启动和执行迁移脚本。
 
-One big difference between Cassandra and the other databases, is that you can scale your cluster with Docker Compose. To have X+1 nodes in your cluster, run:
+在 Cassandra 和其他数据库之间有个很大的差别是，你可以用 Docker Compose 扩展你的集群。为设置 X+1 个节点，可以执行：
 
 - `docker-compose -f src/main/docker/cassandra-cluster.yml scale <name_of_your_app>-cassandra-node=X`
 

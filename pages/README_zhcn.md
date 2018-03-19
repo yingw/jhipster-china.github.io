@@ -37,11 +37,11 @@ sitemap:
     - [x] 视频教程 (12 分钟)（不翻译）
     - [x] 使用 JHipster 的公司（100%）
     - [x] JHipster 应用展示（100%）
-- [x] 配置开发环境（90%）
+- [x] 配置开发环境（100%）
     - [x] 安装 JHipster（100%）
     - [x] 配置代理（100%）
-    - [x] 设置 IDE（80%）
-    - [x] Docker Compose（90%）
+    - [x] 设置 IDE（100%）
+    - [x] Docker Compose（100%）
     - [x] Shell Plugins（100%）
 - [x] JHipster 核心任务（%）
     - [x] 创建应用（50%）

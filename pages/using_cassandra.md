@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Using Cassandra
+title: 使用 Cassandra
 permalink: /using-cassandra/
 redirect_from:
   - /using_cassandra.html
@@ -9,7 +9,7 @@ sitemap:
     lastmod: 2015-02-24T00:00:00-00:00
 ---
 
-# <i class="fa fa-eye"></i> Using Cassandra
+# <i class="fa fa-eye"></i> 使用 Cassandra
 
 Cassandra is one of the supported databases that can be selected when your application is being generated.
 

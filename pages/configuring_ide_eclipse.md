@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 配置 Eclipse with Maven
+title: 配置 Eclipse 使用 Maven
 permalink: /configuring-ide-eclipse/
 redirect_from:
   - /configuring_ide_eclipse.html
@@ -20,7 +20,7 @@ sitemap:
 
 - 选择 File -> Import
 - 选择 "Existing Maven Projects"
-- 选择 your project
+- 选择你的项目
 - 点击 "Finish"
 
 ![Import]({{ site.url }}/images/configuring_ide_eclipse_1.png)
