@@ -44,7 +44,7 @@ sitemap:
     - [x] Docker Compose（100%）
     - [x] Shell Plugins（100%）
 - [x] JHipster 核心任务（%）
-    - [x] 创建应用（50%）
+    - [x] 创建应用（100%）
     - [x] 创建模型（20%）
     - [x] 创建 Spring controller（100%）
     - [ ] 创建 Spring Service（%）

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Using JHipster in development
+title: JHipster 开发相关技术
 permalink: /development/
 redirect_from:
   - /development.html
@@ -9,7 +9,7 @@ sitemap:
     lastmod: 2016-12-01T00:00:00-00:00
 ---
 
-# <i class="fa fa-code"></i> Using JHipster in development
+# <i class="fa fa-code"></i> JHipster 开发相关技术
 
 _**Please check our [video tutorial]({{ site.url }}/video-tutorial/) on creating a new JHipster application!**_
 

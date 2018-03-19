@@ -11,9 +11,10 @@ sitemap:
 
 # <i class="fa fa-bolt"></i> 创建实体对象
 
-_**Please check our [video tutorial]({{ site.url }}/video-tutorial/) on creating a new JHipster application!**_
+_**请查看我们的 [视频教程]({{ site.url }}/video-tutorial/) 来学习创建 JHipster 应用！**_
 
-**Important** if you want to have "live reload" of your JavaScript/TypeScript code, you will need to run `yarn start` (for TypeScript/Angular 2+) or `gulp` (for JavaScript/AngularJS 1). You can go to the [Using JHipster in development]({{ site.url }}/development/) page for more information.
+**重要** 如果你希望“热加载”你的 JavaScript/TypeScript 代码，你需要运行 `yarn start` (for TypeScript/Angular 2+) 或 `gulp` (for JavaScript/AngularJS 1)。
+可以在 [JHipster 开发相关技术]({{ site.url }}/development/) 获取更多信息。
 
 ## 介绍
 
@@ -236,6 +237,6 @@ If you want some more complex business behaviors, you might need to add a Spring
 
 ### 全部搞定！
 
-Your generated CRUD page should look like this:
+已经生成好了所有的 CRUD 页面，这个样子：
 
 ![]({{ site.url }}/images/screenshot_5.png)

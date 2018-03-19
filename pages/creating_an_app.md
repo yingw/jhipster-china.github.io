@@ -113,84 +113,84 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 
 ### Do you want to use the Spring cache abstraction? （是否使用 Spring 缓存）
 
-The Spring cache abstraction allows to use different cache implementations: you can use [ehcache](http://ehcache.org/) (local cache), [Hazelcast](http://www.hazelcast.com/) (distributed cache), or [Infinispan](http://infinispan.org/) (another distributed cache). This can have a very positive impact on your application's performance, and hence it is a recommended option.
+Spring 的缓存抽象可以使用多种缓存实现：你可以用 [ehcache](http://ehcache.org/) (本地缓存), [Hazelcast](http://www.hazelcast.com/) (分布式缓存), 或者 [Infinispan](http://infinispan.org/) (另一种分布式缓存)。这能极大地提升你应用的性能表现，当然这个是可选项。
 
 ### Do you want to use Hibernate 2nd level cache? （是否使用 Hibernate 二级缓存）
 
-This option will only be available if you selected to use an SQL database (as JHipster will use Spring Data JPA to access it) and selected a cache provider in the previous question.
+该选项只有在你选择了使用 SQL 数据库后才会出现 (因为 JHipster 是使用 Spring Data JPA 来访问它的) 并选择一个上一个问题中的缓存提供者。
 
-[Hibernate](http://hibernate.org/) is the JPA provider used by JHipster, and it can use a cache provider to greatly improve its performance. As a result, we highly recommend you to use this option, and to tune your cache implementation according to your application's needs.
+[Hibernate](http://hibernate.org/) 是 JHipster 使用的 JPA 提供实现，它使用缓存来极大地提升性能。我们强烈推荐你选择该项，并根据你的应用的需要调整缓存。
 
 ### Would you like to use Maven or Gradle? （使用 Maven 或 Gradle）
 
-You can build your generated Java application either with [Maven](http://maven.apache.org/) or [Gradle](http://www.gradle.org/). Maven is more stable and more mature. Gradle is more flexible, easier to extend, and more hype.
+你可以编译你的 Java 项目使用 [Maven](http://maven.apache.org/) 或者 [Gradle](http://www.gradle.org/)。Maven 更稳定更成熟些。Gradle 更灵活、易扩展、以及酷炫些。
 
 ### Which other technologies would you like to use? （使用哪些额外的技术）
 
-This is a multi-select answer, to add one or several other technologies to the application. Available technologies are:
+这个是多选，可以选择其中之一或多个选项。可供选择的技术有：
 
 #### Social login (Google, Facebook, Twitter)（社区登入功能）
 
-This option is only available if you selected an SQL, MongoDB, or Couchbase database. It adds [Spring Social](http://projects.spring.io/spring-social/) support to JHipster, so end-users can log-in using their Google, Facebook or Twitter account.
+该选项只在你选择了 SQL, MongoDB, 或 Couchbase 数据库时才会有。它会添加 [Spring Social](http://projects.spring.io/spring-social/) 支持，用户就可以使用它们的 Google, Facebook 或 Twitter 账号登入了。
 
 #### API first development using swagger-codegen（API 优先开发模式，使用 swagger-codegen）
 
-This option lets you do [API-first development]({{ site.url }}/doing-api-first-development) for your application by integrating the [Swagger-Codegen](https://github.com/swagger-api/swagger-codegen) into the build.
+该选项让你可以采用 [API优先（API-first）的开发方式]({{ site.url }}/doing-api-first-development)，集成了 [Swagger-Codegen](https://github.com/swagger-api/swagger-codegen)。
 
 #### Search engine using ElasticSearch（搜索引擎 ElasticSearch）
 
-[Elasticsearch](https://github.com/elastic/elasticsearch) will be configured using Spring Data Elasticsearch. You can find more information on our [Elasticsearch guide]({{ site.url }}/using-elasticsearch/).
+[Elasticsearch](https://github.com/elastic/elasticsearch) 将会配置 Spring Data Elasticsearch。阅读 [Elasticsearch 说明]({{ site.url }}/using-elasticsearch/) 获取更多信息。
 
 #### Clustered HTTP sessions using Hazelcast（使用 Hazelcast 来设置 Http Session 集群）
 
-By default, JHipster uses a HTTP session only for storing [Spring Security](http://docs.spring.io/spring-security/site/index.html)'s authentication and authorisation information. Of course, you can choose to put more data in your HTTP sessions.
-Using HTTP sessions will cause issues if you are running in a cluster, especially if you don't use a load balancer with "sticky sessions".
-If you want to replicate your sessions inside your cluster, choose this option to have [Hazelcast](http://www.hazelcast.com/) configured.
+默认，JHipster 使用 HTTP session 来存储 [Spring Security](http://docs.spring.io/spring-security/site/index.html) 的认证和授权信息。当然，你可以选择在 HTTP sessions 中存放其他更多信息。
+使用 HTTP sessions 将会导致在集群环境中的问题，特别是你没有使用带有 "粘滞会话（sticky sessions）" 功能的负载均衡器。
+如果你想在集群中复制 session，选中这个选项来配置 [Hazelcast](http://www.hazelcast.com/)。
 
 #### WebSockets using Spring Websocket （使用 Spring Websocket）
 
-Websockets can be enabled using Spring Websocket. We also provide a complete sample to show you how to use the framework efficiently.
+Websockets 由 Spring Websocket 实现。我们还提供了一个完整的例子来展示如何使用。
 
-#### Asynchronous messages using Apache Kafka
+#### Asynchronous messages using Apache Kafka （使用 Apache Kafka 异步消息）
 
-Use [Apache Kafka]({{ site.url }}/using-kafka/) as a publish/subscribe message broker.
+使用 [Apache Kafka]({{ site.url }}/using-kafka/) 作为发布/订阅的消息服务。
 
 ### Which *Framework* would you like to use for the client? （使用哪种客户端框架）
 
-The client-side framework to use.
+客户端框架。
 
-You can either use:
+可以选择：
 
-*   Angular version 4+
-*   AngularJS version 1.x (which will be deprecated in the future)
+*   Angular 4+
+*   AngularJS 1.x (在将来的版本中即将被废弃)
 
 ### Would you like to use the LibSass stylesheet preprocessor for your CSS? （使用 LibSass 预处理 CSS？）
 
-[Node-sass](https://www.npmjs.com/package/node-sass) a great solution to simplify designing CSS. To be used efficiently, you will need to run a [Gulp](http://www.gulpjs.com) server, which will be configured automatically.
+[Node-sass](https://www.npmjs.com/package/node-sass) 是一个简化 CSS 的工具。还需要运行 [Gulp](http://www.gulpjs.com) 来使用它，自动配置好了。
 
 ### Would you like to enable internationalization support? （支持国际化？）
 
-By default JHipster provides excellent internationalization support, both on the client side and on the server side. However, internationalization adds a little overhead, and is a little bit more complex to manage, so you can choose not to install this feature.
+默认情况下 JHipster 提供了非常棒的国际化支持，在客户端和服务端都是。同时，国际化也是有点复杂，你可以选择不适用改特性。
 
 ### Which testing frameworks would you like to use? （使用哪些测试框架）
 
-By default JHipster provide Java unit/integration testing (using Spring's JUnit support) and JavaScript unit testing (using Karma.js). As an option, you can also add support for:
+默认 JHipster 提供了 Java 的单元/集成测试 (使用 Spring 的 JUnit 支持) 和 JavaScript 的单元测试 (using Karma.js)。作为可选项，你还可以选择增加：
 
-*   Performance tests using Gatling
-*   Behaviour tests using Cucumber
-*   Angular integration tests with Protractor
+*   Gatling：性能测试
+*   Cucumber：行为测试
+*   Protractor：Angular 集成测试
 
-You can find more information on our ["Running tests" guide]({{ site.url }}/running-tests/).
+阅读更多关于测试的信息 ["Running tests" guide]({{ site.url }}/running-tests/).
 
 ### Would you like to install other generators from the JHipster Marketplace? （是否要从 JHipster Marketplace 上下载额外的插件）
 
-The [JHipster Marketplace]({{ site.url }}/modules/marketplace/) is where you can install additional modules, written by third-party developers, to add non-official features to your project.
+[JHipster Marketplace]({{ site.url }}/modules/marketplace/) 是一个提供了额外功能的插件库，由外部工程师编写的各种功能，来添加各种非官方的特性。
 
 ## <a name="3"></a> 命令行选项
 
-You can also run JHipster with some optional command-line options. Reference for those options can be found by typing `jhipster app --help`.
+你还可以使用一些命令行选项来运行 JHipster。可以通过命令参考：`jhipster app --help`.
 
-Here are the options you can pass:
+有这些可用参数：
 
 * `--help` - 输出所有选项和使用帮助
 * `--skip-cache` - 不要记住之前提示的回答 (默认: false)
@@ -199,18 +199,18 @@ Here are the options you can pass:
 * `--skip-client` - 跳过生成客户端程序，这样就可以只创建 Spring Boot 的后端程序 (默认: false)。这和使用 server 工具命令类似：`jhipster server`。
 * `--skip-server` - 跳过生成服务端程序，这样就可以只创建前端程序 (默认: false)。这和使用 client 工具命令类似：`jhipster client`。
 * `--skip-user-management` - 跳过生成用户管理功能，同时作用于前端和后端 (默认: false)
-* `--i18n` - 开启或关闭国际化（i18n）功能，when skipping client side generation, has no effect otherwise (默认: true)
-* `--auth` - Specify the authentication type when skipping server side generation, has no effect otherwise but mandatory when using `skip-server`
+* `--i18n` - 开启或关闭国际化（i18n）功能，跳过客户端代码时没有作用 (默认: true)
+* `--auth` - 在跳过服务端代码生成时指定认证类型，使用 `skip-server` 时必填，其用其他模式时没有作用。
 * `--db` - 在跳过 Server 端代码时指定数据库类型，其他情况无效，但是在使用 `skip-server` 时是必填的。
-* `--with-entities` - Regenerate the existing entities if they were already generated (using their configuration in the `.jhipster` folder) (Default: false)
+* `--with-entities` - 重新生成实体对象相关程序 (使用 `.jhipster` 目录下的配置) (默认：false)
 * `--skip-checks` - 跳过必要工具的检查 (默认: false)
 * `--jhi-prefix` - 在 service，components，state/route 前加的前缀 (默认: jhi)
 * `--npm` - 使用 NPM 替代 Yarn (默认: false)
-* `--experimental` - Enable experimental features. Please note that these features may be unstable and may undergo breaking changes at any time
+* `--experimental` - 开启实验性质特性。请注意这些特性是不稳定的并且会在将来发生变化。
 
 ## <a name="4"></a> 小提示
 
-If you are an advanced user you can use our client and server sub-generators by running `jhipster client --[options]` and `jhipster server --[options]`.
-Run the above sub-generators with `--help` flag to view all the options that can be passed.
+如果你是高级用户，还可以使用 client 和 server 的 sub-generators：`jhipster client --[options]` 和 `jhipster server --[options]`.
+运行上面的命令时加上 `--help` 来查看所有的选项。
 
-You can also use the Yeoman command-line options, like `--force` to automatically overwrite existing files. So if you want to regenerate your whole application, including its entities, you can run `jhipster --force --with-entities`.
+还可以使用 Yeoman 的命令行选项，例如 `--force` 来覆盖现有文件。如果你想重新生成整个项目，包括实体对象相关代码，执行：`jhipster --force --with-entities`.
