@@ -90,6 +90,6 @@ which currently only includes applying the MapStruct annotation processor.
 
 打开 "Maven Projects" 工具窗口 (View -> Tool Windows), 点击 `IDE` maven profile 来激活这项功能。（译注：我没找到）
 
-## Gradle 
+## Gradle
 
 In order to get the best out-of-the-box experience with Gradle you should delegate all [IDE build/run actions to Gradle](https://www.jetbrains.com/idea/whatsnew/#v2017-3-gradle) directly. With this setting annotation processing is automatically configured and you won't have duplicated classes when mixing IDE and cli builds. If you are using an older version ( < 2016.3) you have to enable annotaion processing manually.

@@ -44,18 +44,6 @@ sitemap:
 
 一旦 JHipster 安装好了，下一步就可以开始：[创建应用]({{ site.url }}/creating-an-app/)
 
-### 使用 AngularJS 1.x 的设置
-
-1.  安装 Java 8 [Oracle 官网](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
-2.  安装 Node.js [Node.js 官网](http://nodejs.org/) (建议选择 LTS 版本)
-3.  安装 Yarn [the Yarn 官网](https://yarnpkg.com/en/docs/install)
-4.  安装 Bower: `yarn global add bower`
-5.  安装 Gulp: `yarn global add gulp-cli`
-6.  如果你打算使用 JHipster Marketplace, 安装 Yeoman: `yarn global add yo`
-7.  安装 JHipster: `yarn global add generator-jhipster`
-
-一旦 JHipster 安装好了，下一步就可以开始：[创建应用]({{ site.url }}/creating-an-app/)
-
 ### 可选安装
 
 1.  安装 Java 编译工具。

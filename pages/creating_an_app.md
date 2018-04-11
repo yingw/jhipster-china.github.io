@@ -6,7 +6,7 @@ redirect_from:
   - /creating_an_app.html
 sitemap:
     priority: 0.7
-    lastmod: 2017-10-17T00:00:00-00:00
+    lastmod: 2018-03-18T18:20:00-00:00
 ---
 
 # <i class="fa fa-rocket"></i> 创建应用
@@ -38,7 +38,7 @@ _**请查看我们的 [视频教程]({{ site.url }}/video-tutorial/) 来学习�
 
 应用启动在： [http://localhost:8080](http://localhost:8080)
 
-**重要** 如果你希望使用 "动态加载" JavaScript/TypeScript 代码的功能，你需要执行 `gulp` (JavaScript/AngularJS 1) 或 `yarn start` (TypeScript/Angular 2+)。你可以去 [JHipster 开发的相关技术]({{ site.url }}/development/) 也了解更多信息。
+**重要** 如果你希望使用 "动态加载" JavaScript/TypeScript 代码的功能，你需要执行 `yarn start`。你可以去 [JHipster 开发的相关技术]({{ site.url }}/development/) 也了解更多信息。
 
 ## <a name="2"></a> 创建应用的各选项
 
@@ -77,7 +77,7 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 一共有着这些可选项：
 
 *   JWT authentication: 使用 [JSON Web Token (JWT)](https://jwt.io/)，这个是默认值。
-*   HTTP Session Authentication: 经典的基于 session 的认证方式，好比我们在 Java 中的用法 (这是大部分用户使用使用 [Spring Security](http://docs.spring.io/spring-security/site/index.html) 的方式)。你可以和 Spring Social 配套使用这个选项，能让你使用 "social login" (如 Google, Facebook, Twitter) 特性：这个是由 Spring Boot 的 Spring Social 支持来实现的。
+*   HTTP Session Authentication: 经典的基于 session 的认证方式，好比我们在 Java 中的用法 (这是大部分用户使用使用 [Spring Security](http://docs.spring.io/spring-security/site/index.html) 的方式)。
 *   OAuth 2.0 / OIDC Authentication: 这个选项使用 OpenID Connect server, 比如 [Keycloak](http://www.keycloak.org/) 或者 [Okta](https://www.okta.com)，可以在引用外部处理认证。（译注：应该还能支持 [CAS](https://www.apereo.org/projects/cas)）
 *   Authentication with JHipster UAA server: 这使用的 [JHipster UAA server]({{ site.url }}/using-uaa/) 需要被独立的创建，同时也是 OAuth2 server 在应用外处理认证。
 
@@ -127,12 +127,6 @@ Spring 的缓存抽象可以使用多种缓存实现：你可以用 [ehcache](ht
 
 ### Which other technologies would you like to use? （使用哪些额外的技术）
 
-这个是多选，可以选择其中之一或多个选项。可供选择的技术有：
-
-#### Social login (Google, Facebook, Twitter)（社区登入功能）
-
-该选项只在你选择了 SQL, MongoDB, 或 Couchbase 数据库时才会有。它会添加 [Spring Social](http://projects.spring.io/spring-social/) 支持，用户就可以使用它们的 Google, Facebook 或 Twitter 账号登入了。
-
 #### API first development using swagger-codegen（API 优先开发模式，使用 swagger-codegen）
 
 该选项让你可以采用 [API优先（API-first）的开发方式]({{ site.url }}/doing-api-first-development)，集成了 [Swagger-Codegen](https://github.com/swagger-api/swagger-codegen)。
@@ -161,8 +155,8 @@ Websockets 由 Spring Websocket 实现。我们还提供了一个完整的例子
 
 可以选择：
 
-*   Angular 4+
-*   AngularJS 1.x (在将来的版本中即将被废弃)
+*   Angular version 5+
+*   React
 
 ### Would you like to use the LibSass stylesheet preprocessor for your CSS? （使用 LibSass 预处理 CSS？）
 
