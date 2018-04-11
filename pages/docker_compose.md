@@ -81,7 +81,7 @@ __解决方案 2__
 制作应用的 Docker 镜像，并且提交到 Docker registry：
 
 - 使用 Maven，执行：`./mvnw package -Pprod dockerfile:build`
-- 使用 Gradle，执行：`./gradlew bootRepackage -Pprod buildDocker`
+- 使用 Gradle，执行：`./gradlew bootWar -Pprod buildDocker`
 
 这将使用 profile `prod` 打包你的应用，并且生成镜像。
 

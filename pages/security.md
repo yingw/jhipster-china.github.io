@@ -6,7 +6,7 @@ redirect_from:
   - /security.html
 sitemap:
     priority: 0.7
-    lastmod: 2015-01-27T00:00:00-00:00
+    lastmod: 2018-03-18T18:20:00-00:00
 ---
 
 # <i class="fa fa-lock"></i> 应用安全
@@ -65,11 +65,7 @@ JHipster provides 4 main security mechanisms:
 
 ### CSRF（Cross-site request forgery 跨站请求伪造）保护
 
-Spring Security 和 AngularJS 都具备 CSRF 内建（开箱即用）的保护功能，但是，不幸的是他们没法使用相同的 cookie 和 HTTP 头上！事实上，你可能对这些 CSRF 工具毫无防护。所以，我们重新配置了这些工具来让他们正确工作。
-
-## 第三方登录（Social Login）
-
-JHipster 提供第三方登录功能，用的是 Spring Social 框架，用户可以通过他们的 Google, Facebook 或 Twitter 认证来连接到你的应用。这功能用到 Sping Boot 的 starter 模块。
+Spring Security 和 Angular 都具备 CSRF 内建（开箱即用）的保护功能，但是，不幸的是他们没法使用相同的 cookie 和 HTTP 头上！事实上，你可能对这些 CSRF 工具毫无防护。所以，我们重新配置了这些工具来让他们正确工作。
 
 ## <a name="oauth2"></a> OAuth 2.0 认证
 

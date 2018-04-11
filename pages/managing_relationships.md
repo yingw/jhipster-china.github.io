@@ -21,7 +21,7 @@ sitemap:
 
 - 在实体对象内用 JPA 来管理这些关系
 - 创建正确的 Liquibase 变更记录，来维护数据库中的关联关系
-- 在前端的 AngularJS 代码中生成代码来让用户能在用户界面上图形化方式设置这些关系
+- 在前端的 Angular/React 代码中生成代码来让用户能在用户界面上图形化方式设置这些关系
 
 ## JHipster UML 和 JDL Studio 工具
 
@@ -50,9 +50,9 @@ _Tip: the `User` entity_
 
 Please note that the `User` entity, which is handled by JHipster, is specific. You can do:
 
-- `many-to-one`关系s to this entity (a `Car` can have a many-to-one关系 to a `User`). This will generate a specific query in your new entity repository, so you can filter your entity on the current security user, which is a common requirement. On the generated AngularJS client UI you will have a dropdown in `Car` to select a `User`.
+- `many-to-one`关系s to this entity (a `Car` can have a many-to-one关系 to a `User`). This will generate a specific query in your new entity repository, so you can filter your entity on the current security user, which is a common requirement. On the generated Angular/React client UI you will have a dropdown in `Car` to select a `User`.
 - `many-to-many` and `one-to-one`关系s to the `User` entity, but the other entity __must__ be the owner
-of the关系 (a `Team` can have a many-to-many关系 to `User`, but only the team can add/remove users, and a user cannot add/remove a team). On the AngularJS client UI, you will also be able to select a `User` in a multi-select box.
+of the关系 (a `Team` can have a many-to-many关系 to `User`, but only the team can add/remove users, and a user cannot add/remove a team). On the Angular/React client UI, you will also be able to select a `User` in a multi-select box.
 
 ## <a name="1"></a> 双向一对多（one-to-many）关系
 
@@ -84,7 +84,7 @@ Now we can generate the `Car`:
     ? What is the name of the other entity? Owner
     ? What is the name of the relationship? owner
     ? What is the type of the relationship? many-to-one
-    ? When you display this relationship with AngularJS, which field from 'Owner' do you want to use? id
+    ? When you display this relationship with Angular, which field from 'Owner' do you want to use? id
 
 
 The same can be achieved using the below JDL as well
@@ -96,7 +96,7 @@ The same can be achieved using the below JDL as well
       Owner{car} to Car{owner}
     }
 
-That's it, you now have a one-to-many关系 between those two entities! On the generated AngularJS client UI you will have a dropdown in `Car` to select a `Owner`.
+That's it, you now have a one-to-many关系 between those two entities! On the generated Angular/React client UI you will have a dropdown in `Car` to select a `Owner`.
 
 ## <a name="2"></a> 单向多对一（many-to-one）关系
 
@@ -127,9 +127,9 @@ And then the `Car` entity, as in the previous example:
     ? What is the name of the other entity? Owner
     ? What is the name of the relationship? owner
     ? What is the type of the relationship? many-to-one
-    ? When you display this relationship with AngularJS, which field from 'Owner' do you want to use? id
+    ? When you display this relationship with Angular, which field from 'Owner' do you want to use? id
 
-This will work as in the previous example, but you won't be able to add or remove cars from the `Owner` entity. On the generated AngularJS client UI you will have a dropdown in `Car` to select a `Owner`.
+This will work as in the previous example, but you won't be able to add or remove cars from the `Owner` entity. On the generated Angular/React client UI you will have a dropdown in `Car` to select a `Owner`.
 This is the corresponding JDL:
 
     entity Owner
@@ -193,14 +193,14 @@ Generate the `Car` entity, which use the same关系 name has was configured in t
     ? What is the name of the other entity? Person
     ? What is the name of the relationship? owner
     ? What is the type of the relationship? many-to-one
-    ? When you display this relationship with AngularJS, which field from 'Person' do you want to use? id
+    ? When you display this relationship with Angular, which field from 'Person' do you want to use? id
     ...
     Generating relationships with other entities
     ? Do you want to add a relationship to another entity? Yes
     ? What is the name of the other entity? Person
     ? What is the name of the relationship? driver
     ? What is the type of the relationship? many-to-one
-    ? When you display this relationship with AngularJS, which field from 'Person' do you want to use? id
+    ? When you display this relationship with Angular, which field from 'Person' do you want to use? id
 
 The same can be achieved using the below JDL as well
 
@@ -215,7 +215,7 @@ The same can be achieved using the below JDL as well
       Person{drivedCar} to Car{driver}
     }
 
-A `Car` can now have a driver and a owner, which are both `Person` entities. On the generated AngularJS client UI you will dropdowns in `Car` to select a `Person` for `owner` field and `driver` field.
+A `Car` can now have a driver and a owner, which are both `Person` entities. On the generated Angular/React client UI you will dropdowns in `Car` to select a `Person` for `owner` field and `driver` field.
 
 ## <a name="5"></a> 多对多（many-to-many）关系
 
@@ -249,7 +249,7 @@ Then generate the `Car`, with the 管理方（owning side） of the many-to-many
     ? What is the name of the relationship? driver
     ? What is the type of the relationship? many-to-many
     ? Is this entity the owner of the relationship? Yes
-    ? When you display this relationship with AngularJS, which field from 'Driver' do you want to use? id
+    ? When you display this relationship with Angular, which field from 'Driver' do you want to use? id
 
 The same can be achieved using the below JDL as well
 
@@ -260,7 +260,7 @@ The same can be achieved using the below JDL as well
       Car{driver} to Driver{car}
     }
 
-That's it, you now have a many-to-many关系 between those two entities! On the generated AngularJS client UI you will have a multi-select dropdown in `Car` to select multiple `Driver` since `Car` is the owning side.
+That's it, you now have a many-to-many关系 between those two entities! On the generated Angular/React client UI you will have a multi-select dropdown in `Car` to select multiple `Driver` since `Car` is the owning side.
 
 ## <a name="6"></a> 一对一（one-to-one）关系
 
@@ -291,7 +291,7 @@ Then generate the `Car`, which owns the关系:
     ? What is the type of the relationship? one-to-one
     ? Is this entity the owner of the relationship? Yes
     ? What is the name of this relationship in the other entity? car
-    ? When you display this relationship with AngularJS, which field from 'Driver' do you want to use? id
+    ? When you display this relationship with Angular, which field from 'Driver' do you want to use? id
 
 The same can be achieved using the below JDL as well
 
@@ -302,7 +302,7 @@ The same can be achieved using the below JDL as well
       Car{driver} to Driver{car}
     }
 
-That's it, you now have a one-to-one关系 between those two entities! On the generated AngularJS client UI you will have a dropdown in `Car` to select a `Driver` since `Car` is the owning side.
+That's it, you now have a one-to-one关系 between those two entities! On the generated Angular/React client UI you will have a dropdown in `Car` to select a `Driver` since `Car` is the owning side.
 
 ## <a name="7"></a> 单向一对一（one-to-one）关系
 
@@ -328,9 +328,9 @@ Then, generate the `Citizen` entity:
     ? What is the type of the relationship? one-to-one
     ? Is this entity the owner of the relationship? Yes
     ? What is the name of this relationship in the other entity? citizen
-    ? When you display this relationship with AngularJS, which field from 'Passport' do you want to use? id
+    ? When you display this relationship with Angular, which field from 'Passport' do you want to use? id
 
-After doing this, a `Citizen` possesses a passport, but no `Citizen` instance is defined in `Passport`. On the generated AngularJS client UI you will have a dropdown in `Citizen` to select a `Passport` since `Citizen` is the owning side.
+After doing this, a `Citizen` possesses a passport, but no `Citizen` instance is defined in `Passport`. On the generated Angular/React client UI you will have a dropdown in `Citizen` to select a `Passport` since `Citizen` is the owning side.
 This is the corresponding JDL:
 
 

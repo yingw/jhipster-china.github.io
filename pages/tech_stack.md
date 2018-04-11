@@ -15,7 +15,7 @@ sitemap:
 
 单页面应用：
 
-*   [Angular 4](https://angular.io/) 或 [AngularJS v1.x](http://angularjs.org/)
+*   [Angular 5](https://angular.io/) or [React](https://reactjs.org/)
 *   响应式页面设计： [Twitter Bootstrap](http://getbootstrap.com/)
 *   [HTML5 Boilerplate](http://html5boilerplate.com/)
 *   兼容 IE11 和更多主流浏览器
@@ -25,8 +25,8 @@ sitemap:
 
 棒棒的开发流程：
 
-*   使用 [Yarn](https://yarnpkg.com/) 或 [Bower](http://bower.io/) 来安装额外的 JavaScript 库
-*   使用 [Webpack](https://webpack.js.org/) 或 [Gulp.js](http://www.gulpjs.com) 编译、优化、热加载
+*   使用 [Yarn](https://yarnpkg.com/) 来安装额外的 JavaScript 库
+*   使用 [Webpack](https://webpack.js.org/) 编译、优化、热加载
 *   使用 [Karma](http://karma-runner.github.io/), [Headless Chrome](https://github.com/GoogleChrome/puppeteer) 以及 [Protractor](http://www.protractortest.org) 进行测试
 
 单页面应用还不能满足需要？

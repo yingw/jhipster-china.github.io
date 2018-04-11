@@ -80,3 +80,11 @@ __Note__: 如果你已经有一个 JHipster 项目且没有安装管理的 conne
 
 配置完成后，你就能使用 JHipster 的 `dev` 和 `IDE` profiles 了。
 
+
+### Configuring MapStruct plugins
+
+In case for the IDE correctly recognize the mapstruct code generator some more things needs to be done.
+
+You should use the plugin m2e-apt (https://marketplace.eclipse.org/content/m2e-apt). Installing the m2e-apt plugin, enable Eclipse to work along with mapstruct.
+
+Also you can install the plugin MapStruct Eclipse Plugin (https://marketplace.eclipse.org/content/mapstruct-eclipse-plugin) for help and tips from the IDE. 

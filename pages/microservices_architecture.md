@@ -27,7 +27,7 @@ JHipster 的微服务架构以下面介绍的方式工作：
  * [Traefik]({{ site.url }}/traefik/) 是一个现代化的 HTTP 反向代理及负载均衡器，它可以和网关集成工作。
  * [JHipster Registry]({{ site.url }}/jhipster-registry/) 是一个所有应用注册和配置中心。它还能提供运行时监控仪表盘。
  * [Consul]({{ site.url }}/consul/) 是一个服务发现提供者，使用键/值对存储。它可以作为 JHipster Registry 的替代。
- * [JHipster UAA]({{ site.url }}/us/) 是一个 JHipster 构建的 User 认证和鉴权中心，使用 OAuth2 协议。
+ * [JHipster UAA]({{ site.url }}/using-uaa/) 是一个 JHipster 构建的 User 认证和鉴权中心，使用 OAuth2 协议。
  * [Microservices]({{ site.url }}/creating-microservices/) 是指一堆用 JHipster 构建的应用（使用应用类型：`microservice application`），它们处理 REST 请求。它们都是无状态的，以及它们中的一些可以被运行为多个实例来应对高负载。
  * [JHipster Console](https://github.com/jhipster/jhipster-console) 是一个监控和告警控制台，使用 ELK 架构。
 

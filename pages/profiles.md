@@ -18,7 +18,7 @@ JHipster 配以两个 [Spring profiles](http://docs.spring.io/spring-boot/docs/c
 
 这些 profile 以两种形式存在：
 
-*   Maven/Gradle 的 profile 在编译时使用。例如 `./mvnw -Pprod package` 或 `./gradlew bootRepackage -Pprod` 将打生产环境包。
+*   Maven/Gradle 的 profile 在编译时使用。例如 `./mvnw -Pprod package` 或 `./gradlew bootWar -Pprod` 将打生产环境包。
 *   Spring 的 profile 在运行时使用。一些 Spring 的 Bean 在不同 profile 环境中表现不太一样。
 
 Spring 的 profile 也由 Maven/Gradle 设置，所以我们具备一套一致的设置方式，你会得到一个生产环境 `prod` 的 profile 同时在 Maven/Gradle 和 Spring 上。
@@ -49,7 +49,7 @@ You can run JHipster in production directly using Maven or Gradle:
 如果希望打包为可执行 WAR 文件，可以在 package 时传 profile 给 Maven or Gradle。例如：
 
 *   With Maven, run `./mvnw -Pprod package` (or `mvn -Pprod package`)
-*   With Gradle, run `./gradlew -Pprod bootRepackage` (or `gradle -Pprod bootRepackage`)
+*   With Gradle, run `./gradlew -Pprod bootWar` (or `gradle -Pprod bootWar`)
 
 当以 WAR 文件运行生产环境应用，默认既使用打包时指定的 profile。如果你希望复写这个 profile，可以在 VM 参数上提供明确的声明：
 
