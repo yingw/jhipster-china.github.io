@@ -202,7 +202,7 @@ Websockets 由 Spring Websocket 实现。我们还提供了一个完整的例子
 * `--npm` - 使用 NPM 替代 Yarn (默认: false)
 * `--experimental` - 开启实验性质特性。请注意这些特性是不稳定的并且会在将来发生变化。
 
-## <a name="4"></a> 小提示
+## <a name="4"></a> 提示
 
 如果你是高级用户，还可以使用 client 和 server 的 sub-generators：`jhipster client --[options]` 和 `jhipster server --[options]`.
 运行上面的命令时加上 `--help` 来查看所有的选项。

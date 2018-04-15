@@ -23,7 +23,7 @@ sitemap:
 *   可选：[Sass](https://www.npmjs.com/package/node-sass) 支持 CSS 扩展
 *   可选：使用 Spring Websocket 来支持 WebSocket 协议
 
-棒棒的开发流程：
+开发流程：
 
 *   使用 [Yarn](https://yarnpkg.com/) 来安装额外的 JavaScript 库
 *   使用 [Webpack](https://webpack.js.org/) 编译、优化、热加载
