@@ -13,3 +13,7 @@ Gemfile.lock
 .jekyll-metadata
 
 _book
+.bundle/
+
+# VSCode
+.vscode/
