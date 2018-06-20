@@ -27,7 +27,7 @@ sitemap:
 
 *   使用 [Yarn](https://yarnpkg.com/) 来安装额外的 JavaScript 库
 *   使用 [Webpack](https://webpack.js.org/) 编译、优化、热加载
-*   使用 [Karma](http://karma-runner.github.io/), [Headless Chrome](https://github.com/GoogleChrome/puppeteer) 以及 [Protractor](http://www.protractortest.org) 进行测试
+*   使用 [Jest](https://facebook.github.io/jest/), 以及 [Protractor](http://www.protractortest.org) 进行测试
 
 单页面应用还不能满足需要？
 

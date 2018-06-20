@@ -44,7 +44,7 @@ _**请查看我们的 [视频教程]({{ site.url }}/video-tutorial/) 来学习�
 
 _部分问题的选项会根据你之前的选择有所变化。比如你不需要设置 Hibernate 缓存如果你之前没有选择使用 SQL 数据库。_
 
-### Which *type* of application would you like to create? （你要创建的应用类型）
+### Which _type_ of application would you like to create? （你要创建的应用类型）
 
 你的应用类型取决于你是否需要使用微服务架构。关于微服务的使用 [这里]({{ site.url }}/microservices-architecture/) 有完整的说明，如果不是很确定，就选择默认的 "Monolithic application"。
 
@@ -70,7 +70,7 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 
 在使用微服务架构时是必要的 (所以在在创建巨石类应用是询问为可选的)。
 
-### Which *type* of authentication would you like to use? （使用哪种认证）
+### Which _type_ of authentication would you like to use? （使用哪种认证）
 
 这个问题也依赖于之前的回答。比如说，如果你选择了 [JHipster Registry]({{ site.url }}/jhipster-registry/) ，你就只能选择 JWT 认证方式了。
 
@@ -83,7 +83,7 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 
 你可以到 [应用安全]({{ site.url }}/security/) 章节获取更多信息。
 
-### Which *type* of database would you like to use? （使用哪种数据库）
+### Which _type_ of database would you like to use? （使用哪种数据库）
 
 你可以选择：
 
@@ -93,13 +93,13 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 - [Cassandra]({{ site.url }}/using-cassandra/)
 - [Couchbase]({{ site.url }}/using-couchbase/)
 
-### Which *production* database would you like to use? （生产环境使用哪种数据库）
+### Which _production_ database would you like to use? （生产环境使用哪种数据库）
 
 这个是你将在生产环境使用的数据库。在配置文件 `src/main/resources/config/application-prod.yml` 中配置。
 
 如果你希望使用 Oracle，你还需要 [手动安装 Oracle JDBC 驱动]({{ site.url }}/using-oracle/).
 
-### Which *development* database would you like to use? （开发环境使用哪种数据库）
+### Which _development_ database would you like to use? （开发环境使用哪种数据库）
 
 这个是在开发环境中使用的数据库，你可以使用：
 
@@ -149,7 +149,7 @@ Websockets 由 Spring Websocket 实现。我们还提供了一个完整的例子
 
 使用 [Apache Kafka]({{ site.url }}/using-kafka/) 作为发布/订阅的消息服务。
 
-### Which *Framework* would you like to use for the client? （使用哪种客户端框架）
+### Which _Framework_ would you like to use for the client? （使用哪种客户端框架）
 
 客户端框架。
 
@@ -168,7 +168,7 @@ Websockets 由 Spring Websocket 实现。我们还提供了一个完整的例子
 
 ### Which testing frameworks would you like to use? （使用哪些测试框架）
 
-默认 JHipster 提供了 Java 的单元/集成测试 (使用 Spring 的 JUnit 支持) 和 JavaScript 的单元测试 (using Karma.js)。作为可选项，你还可以选择增加：
+默认 JHipster 提供了 Java 的单元/集成测试 (使用 Spring 的 JUnit 支持) 和 JavaScript 的单元测试 (使用 Jest)。作为可选项，你还可以选择增加：
 
 *   Gatling：性能测试
 *   Cucumber：行为测试
