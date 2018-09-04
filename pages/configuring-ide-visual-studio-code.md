@@ -25,7 +25,7 @@ Visual Studio Code 有 Yeoman 的扩展插件，可以用来运行 JHipster 命�
 
 ## Java 支持
 
-Visual Studio Code 还有个由 Red Hat 提供的 Java 插件。它具有非常好的 Java 支持功能，并且使用 Maven。（如果选择使用 Gradle 就无法工作了）。
+Visual Studio Code 还有个由 Red Hat 提供的 Java 插件。它具有非常好的 Java 支持功能，并且使用 Maven 或 Gradle。
 
 可以在 Visual Studio Code 的插件库中查找安装：
 

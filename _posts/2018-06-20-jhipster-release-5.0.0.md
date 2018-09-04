@@ -47,6 +47,30 @@ JHipster 5 第一个稳定版正式发布了！
 - 更好地支持了 OAuth2，感谢 [Fabien Arrault](https://github.com/farrault) ，由 [Matt Raible](https://github.com/mraible) 集成。参考 [#7666](https://github.com/jhipster/generator-jhipster/pull/7666).
 - 迁移了 swagger-codegen 到 openapi-generator (新组件是 swagger-codegen 的社区分支) 由 [Christophe Bornet](https://github.com/cbornet) 支持，他也是 JHipster 核心组成员以及 openapi-generator 团队成员。参考 [#7728](https://github.com/jhipster/generator-jhipster/pull/7728).
 - 支持了 Memcached，作为 Spring Cache 实现的一个可选项。这个在 Heroku, GCP and AWS 等平台上使用比用 Ehcache/Hazelcast/Infinispan 更方便。
+- "Social Login" using Google/Twitter/Facebook has been removed as Spring Social is not actively maintained anymore. Currently you can use Keycloack to achieve the same result, and in the near future you should be able to use our new OAuth2 support.
+
+As we also improved our database schema, our initial Liquibase changelog has been modified. To upgrade an existing schema (ie. JHipster 4.x), you can use the following changelog:
+
+```
+    <changeSet id="00000000000002" author="jhipster">
+        <modifyDataType columnName="email"
+                        newDataType="varchar(254)"
+                        tableName="jhi_user"/>
+    </changeSet>
+    <changeSet id="00000000000003" author="jhipster" >
+        <dropIndex  indexName="idx_user_login"
+                    tableName="jhi_user"/>
+    </changeSet>
+    <changeSet id="00000000000004" author="jhipster" >
+        <dropIndex  indexName="idx_user_email"
+                    tableName="jhi_user"/>
+    </changeSet>
+    <changeSet id="00000000000005" author="jhipster" >
+        <addNotNullConstraint   columnName="password_hash"
+                                columnDataType="varchar(60)"
+                                tableName="jhi_user"/>
+    </changeSet>
+```
 
 ## 插件（Sub-generators）和工具
 

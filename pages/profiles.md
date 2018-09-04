@@ -57,7 +57,7 @@ You can run JHipster in production directly using Maven or Gradle:
 
 ## Spring profiles switches
 
-JHipster comes with three additional profiles used as switches:
+JHipster comes with two additional profiles used as switches:
 
 *   `swagger` to enable swagger
 *   `no-liquibase` to disable liquibase

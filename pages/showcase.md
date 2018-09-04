@@ -21,6 +21,16 @@ sitemap:
     <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="thumbnail no-margin-bottom">
             <div class="video-container">
+                <img width="560" height="315" src="{{ site.url }}/images/showcase/beta.devoxx.com.png" />
+            </div>
+            <div class="caption">
+                <h3 id="thumbnail-label"><a href="https://beta.devoxx.com/#/" target="_blank">Devoxx</a></h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="thumbnail no-margin-bottom">
+            <div class="video-container">
                 <img width="560" height="315" src="{{ site.url }}/images/showcase/great-big-sample-application.png" />
             </div>
             <div class="caption">
@@ -41,6 +51,8 @@ sitemap:
             </div>
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="thumbnail no-margin-bottom">
             <div class="video-container">
@@ -51,15 +63,13 @@ sitemap:
             </div>
         </div>
     </div>
-</div>
-<div class="row">
     <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="thumbnail no-margin-bottom">
             <div class="video-container">
                 <img width="560" height="315" src="{{ site.url }}/images/showcase/www.21-points.com.png" />
             </div>
             <div class="caption">
-                <h3 id="thumbnail-label"><a href="http://www.21-points.com/#/" target="_blank">21 Points</a></h3>
+                <h3 id="thumbnail-label"><a href="http://www.21-points.com/#/" target="_blank">21-Points Health</a></h3>
             </div>
         </div>
     </div>
@@ -73,6 +83,8 @@ sitemap:
             </div>
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="thumbnail no-margin-bottom">
             <div class="video-container">
@@ -84,8 +96,6 @@ sitemap:
             </div>
         </div>
     </div>
-</div>
-<div class="row">
     <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="thumbnail no-margin-bottom">
             <div class="video-container">
@@ -109,6 +119,8 @@ sitemap:
             </div>
         </div>
     </div>
+</div>
+<div class="row">
 	<div class="col-xs-12 col-sm-6 col-md-4">
       <div class="thumbnail no-margin-bottom">
          <div class="video-container">

@@ -13,7 +13,7 @@ sitemap:
 
 _**请查看我们的 [视频教程]({{ site.url }}/video-tutorial/) 来学习创建 JHipster 应用！**_
 
-**重要** 如果你希望“热加载”你的 JavaScript/TypeScript 代码，你需要运行 `yarn start` 。
+**重要** 如果你希望“热加载”你的 JavaScript/TypeScript 代码，你需要运行 `npm start` or `yarn start` 。
 可以在 [JHipster 开发相关技术]({{ site.url }}/development/) 获取更多信息。
 
 ## 介绍
@@ -186,7 +186,7 @@ TIP: to regenerate all your entities at once, you can use the following commands
 
 This is a short tutorial on creating two entities (a Author and a Book) which have a one-to-many relationship.
 
-**Important** if you want to have "live reload" of your JavaScript/TypeScript code, you will need run `yarn start`. You can go to the [Using JHipster in development]({{ site.url }}/development/) page for more information.
+**Important** if you want to have "live reload" of your JavaScript/TypeScript code, you will need run `npm start` or `yarn start`. You can go to the [Using JHipster in development]({{ site.url }}/development/) page for more information.
 
 ### 创建 "Author" 实体对象
 

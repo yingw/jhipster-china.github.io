@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Using JHipster UAA for Microservice Security
+title: 使用 JHipster UAA 作为微服务安全的服务
 permalink: /using-uaa/
 redirect_from:
   - /security.html
@@ -10,42 +10,45 @@ sitemap:
 ---
 # <i class="fa fa-lock"></i> 使用 JHipster UAA 作为微服务安全的服务
 
-JHipster UAA is a user accounting and authorizing service for securing JHipster microservices 使用 OAuth2 授权协议.
+JHipster UAA 是 JHipster 微服务的一种账号和认证的安全服务，使用 OAuth2 授权协议。
+（译注，也可以用于非 JHipster 应用）
 
-To clearly distinct JHipster UAA from other "UAA"s such as [Cloudfoundry UAA](https://github.com/cloudfoundry/uaa), JHipster UAA is a fully configured OAuth2 authorization server with the users and roles endpoints inside, wrapped into a usual JHipster application. This allows the developer to deeply configure every aspect of his user domain, without restricting on policies by other ready-to-use UAAs.
+要区别出 JHipster UAA 和其他 "UAA" 应用比如 [Cloudfoundry UAA](https://github.com/cloudfoundry/uaa)，
+JHipster UAA 完整的 OAuth2 认证服务并集成用户和角色管理端点，封装成为一个普通的 JHipster 应用。
+这允许开发人员根据自己的需要做深度配置定制，不受别的封装好的 UAA 产品的策略限制。
 
-## Summary
+## 概况
 
-1. [Architecture diagram](#architecture_diagram)
-2. [Security claims of microservice architecture](#claims)
-3. [Understanding OAuth2 in this context](#oauth2)
-4. [Using JHipster UAA](#jhipster-uaa)
-  * Basic setup
-  * Understanding the components
-  * Refresh Tokens
-  * Common mistakes
-5. [Securing inter-service-communication using Feign clients](#inter-service-communication)
-  * Using Eureka, Ribbon, Hystrix and Feign
-  * Using `@AuthorizedFeignClients`
-6. [Testing UAA applications](#testing)
-  * Stubbing feign clients
-  * Emulating OAuth2 authentication
+1. [架构](#architecture_diagram)
+2. [微服务架构的安全声明](#claims)
+3. [理解这里的 OAuth2](#oauth2)
+4. [使用 JHipster UAA](#jhipster-uaa)
+  * 初始设置
+  * 理解组件
+  * 刷新 Token
+  * 常见错误
+5. [加密 Feign 客户端调用的内部服务通讯](#inter-service-communication)
+  * 使用 Eureka, Ribbon, Hystrix 以及 Feign
+  * 使用 `@AuthorizedFeignClients`
+6. [测试 UAA 应用](#testing)
+  * Feign 客户端存根
+  * 模拟 OAuth2 认证
 
-## <a name="architecture_diagram"></a> Architecture diagram
+## <a name="architecture_diagram"></a> 架构
 
 <img src="{{ site.url }}/images/microservices_architecture_detail.002.png" alt="Diagram" style="width: 800; height: 600" class="img-responsive"/>
 
-## <a name="claims"></a> 1. Security claims of microservice architecture
+## <a name="claims"></a> 1. 微服务架构的安全声明
 
-Before digging into OAuth2 and its application on JHipster microservices, it's important to clarify the claims to a solid security solution.
+在开始研究 OAuth2 之前，先来了解下稳固的安全解决方案是什么样的。
 
-### 1. Central authentication
+### 1. 中央认证
 
-Since microservices is about building mostly independent and autonomous applications, we want to have a consistent authentication experience, so the user won't notice his requests are served by different applications with possibly individual security configuration.
+由于微服务建立了很多独立自治的应用，我们想得到一致的认证体验，用户不会注意到他的请求是由不同的应用提供的服务来做安全配置支持的。
 
-### 2. Statelessness
+### 2. 无状态
 
-The core benefit of building microservices is scalability. So the chosen security solution shouldn't affect this. Holding the users session state on server becomes a tricky task, so a stateless solution is highly preferred in this scenario.
+使用微服务架构的一个主要好处就是可扩展性。所以安全的解决方案也不会影响这个有点这使得在服务器上保存用户的 session 变得复杂，所以在这样的场景下使用无状态解决方案根被推崇。
 
 ### 3. User/machine access distinction
 
@@ -59,12 +62,12 @@ While maintaining centralized roles, there is a need of configuring detailed acc
 
 No matter how much problems a security solution may solve, it should be strong against vulnerabilities as best as possible.
 
-### 6. Scalability
+### 6. 扩展性
 
 Using stateless protocols is not a warranty of the security solution is scalable. In the end, there should not be any single point of failure. A counter-example is a shared auth database or single auth-server-instance, which is hit once per request.
 
 
-## <a name="oauth2"></a> 2. Understanding OAuth2 in this context
+## <a name="oauth2"></a> 2. 理解这里的 OAuth2
 
 Using the OAuth2 protocol (note: it's a **protocol**, not a framework, not an application) is satisfying all 6 claims. It follows strict standards, what makes this solution compatible to other microservices as well, and remote systems, too. JHipster provides a couple of solutions, based on the following security design:
 
@@ -91,39 +94,39 @@ As an addition, the following rules can be applied for access control:
 * Complex access configuration is expressed using [ABAC][], using boolean expressions over both "roles" and "scopes"
   * example: hasRole("ADMIN") and hasScope("shop-manager.read", "shop-manager.write")
 
-## <a name="jhipster-uaa"></a> 3. Using JHipster UAA
+## <a name="jhipster-uaa"></a> 3. 使用 JHipster UAA
 
-When scaffolding a JHipster microservice, you may choose the UAA options instead of JWT authentication.
+当开始使用 JHipster 微服务架构，你可能会选择 UAA，而不是 JWT 认证。
 
-**Note**: the UAA solution is also using JWT, which are addressable to custom configuration as well as JWT, using default Spring Cloud Security.
+**注意**: UAA 的解决方案也使用 JWT，这对于定制配置以及 JWT 都较为容易使用，默认使用 Spring Cloud Security。
 
-### Basic setup
+### 初始设置
 
-The very basic setup consists of:
+最基础的设置组成：
 
-1. A JHipster UAA server (as type of application)
-2. At least one other microservice (using UAA authentication)
-3. A JHipster gateway (using UAA authentication)
+1. 一个 JHipster UAA server (一种应用类型)
+2. 至少一个微服务 (并使用 UAA 认证)
+3. 一个 JHipster 网关 (使用 UAA 认证)
 
-This is the order in which it should be generated.
+这是创建顺序。
 
-In addition to the authentication type, the location of the UAA must be provided.
+除了认证类型，还要设置 UAA 的地址。
 
-For very basic usage, this setup is working the same way as it does for JWT authentication type, but with one more service.
+对于基础使用，该设置和 JWT 认证类型工作方式相同，只是基于多一个的服务。
 
-### Understanding the components
+### 理解组件
 
-The JHipster UAA server does three things out of the box:
+JHipster UAA server 开箱即用的三个功能：
 
-* It serves the default JHipster user domain, containing user and account resource (this is done by gateway in JWT authentication)
-* It implements `AuthorizationServerConfigurerAdapter` for OAuth2 and is defining basic clients ("web_app" and "internal")
-* It serves the JWT public key on `/oauth/token_key`, which has to be consumed by all other microservices
+* 它提供默认的 JHipster 用户领域模型管理，管理用户和账号资源（这是由网关提供的，以 JWT 认证方式）
+* 它实现了 `AuthorizationServerConfigurerAdapter` 来支持 OAuth2 并定义了基础客户端 ("web_app" 和 "internal")
+* 它提供 JWT 公钥服务在 `/oauth/token_key` 上，并被所有其他微服务调用
 
-The choices of a database, cache solution, search engine, build tools and further JHipster options are open to the developer.
+数据库的选择、缓存方案、搜索引擎、编译工具以及其他 JHipster 选项都可以有开发人员自行选择。
 
-When a microservice boots up, it usually expects the UAA server is already up to share its public key. The service first calls `/oauth/token_key` to fetch the public key and configure it for key signing (`JwtAccessTokenConverter`).
+当一个微服务应用启动时，它会预期 UAA Server 已经启动并共享了公钥。它会调用 `/oauth/token_key` 来获取公钥并设置秘钥签名 (`JwtAccessTokenConverter`).
 
-If the UAA is not up, the application will continue to start and fetch the public key at a later time.  There are two properties - `uaa.signature-verification.ttl` controls how long the key lives before it is fetched again, `uaa.signature-verification.public-key-refresh-rate-limit` limits requests to UAA to avoid spamming it. These values are usually left at their default values. In any case, if verification fails, then the microservice will check if there's a new key. That way, keys can be replaced on the UAA and the services will catch up.
+如果 UAA 没有启动，应用会在之后继续启动并尝试获取公钥。有两个设置 - `uaa.signature-verification.ttl` 控制 key 的有效期，`uaa.signature-verification.public-key-refresh-rate-limit` 限制访问 UAA 的请求来避免被爆。These values are usually left at their default values. In any case, if verification fails, then the microservice will check if there's a new key. That way, keys can be replaced on the UAA and the services will catch up.
 
 From this point there are two use cases that may happen in this basic setup: user calls and machine calls.
 
@@ -131,7 +134,7 @@ For the user calls, a login request is sent to the gateway's `/auth/login` endpo
 
 For the machine calls, the machine has to authenticate as a UAA using client credentials grant. JHipster provides a standard solution, described in [secure inter-service-communication using feign clients](#inter-service-communication)
 
-### Refresh Tokens
+### 刷新 Tokens
 
 The general flow for refreshing access tokens happens on the gateway and is as follows:
 
@@ -141,19 +144,19 @@ The general flow for refreshing access tokens happens on the gateway and is as f
 - This uses the `OAuth2TokenEndpointClient` interface to send a refresh token grant to the OAuth2 server of choice, in our case UAA (via `UaaTokenEndpointClient`).
 - The result of the refresh grant is then used downstream as new cookies and set upstream (to the browser) as new cookies.
 
-### Common mistakes
+### 常见错误
 
 Here is a brief list of the very major things a developer should be aware of.
 
-#### ***Using the same signing key for production and staging***
+#### ***生产测试环境使用相同的秘钥***
 
 It is strictly recommended to use different signing keys as much as possible. Once a signing key gets into wrong hands, it is possible to generate full access granting key without knowing login credentials of any user.
 
-#### ***Not using TLS***
+#### ***不使用 TLS***
 
 If an attacker manages to intercept an access token, he will gain all the rights authorized to this token, until the token expires. There are a lot of ways to achieve that, in particular when there is no TLS encryption. This was not a problem in the days of version 1 of OAuth, because protocol level encryption was forced.
 
-#### ***Using access tokens in URL***
+#### ***在 URL 中使用访问 token***
 
 As of standard, access tokens can be either passed by URL, in headers, or in a cookie. From the TLS point of view, all three ways are secure. In practice passing tokens via URL is less secure, since there several ways of getting the URL from records.
 
@@ -161,7 +164,7 @@ As of standard, access tokens can be either passed by URL, in headers, or in a c
 
 RSA is not required for JWT signing, and Spring Security does provide symmetric token signing as well. This also solves some problems, which make development harder. But this is insecure, since an attacker just needs to get into one single microservice to be able to generate its own JWT tokens.
 
-## <a name="inter-service-communication"></a> 4. Secure inter-service-communication using Feign clients
+## <a name="inter-service-communication"></a> 4. 加密 Feign 客户端调用的内部服务通讯
 
 Currently only JHipster UAA is providing an scalable approach of secure inter-service-communication.
 
@@ -171,7 +174,7 @@ Since JHipster UAA is based on OAuth2, all these problems are solved on protocol
 
 This chapter covers how to easily get started with this.
 
-### Using Eureka, Ribbon, Hystrix and Feign
+### 使用 Eureka, Ribbon, Hystrix 和 Feign
 
 When one service wants to request data from another, finally all these four players come into play. So it is important, to briefly know what each of them is responsible for:
 
@@ -247,7 +250,7 @@ The REST client automatically gets authorized with your UAA server, when there i
 
 This approach addresses a scenario when machine request run over a separate OAuth client not referring to an user session. This is important, in particular when entity auditing is used on a request, issued by another request in another service. As an alternative, the access token of the initial request may be forwarded to further calls. Currently, there is no "default solution" provided by JHipster.
 
-## <a name="testing"></a> 5. Testing UAA applications
+## <a name="testing"></a> 5. 测试 UAA applications
 
 ### Mocking Feign clients
 
@@ -284,7 +287,7 @@ public class SomeServiceTest {
 So with this technology you are simulating the behavior of the other service, and provide expected resource entity, which would come from the origin.
 All Beans injecting a client will behave as mocked, so you can focus on the logic of these Beans.
 
-### Emulating OAuth2 authentication
+### 模拟 OAuth2 认证
 
 Using Spring's integration tests against the REST controllers is usually bypassing the security configuration, since it would make testing hard, when the only intention is to prove the controller is functional doing what it should do. But sometimes, testing a controller's security behavior is part of testing, too.
 
@@ -312,7 +315,7 @@ To use this feature, two things have to be done:
 ***In this test no single instance of the controller has to be mocked, but the
 application's `WebApplicationContext`***
 
-#### 2. Using the `OAuth2TokenMockUtil`
+#### 2. 使用 `OAuth2TokenMockUtil`
 
 The util offers a method "oaut2authentication", which is usable to MockMvc "with" notation. Currently it can be configured to mock a authentication with the following fields:
 
@@ -320,7 +323,7 @@ The util offers a method "oaut2authentication", which is usable to MockMvc "with
 * roles (Set<String>)
 * scope (Set<String>)
 
-Here is an example:
+例子：
 
 ``` java
 
