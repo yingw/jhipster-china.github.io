@@ -86,7 +86,7 @@
                             <a href="#opts">选择</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="#modules">插件</a>
+                            <a href="#modules">插件 &amp; 蓝图</a>
                         </li>
                         {% endif %}
                         {% if page.home != true %}
@@ -144,7 +144,7 @@
                                             <li {% if '/tech-stack/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/tech-stack/"><i class="fa fa-fw fa-stack-overflow"></i> 技术栈</a></li>
                                             <li {% if '/presentation' == page.url %}class="active" {% endif %}><a href="{{ site.url }}//presentation" target="_blank"><i class="fa fa-fw fa-desktop"></i> 官方幻灯片</a></li>
                                             <li {% if '/screenshots/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/screenshots/"><i class="fa fa-fw fa-picture-o"></i> JHipster 5 个截屏</a></li>
-                                            <li {% if '/video-tutorial/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/video-tutorial/"><i class="fa fa-fw fa-film"></i> 视频教程 (12 分钟)</a></li>
+                                            <li {% if '/video-tutorial/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/video-tutorial/"><i class="fa fa-fw fa-film"></i> 视频教程 (16 分钟)</a></li>
                                             <li {% if '/companies-using-jhipster/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/companies-using-jhipster/"><i class="fa fa-fw fa-thumbs-up"></i> 使用 JHipster 的公司</a></li>
                                             <li {% if '/showcase/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/showcase/"><i class="fa fa-fw fa-file-image-o"></i> JHipster 应用展示</a></li>
                                         </ul>
@@ -274,24 +274,26 @@
                                             <li {% if '/production/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/production/"><i class="fa fa-fw fa-play-circle"></i> 生产环境技术</a></li>
                                             <li {% if '/monitoring/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/monitoring/"><i class="fa fa-fw fa-line-chart"></i> 监控</a></li>
                                             <li {% if '/docker-hub/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/docker-hub/"><i class="fa fa-fw fa-cloud-upload"></i> Docker Hub</a></li>
-                                            <li {% if '/cloudfoundry/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/cloudfoundry/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Cloud Foundry</a></li>
-                                            <li {% if '/heroku/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/heroku/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Heroku</a></li>
                                             <li {% if '/kubernetes/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/kubernetes/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Kubernetes</a></li>
                                             <li {% if '/openshift/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/openshift/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 OpenShift</a></li>
-                                            <li {% if '/rancher/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/rancher/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Rancher</a></li>
+                                            <li {% if '/heroku/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/heroku/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Heroku</a></li>
+                                            <li {% if '/cloudfoundry/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/cloudfoundry/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Cloud Foundry</a></li>
                                             <li {% if '/aws/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/aws/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 AWS</a></li>
-                                            <li {% if '/boxfuse/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/boxfuse/"><i class="fa fa-fw fa-cloud-upload"></i> 使用 Boxfuse 发布</a></li>
+                                            <li {% if '/azure/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/azure/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Azure</a></li>
+                                            <li {% if '/rancher/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/rancher/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Rancher</a></li>
+                                            <li {% if '/boxfuse/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/boxfuse/"><i class="fa fa-fw fa-cloud-upload"></i> Boxfuse 发布</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
                             <li class="panel panel-default dropdown">
-                                <a data-toggle="collapse" href="#dropdown-10"><span class="icon fa fa-fw fa-cubes"></span><span class="title">插件</span></a>
+                                <a data-toggle="collapse" href="#dropdown-10"><span class="icon fa fa-fw fa-cubes"></span><span class="title">插件 和 蓝图</span></a>
                                 <div id="dropdown-10" class="panel-collapse collapse" style="height: 0px;">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
                                             <li {% if '/modules/marketplace/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/modules/marketplace/"><i class="fa fa-fw fa-shopping-cart"></i> 市场</a></li>
                                             <li {% if '/modules/creating-a-module/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/modules/creating-a-module/"><i class="fa fa-fw fa-cube"></i> 开发一个插件</a></li>
+                                          <li {% if '/modules/creating-a-blueprint/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/modules/creating-a-blueprint/"><i class="fa fa-fw fa-cube"></i> 开发一个蓝图</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -319,6 +321,7 @@
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
                                             <li {% if '/help/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/help/"><i class="fa fa-fw fa-users"></i> 社区支持</a></li>
+                                          <li {% if '/bug-bounties/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/bug-bounties/"><i class="fa fa-fw fa-usd"></i> Bug 奖金</a></li>
                                             <li {% if '/consulting/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/consulting/"><i class="fa fa-fw fa-user-md"></i> 专业支持</a></li>
                                             <li {% if '/training/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/training/"><i class="fa fa-fw fa-graduation-cap"></i> 培训</a></li>
                                         </ul>

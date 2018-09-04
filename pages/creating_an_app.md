@@ -15,8 +15,9 @@ _**请查看我们的 [视频教程]({{ site.url }}/video-tutorial/) 来学习�
 
 1. [快速上手](#1)
 2. [创建应用的各选项](#2)
-3. [命令行选项](#3)
-4. [小提示](#4)
+3. [使用蓝图](#5)
+4. [命令行选项](#3)
+5. [小提示](#4)
 
 ## <a name="1"></a> 快速上手
 
@@ -38,7 +39,7 @@ _**请查看我们的 [视频教程]({{ site.url }}/video-tutorial/) 来学习�
 
 应用启动在： [http://localhost:8080](http://localhost:8080)
 
-**重要** 如果你希望使用 "动态加载" JavaScript/TypeScript 代码的功能，你需要执行 `yarn start`。你可以去 [JHipster 开发的相关技术]({{ site.url }}/development/) 也了解更多信息。
+**重要** 如果你希望使用 "动态加载" JavaScript/TypeScript 代码的功能，你需要执行 `npm start` 或 `yarn start`。你可以去 [JHipster 开发的相关技术]({{ site.url }}/development/) 也了解更多信息。
 
 ## <a name="2"></a> 创建应用的各选项
 
@@ -104,7 +105,7 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 这个是在开发环境中使用的数据库，你可以使用：
 
 *   H2 数据库，运行在内存中。这是运行 JHipster 最简单的方法，但是在服务重启后你所有的数据都会丢失。
-*   H2 数据库，数据存储于磁盘上。目前还在 BETA 测试阶段（并且在 Windows 上不能工作），但是比运行在内存中的方式要好些，因为你不会丢失数据了。
+*   H2 数据库，数据存储于磁盘上。比运行在内存中的方式要好些，因为你不会丢失数据了。
 *   和生产环境一样的数据库：这种方式设置稍微复杂，但这样和生产一致是更好的方式。这也是在使用 liquibase-hibernate [the development guide]({{ site.url }}/development/) 时最好的方式。
 
 （译注：推荐3，和生产库使用同样的数据库，而不是 H2，驱动不说，丢数据麻烦。只是需要设置一下数据库位置而已）
@@ -155,7 +156,7 @@ Websockets 由 Spring Websocket 实现。我们还提供了一个完整的例子
 
 可以选择：
 
-*   Angular version 5+
+*   Angular
 *   React
 
 ### Would you like to use the LibSass stylesheet preprocessor for your CSS? （使用 LibSass 预处理 CSS？）
@@ -180,6 +181,22 @@ Websockets 由 Spring Websocket 实现。我们还提供了一个完整的例子
 
 [JHipster Marketplace]({{ site.url }}/modules/marketplace/) 是一个提供了额外功能的插件库，由外部工程师编写的各种功能，来添加各种非官方的特性。
 
+## <a name="5"></a> Using a blueprint
+
+JHipster 5 introduces the concept of a blueprint. Blueprints are JHipster modules that can provide custome client/server side templates that will override the ones from JHipster. For example, the [Kotlin blueprint](https://github.com/jhipster/jhipster-kotlin) replaces most of the Java server side code with Kotlin.
+
+For example, to use the Kotlin blueprint pass the name of the blueprint like below while generating an app.
+
+```bash
+jhipster --blueprint kotlin
+```
+
+The name of the blueprint is saved in the `.yo-rc.json` and will be automatically used while executing sub-generators like `entity`, `spring-controller` and `spring-service`.
+
+If a blueprint doesn't implement a specific sub-generator, it will be skiped and the JHipster templates for the same sub-generator will be used.
+
+**Note:** An application can use only one blueprint, multiple blueprints are not supported yet.
+
 ## <a name="3"></a> 命令行选项
 
 你还可以使用一些命令行选项来运行 JHipster。可以通过命令参考：`jhipster app --help`.
@@ -187,6 +204,7 @@ Websockets 由 Spring Websocket 实现。我们还提供了一个完整的例子
 有这些可用参数：
 
 * `--help` - 输出所有选项和使用帮助
+* `--blueprint` - 指定一个使用的蓝图功能，例如：`jhipster --blueprint kotlin`
 * `--skip-cache` - 不要记住之前提示的回答 (默认: false)
 * `--skip-git` - 不要创建 Git 仓库 (默认: false)
 * `--skip-install` - 不要自动安装依赖 (默认: false)
@@ -199,7 +217,7 @@ Websockets 由 Spring Websocket 实现。我们还提供了一个完整的例子
 * `--with-entities` - 重新生成实体对象相关程序 (使用 `.jhipster` 目录下的配置) (默认：false)
 * `--skip-checks` - 跳过必要工具的检查 (默认: false)
 * `--jhi-prefix` - 在 service，components，state/route 前加的前缀 (默认: jhi)
-* `--npm` - 使用 NPM 替代 Yarn (默认: false)
+* `--yarn` - 使用 Yarn 替代 NPM (默认: false)
 * `--experimental` - 开启实验性质特性。请注意这些特性是不稳定的并且会在将来发生变化。
 
 ## <a name="4"></a> 提示

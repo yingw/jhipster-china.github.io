@@ -30,16 +30,7 @@ sitemap:
 
 如果使用：[Cntlm](http://cntlm.sourceforge.net/)，设置为：`127.0.0.1:3128`。另外的，根据下面的步骤设置其他工具。
 
-## Yarn 的设置
-
-执行命令：
-
-```
-yarn config set proxy http://username:password@host:port
-yarn config set https-proxy http://username:password@host:port
-```
-
-## NPM 的设置
+## NPM configuration
 
 执行命令：
 
@@ -54,6 +45,15 @@ npm config set https-proxy http://username:password@host:port
 proxy=http://username:password@host:port
 https-proxy=http://username:password@host:port
 https_proxy=http://username:password@host:port
+```
+
+## Yarn 的设置
+
+执行命令：
+
+```
+yarn config set proxy http://username:password@host:port
+yarn config set https-proxy http://username:password@host:port
 ```
 
 ## Git 的设置
@@ -74,18 +74,7 @@ git config --global https.proxy http://username:password@host:port
         proxy = http://username:password@host:port
 ```
 
-## Bower 的设置
-
-编辑文件 `~/.bowerrc`：
-
-```
-{
-    "proxy":"http://username:password@host:port",
-    "https-proxy":"http://username:password@host:port"
-}
-```
-
-## Maven 的设置
+## Maven configuration
 
 编辑配置文件 `~/.m2/settings.xml` 中的 `proxies`：
 

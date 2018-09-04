@@ -25,7 +25,7 @@ sitemap:
 
 开发流程：
 
-*   使用 [Yarn](https://yarnpkg.com/) 来安装额外的 JavaScript 库
+*   使用 [NPM](https://www.npmjs.com/get-npm) 或 [Yarn](https://yarnpkg.com/) 来安装额外的 JavaScript 库
 *   使用 [Webpack](https://webpack.js.org/) 编译、优化、热加载
 *   使用 [Jest](https://facebook.github.io/jest/), 以及 [Protractor](http://www.protractortest.org) 进行测试
 
