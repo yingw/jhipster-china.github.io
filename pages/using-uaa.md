@@ -11,10 +11,10 @@ sitemap:
 # <i class="fa fa-lock"></i> 使用 JHipster UAA 作为微服务安全的服务
 
 JHipster UAA 是 JHipster 微服务的一种账号和认证的安全服务，使用 OAuth2 授权协议。
-（译注，也可以用于非 JHipster 应用）
+（译注：也可以用于非 JHipster 应用）
 
 要区别出 JHipster UAA 和其他 "UAA" 应用比如 [Cloudfoundry UAA](https://github.com/cloudfoundry/uaa)，
-JHipster UAA 完整的 OAuth2 认证服务并集成用户和角色管理端点，封装成为一个普通的 JHipster 应用。
+JHipster UAA 提供了完整的 OAuth2 认证服务并集成用户和角色管理端点，封装成为一个普通的 JHipster 应用。
 这允许开发人员根据自己的需要做深度配置定制，不受别的封装好的 UAA 产品的策略限制。
 
 ## 概况
@@ -29,7 +29,7 @@ JHipster UAA 完整的 OAuth2 认证服务并集成用户和角色管理端点�
   * 常见错误
 5. [加密 Feign 客户端调用的内部服务通讯](#inter-service-communication)
   * 使用 Eureka, Ribbon, Hystrix 以及 Feign
-  * 使用 `@AuthorizedFeignClients`
+  * 使用 `@AuthorizedFeignClients` 注解
 6. [测试 UAA 应用](#testing)
   * Feign 客户端存根
   * 模拟 OAuth2 认证
@@ -50,17 +50,17 @@ JHipster UAA 完整的 OAuth2 认证服务并集成用户和角色管理端点�
 
 使用微服务架构的一个主要好处就是可扩展性。所以安全的解决方案也不会影响这个有点这使得在服务器上保存用户的 session 变得复杂，所以在这样的场景下使用无状态解决方案根被推崇。
 
-### 3. User/machine access distinction
+### 3. 人机访问区别
 
 There is a need of having a clear distinction of different users, and also different machines. Using microservice architecture leads to building a large multi-purpose data-center of different domains and resources, so there is a need to restrict different clients, such as native apps, multiple SPAs etc. in their access.
 
-### 4. Fine-grained access control
+### 4. 细致的访问控制
 
 While maintaining centralized roles, there is a need of configuring detailed access control policies in each microservice. A microservice should be unaware of the responsibility of recognizing users, and must just authorize incoming requests.
 
-### 5. Safe from attacks
+### 5. 攻击防护
 
-No matter how much problems a security solution may solve, it should be strong against vulnerabilities as best as possible.
+不论安全方案能解决多少问题，都应该尽可能地抵御漏洞。
 
 ### 6. 扩展性
 
@@ -69,7 +69,7 @@ Using stateless protocols is not a warranty of the security solution is scalable
 
 ## <a name="oauth2"></a> 2. 理解这里的 OAuth2
 
-Using the OAuth2 protocol (note: it's a **protocol**, not a framework, not an application) is satisfying all 6 claims. It follows strict standards, what makes this solution compatible to other microservices as well, and remote systems, too. JHipster provides a couple of solutions, based on the following security design:
+使用 OAuth2 协议 (注意，这是个 **协议**，而非框架，也不是应用) 满足上面的 6 个诉求。该协议遵循标准，这使得该解决方案也适用于其他微服务架构。JHipster 提供了一系列解决方案，基于以下的安全设计：
 
 ![JHipster UAA architecture]({{ site.url }}/images/jhipster_uaa.png)
 
@@ -85,14 +85,14 @@ Using the OAuth2 protocol (note: it's a **protocol**, not a framework, not an ap
 * Clients accessing resources without user, are authenticated using "client credentials grant"
 * Every client is defined inside UAA (web-app, internal, ...)
 
-This design may be applied to any microservice architecture independent from language or framework.
+这个设计可以应用到其他任何微服务架构中，不依赖于语言和框架。
 
-As an addition, the following rules can be applied for access control:
+另外，还提供了下面这些访问控制规则的能力：
 
-* User access is configured using "roles" and [RBAC][]
-* Machines access is configured using "scopes" and [RBAC][]
-* Complex access configuration is expressed using [ABAC][], using boolean expressions over both "roles" and "scopes"
-  * example: hasRole("ADMIN") and hasScope("shop-manager.read", "shop-manager.write")
+* 用户访问可以用 "roles" 和 [RBAC][https://zh.wikipedia.org/zh/%E4%BB%A5%E8%A7%92%E8%89%B2%E7%82%BA%E5%9F%BA%E7%A4%8E%E7%9A%84%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6] 来设置
+* 机器访问可以用 "scopes" [RBAC][] 来设置
+* 复杂的访问设置用 [ABAC][https://en.wikipedia.org/wiki/Attribute-based_access_control] 来表达，再在 "roles" 和 "scopes" 上层的表达式来声明
+  * 比如: hasRole("ADMIN") and hasScope("shop-manager.read", "shop-manager.write")
 
 ## <a name="jhipster-uaa"></a> 3. 使用 JHipster UAA
 
@@ -160,9 +160,9 @@ If an attacker manages to intercept an access token, he will gain all the rights
 
 As of standard, access tokens can be either passed by URL, in headers, or in a cookie. From the TLS point of view, all three ways are secure. In practice passing tokens via URL is less secure, since there several ways of getting the URL from records.
 
-#### ***Switching to symmetric signing keys***
+#### ***使用对称加密***
 
-RSA is not required for JWT signing, and Spring Security does provide symmetric token signing as well. This also solves some problems, which make development harder. But this is insecure, since an attacker just needs to get into one single microservice to be able to generate its own JWT tokens.
+RSA(非对称加密算法) is not required for JWT signing, and Spring Security does provide symmetric token signing as well. This also solves some problems, which make development harder（译注：应该是 easier）. But this is insecure, since an attacker just needs to get into one single microservice to be able to generate its own JWT tokens.
 
 ## <a name="inter-service-communication"></a> 4. 加密 Feign 客户端调用的内部服务通讯
 
@@ -216,9 +216,9 @@ class SomeService {
 
 Similar to Spring Data JPA, there is no need to implement that interface. But you may do so, if using Hystrix. Implemented classes of Feign client interfaces act as fallback implementations.
 
-One open issue is, to make this communication secure using UAA. To accomplish this, there should be some request interceptor for Feign, which implements the client credentials flow from OAuth, to authorize the current service for requesting the other service. In JHipster, you just use `@AuthorizedFeignClients` instead. This is a special annotation provided by JHipster, which does exactly that.
+One open issue is, to make this communication secure using UAA. To accomplish this, there should be some request interceptor for Feign, which implements the client 凭证 flow from OAuth, to authorize the current service for requesting the other service. 在 JHipster 应用中，你只需要加上 `@AuthorizedFeignClients` 注解。这是个特殊的 JHipster 注解，完成了客户端 OAuth 凭证实现。
 
-### Using `@AuthorizedFeignClients`
+### 使用 `@AuthorizedFeignClients` 注解
 
 Considering the above Feign client should be used to an "other-service", which
 serves protected resources, the interface must be annotated like this:
@@ -232,7 +232,7 @@ interface OtherServiceClient {
 ```
 
 **note**: Due to a bug in Spring Cloud, it's currently not possible to use a different
-notation for the service name, as
+notation for the service name（译注：也就是说，一定要用 name 属性）, as
 
 ``` java
 
@@ -252,7 +252,7 @@ This approach addresses a scenario when machine request run over a separate OAut
 
 ## <a name="testing"></a> 5. 测试 UAA applications
 
-### Mocking Feign clients
+### 模拟 Feign 客户端
 
 Components working with Feign clients should be testable. Using Feign in tests the same way it is used in production would force the JHipster Registry and the UAA server to be up and reachable to the same machine where the tests are run. But in most cases, you don't want to test that Feign itself works (it usually does), but your components using Feign clients.
 

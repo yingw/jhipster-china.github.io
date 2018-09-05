@@ -9,28 +9,28 @@ sitemap:
 
 # <i class="fa fa-bullseye"></i> Consul
 
-## Consul overview
+## Consul 概述
 
-As an alternative to the JHipster Registry you can choose to use [Consul](https://www.consul.io/), a datacenter management solution from Hashicorp.
-Compared to Eureka it has a number of advantages:
+作为 JHipster Registry 的一个替代，你可以使用 [Consul](https://www.consul.io/)，一个由 Hashicorp 提供的数据中心解决方案。
+比较与 Eureka，它拥有很多优势：
 
-- It is easier to operate in a multi-node cluster than Eureka.
-- It favors consistency over availability so changes in the state of your cluster are propagated more quickly.
-- Consul service discovery can simply interoperate with existing applications through its [DNS interface](https://www.consul.io/docs/agent/dns.html) or [HTTP API](https://www.consul.io/docs/agent/http.html).
+- 比 Eureka 更容易在多节点集群架构上维护。
+- 它比起可用性更关注于强一致性（译注：CA），这使得它的集群状态的变化可以更快的传播。
+- Consul 服务发现可以和现有系统更方便地集成，通过 [DNS 接口](https://www.consul.io/docs/agent/dns.html) 或 [HTTP API](https://www.consul.io/docs/agent/http.html)。
 
-## Architecture diagram
+## 架构
 
 <img src="{{ site.url }}/images/microservices_architecture_detail.003.png" alt="Diagram" style="width: 800; height: 600" class="img-responsive"/>
 
-## Getting started
+## 开始
 
-To get started with developing applications that rely on a Consul registry, you can start a Consul instance in a docker container:
+开始开发一个依赖 Consul 注册中心的应用，你需要先在 docker 容器中启动一个 Consul 实例：
 
-- run `docker-compose -f src/main/docker/consul.yml up` to start a Consul server in `dev` mode. Consul will then be available on port `8500` of your Docker host, so if it runs on your machine it should be at [http://127.0.0.1:8500/](http://127.0.0.1:8500/).
+- 运行 `docker-compose -f src/main/docker/consul.yml up` to start a Consul server in `dev` mode. Consul will then be available on port `8500` of your Docker host, so if it runs on your machine it should be at [http://127.0.0.1:8500/](http://127.0.0.1:8500/).
 
 You can also use the [Docker Compose subgenerator]({{ site.url }}/docker-compose/#docker-compose-subgen) to generate a docker configuration for several consul-enabled applications.
 
-## Application configuration with Consul
+## 应用的 Consul 设置
 
 If you have chosen the Consul option when generating your JHipster microservice or gateway app, they will be automatically configured to retrieve their configuration from Consul's **Key/Value store**.
 
