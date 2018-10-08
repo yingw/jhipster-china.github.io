@@ -19,7 +19,7 @@ Our [monitoring documentation]({{ site.url }}/monitoring) is also very important
 
 - JHipster 控制台来使用 ELK；
 - Zipkin 来创建 HTTP 服务请求追踪；
-- 当有错误发生时，Elastalert（译注：？） 来获取告警
+- 当有错误发生时，Elastalert 获取告警
 
 When using the Docker-Compose sub-generator, you will be asked if you want to add monitoring to your infrastructure. This option will add the JHipster Console to your `docker-compose.yml` file. Once started, it will be available on [http://localhost:5601](http://localhost:5601) and start to gather your applications' logs and metrics.
 
@@ -33,7 +33,7 @@ For gateways and microservices applications, additional features are provided to
 
 Docker Swarm，使用和 Docker Machine 一致的 API，使得在云平台内开发微服务架构就和在你本机上开发一样。查阅我们的 [Docker Compose 说明文档]({{ site.url }}/docker-compose/) 来了解更多关于 Docker Compose 和 JHipster。
 
-## <a name="cloudfoundry"></a> Going to production with Cloud Foundry（译注：广告时间）
+## <a name="cloudfoundry"></a> Going to production with Cloud Foundry
 
 The [Cloud Foundry sub-generator]({{ site.url }}/cloudfoundry/) works the same with a microservices architecture, the main difference is that you have more applications to deploy:
 

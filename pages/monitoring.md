@@ -15,7 +15,7 @@ JHipster provides several options to monitor your applications at runtime.
 1. [自动创建的仪表盘](#generated-dashboards)
 2. [JHipster Registry](#jhipster-registry)
 3. [JHipster Console](#jhipster-console)
-4. [将度量值转发给第三方监控系统](#metrics-exporters)
+4. [将度量值转发给第三方监控系统](#configuring-metrics-forwarding)
 5. [Zipkin](#zipkin)
 6. [使用 Elastalert 告警](#elastalert)
 

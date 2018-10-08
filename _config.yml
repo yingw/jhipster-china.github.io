@@ -2,6 +2,7 @@ safe:        true
 markdown: kramdown
 exclude: [node_modules, bower_components, vendor]
 url: https://www.jhipster-cn.tech
+github_repository_url: https://github.com/jhipster-china/jhipster-china.github.io
 kramdown:
   input: GFM
 gems:

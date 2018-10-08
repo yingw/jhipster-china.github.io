@@ -52,6 +52,8 @@ JHipster 提供了完整的 Docker 支持，为了：
 - [Docker](https://docs.docker.com/installation/#installation)
 - [Docker Compose](https://docs.docker.com/compose/install)
 
+Docker now requires creating an account to the docker store to download Docker for Mac and Docker for Windows. To bypass this 
+
 <div class="alert alert-info"><i>小提示：</i>
 
 在 Windows 和 Mac OS X 环境下，Kitematic 是个非常方便的图形化管理工具，集成在 Docker Toolbox 里。
@@ -80,10 +82,10 @@ __解决方案 2__
 
 制作应用的 Docker 镜像，并且提交到 Docker registry：
 
-- 使用 Maven，执行：`./mvnw package -Pprod dockerfile:build`
-- 使用 Gradle，执行：`./gradlew bootWar -Pprod buildDocker`
+- 使用 Maven，执行：`./mvnw package -Pprod jib:dockerBuild`
+- 使用 Gradle，执行：`./gradlew bootWar jibDockerBuild`
 
-这将使用 profile `prod` 打包你的应用，并且生成镜像。
+这将使用 profile `prod` 打包你的应用，and build a docker image using [Jib](https://github.com/GoogleContainerTools/jib) connecting to the local docker daemon.
 
 在 Windows 上，由于 [lack of named pipes](https://github.com/spotify/docker-client/issues/875)，你需要调整设置，打开 “Expose daemon on tcp://localhost:2375 without TLS”。
 
@@ -141,7 +143,7 @@ __解决方案 2__
 - 扩展 MongoDB 节点（你需要选择奇数数量的节点数）：`docker-compose -f src/main/docker/mongodb-cluster.yml scale <name_of_your_app>-mongodb-node=<X>`
 - 初始化 replica set (parameter X is the number of nodes you input in the previous step, folder is the folder where the YML file is located, it's `docker` by default): `docker container exec -it <yml_folder_name>_<name_of_your_app>-mongodb-node_1 mongo --eval 'var param=<X>, folder="<yml_folder_name>"' init_replicaset.js`
 - Init the shard: `docker container exec -it <yml_folder_name>_<name_of_your_app>-mongodb_1 mongo --eval 'sh.addShard("rs1/<yml_folder_name>_<name_of_your_app>-mongodb-node_1:27017")'`
-- 编译应用的镜像：`./mvnw package -Pprod dockerfile:build`
+- 编译应用的镜像：`./mvnw package -Pprod jib:dockerBuild`
 - 启动应用：`docker-compose -f src/main/docker/app.yml up -d <name_of_your_app>-app`
 
 如果需要添加或者移除一些 MongoDB 节点，只需要重复步骤 3 和步骤 4。
@@ -154,7 +156,7 @@ __解决方案 2__
 - 编译镜像：`docker-compose -f src/main/docker/couchbase-cluster.yml build`
 - 运行数据库：`docker-compose -f src/main/docker/couchbase-cluster.yml up -d`
 - 扩展 Couchbase 节点（你需要选择奇数数量的节点数）：`docker-compose -f src/main/docker/couchbase-cluster.yml scale <name_of_your_app>-couchbase-node=<X>`
-- 编译应用的镜像：`./mvnw package -Pprod dockerfile:build`
+- 编译应用的镜像：`./mvnw package -Pprod jib:dockerBuild`
 - 启动应用：`docker-compose -f src/main/docker/app.yml up -d <name_of_your_app>-app`
 
 ### Cassandra

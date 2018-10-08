@@ -6,7 +6,7 @@ redirect_from:
   - /creating_an_entity.html
 sitemap:
     priority: 0.7
-    lastmod: 2014-10-10T00:00:00-00:00
+    lastmod: 2018-09-04T00:00:00-00:00
 ---
 
 # <i class="fa fa-bolt"></i> 创建实体对象
@@ -43,9 +43,10 @@ _**请查看我们的 [视频教程]({{ site.url }}/video-tutorial/) 来学习�
 
 *   `--table-name <table_name>` - By default JHipster will generate a table name based on your entity name, if you would like to have a different table name you can do so by passing this option.
 *   `--angular-suffix <suffix>` - If you want all your Angular routes to have a custom suffix you can pass that using this option.
+*   `--client-root-folder <folder-name>` - Use a root folder name for entities on the client side. By default it's empty for monoliths and the name of the microservice for gateways.
 *   `--regenerate` - This will regenerate an existing entity without asking any questions.
-*   `--skip-server` - This will skip the server-side code and will generate only the client-side code.
-*   `--skip-client` - This will skip the client-side code and will generate only the server-side code.
+*   `--skip-server` - 只创建客户端代码，跳过生成服务端代码。
+*   `--skip-client` - 只创建服务端代码，跳过生成客户端代码。
 *   `--db` - Specify the database when skipping server side generation, has no effect otherwise.
 
 ## JHipster UML 和 JDL Studio 工具
@@ -96,7 +97,7 @@ JHipster supports many field types. This support depends on your database backen
 *   `BigDecimal`: A [java.math.BigDecimal](https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html) object, used when you want exact mathematic calculations (often used for financial operations).
 *   `LocalDate`: A [java.time.LocalDate](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html) object, used to correctly manage dates in Java.
 *   `Instant`: A [java.time.Instant](https://docs.oracle.com/javase/8/docs/api/java/time/Instant.html) object, used to represent a timestamp, an instantaneous point on the time-line.
-*   `ZonedDateTime`: A [java.time.ZonedDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html) object, used to represent a local date-time in a given timezone (typically a calendar appointment). Note that time zones are neither supported by the REST nor by the persistence layers so you should most probably use `Instant` instead.
+*   `ZonedDateTime`: A [java.time.ZonedDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/ZonedDateTime.html) object, used to represent a local date-time in a given timezone (typically a calendar appointment). 注意 time zone 在 REST 和 persistence 层中不支持，所以尽可能使用 `Instant` 类型。
 *   `Boolean`: A Java Boolean.
 *   `Enumeration`: A Java Enumeration object. When this type is selected, the sub-generator will ask you what values you want in your enumeration, and it will create a specific `enum` class to store them.
 *   `Blob`: A Blob object, used to store some binary data. When this type is selected, the sub-generator will ask you if you want to store generic binary data, an image object, or a CLOB (long text). Images will be handled specifically on the Angular side, so they can be displayed to the end-user.
@@ -129,13 +130,13 @@ Validation has a few limitations:
 
 ## 实体对象之间的关系
 
-Entity relationships are only available for SQL databases. It is a fairly complex subject, which has its own documentation page: [Managing relationships]({{ site.url }}/managing-relationships/).
+实体对象之间的关系只支持关系型数据库。这是个比较复杂的话题，参考文档： [管理关联关系]({{ site.url }}/managing-relationships/).
 
-## Generating a separate service class for your business logic
+## 创建单独的 Service 类来处理业务逻辑
 
-Having a separate service class allows to have more complex logic that just using a Spring REST Controller directly. Having a service layer (with or without an interface) will allow you to use DTOs (see next section).
+拥有单独的 Service 可以处理更加复杂的业务逻辑，比起直接用 Spring REST Controller。使用 Service 层 (使用接口或直接实现) 还能使用 DTO（数据传输对象，参考下面章节）。
 
-This is the same logic as using the [Spring service sub-generator]({{ site.url }}/creating-a-spring-service/), so we recommend to read its documentation to have more information.
+参考文档 [创建 Spring service]({{ site.url }}/creating-a-spring-service/)。
 
 ## 数据传输对象 (DTOs)
 
@@ -143,15 +144,16 @@ JHipster 默认不会生成 DTOs，但是如果你选择了创建 Service 层（
 
 ## 过滤
 
-Optionally, entities stored in SQL databases can be filtered using JPA. Here is the documentation: [Filtering your entities]({{ site.url }}/entities-filtering/).
+另外，存于关系型数据库的实体对象还可以用 JPA 来实现过滤功能。参考文档：[过滤实体]({{ site.url }}/entities-filtering/)。
 
 ## 翻页
 
-Please note that pagination is not available if you created your application with [Cassandra]({{ site.url }}/using-cassandra/). Of course this will be added in a future release.
+请注意如果使用了 [Cassandra]({{ site.url }}/using-cassandra/) 作为数据库，翻页功能就不可用了。这功能将来会提供。
 
-Pagination uses [the Link header](http://tools.ietf.org/html/rfc5988), as in the [GitHub API](https://developer.github.com/v3/#pagination). JHipster provides a custom implementation of this specification on both the server (Spring MVC REST) and client (Angular/React) sides.
+翻页使用了 [the Link header](http://tools.ietf.org/html/rfc5988) 理论，还有 [GitHub API](https://developer.github.com/v3/#pagination)。
+JHipster 提供了客户端 (Angular/React) 和服务端 (Spring MVC REST) 的实现。
 
-When the entity is generated, JHipster provides 4 pagination options:
+创建实体时，JHipster 提供了 4 种翻页选项：
 
 *   No pagination (in that case, the back-end won't be paginated)
 *   A simple pager, based on [the Bootstrap pager](http://getbootstrap.com/components/#pagination-pager)

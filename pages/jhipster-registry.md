@@ -55,9 +55,14 @@ JHipster Registry 发布为一个可运行的 WAR 包，提供在我们的网页
 
 Note that it is important to provide a JWT secret key to the registry on startup, either via the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_SECRET` environment variable or with arguments as shown above. Another possible way is to set this value in the `application.yml` file of your centralized configuration source (which is loaded on startup by all your applications including the registry).
 
+Please note that since JHipster 5.3.0 we have a new `jhipster.security.authentication.jwt.base64-secret` property, which is more secure, but as you might still use older releases
+we use `jhipster.security.authentication.jwt.secret` in this documentation. More information on those properties is available in our [security documentation]({{ site.url }}/security/).
+
 Similarly, to run the registry with the `prod` profile, adapt the arguments to your setup, for example:
 
-    ./jhipster-registry-<version>.war --spring.profiles.active=prod --spring.security.user.password=admin --jhipster.security.authentication.jwt.secret=secret-key --spring.cloud.config.server.composite=https://github.com/jhipster/jhipster-registry-sample-config --spring.cloud.config.server.composite[0].type=git --spring.cloud.config.server.composite[0].uri=https://github.com/jhipster/jhipster-registry-sample-config
+    ./jhipster-registry-<version>.war --spring.profiles.active=prod --spring.security.user.password=admin --jhipster.security.authentication.jwt.secret=secret-key --spring.cloud.config.server.composite[0].type=git --spring.cloud.config.server.composite[0].uri=https://github.com/jhipster/jhipster-registry-sample-config
+
+    ./jhipster-registry-<version>.war --spring.profiles.active=prod --spring.security.user.password=admin --jhipster.security.authentication.jwt.secret=secret-key --spring.cloud.config.server.composite[0].type=git --spring.cloud.config.server.composite[0].uri=https://github.com/jhipster/jhipster-registry --spring.cloud.config.server.composite[0].search-paths=central-config
 
 ### 从源码构建
 
@@ -175,5 +180,5 @@ Applications also connect to the JHipster Registry using that same "admin" user,
 
 In order to secure your JHipster Registry:
 
-- You must change the default "admin" password. This password is set using the standard Spring Boot property `security.user.password`, so you can use the usual Spring Boot mechanisms to modify it: you could modify the project's `application-*.yml` files, or add a `SPRING_SECURITY_USER_PASSWORD` environment variable. The [Docker Compose sub-generator]({{ site.url }}/docker-compose/) uses the environment variable method.
+- You must change the default "admin" password. This password is set using the standard Spring Boot property `spring.security.user.password`, so you can use the usual Spring Boot mechanisms to modify it: you could modify the project's `application-*.yml` files, or add a `SPRING_SECURITY_USER_PASSWORD` environment variable. The [Docker Compose sub-generator]({{ site.url }}/docker-compose/) uses the environment variable method.
 - As your applications will connect to the registry using HTTP, it is very important to secure that connection channel. There are many ways to do it, and the easiest one is probably to use HTTPS.

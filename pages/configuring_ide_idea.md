@@ -54,22 +54,6 @@ _注意_ 在使用 AngularJS 1 时，一些开发者习惯于排除目录 `src/m
 
 现在你应该能具备代码库里的 Spring 支持。每次新建一个项目你都需要这么做一次，因为这些设置是项目特定的。
 
-## JavaScript 代码支持 (注意 IDEA CE 版本不支持)
-
-打开 `IntelliJ IDEA → Preferences...`.
-
-![Settings]({{ site.url }}/images/configuring_ide_idea_5.png)
-
-导航到 `Languages & Frameworks → Javascript → Bower` (或者在最上面的搜索栏搜索 "Bower")
-
-![Navigate to Bower]({{ site.url }}/images/configuring_ide_idea_6.png)
-
-指向你的 `bower.json` 文件，该文件在你的项目根目录下。项目的一些包，比如 Angular.js，应该就能自动识别到了。
-
-（译注：新版本使用 Yarn 生成的项目没有这个 bower.json 文件的）
-
-配置完后，你就能获得非常完善的 JHipster 的 JavaScript 代码支持了。
-
 ## 使用 Spring Boot devtools 来使项目支持 "热重启" 
 
 JHipster 配置了 [Spring Boot devtools](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html) ，它可以让你的项目在类编译后自动“热启动”。这是个非常棒的特性，可以让你开发效率大大提升。
