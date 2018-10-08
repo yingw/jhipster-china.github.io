@@ -23,9 +23,11 @@ If you are sure you will never translate this application into another language 
 
 These are the currently supported languages
 
+*   Albanian
 *   Arabic (Libya)
 *   Armenian
 *   Belarusian
+*   Bengali
 *   Indonesian
 *   Catalan
 *   Chinese (Simplified)
@@ -46,6 +48,7 @@ These are the currently supported languages
 *   Japanese
 *   Korean
 *   Marathi
+*   Myanmar
 *   Polish
 *   Portuguese
 *   Portuguese (Brazilian)

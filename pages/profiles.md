@@ -57,14 +57,15 @@ You can run JHipster in production directly using Maven or Gradle:
 
 ## Spring profiles switches
 
-JHipster comes with two additional profiles used as switches:
+JHipster comes with three additional profiles used as switches:
 
 *   `swagger` to enable swagger
 *   `no-liquibase` to disable liquibase
+*   `tls` to enable TLS security and use the HTTP/2 protocol (see [the TLS and HTTP/2 documentation]({{ site.url }}/tls/))
 
 These can be used along with both the `dev` and `prod` profiles. Please note that by default, the `swagger` profile is disabled in `prod` and enabled in `dev` by setting the `spring.profiles.include` property in `application.yml`.
 
-`swagger` and `no-liquibase` are only used at runtime:
+`swagger`, `no-liquibase`, `tls` are only used at runtime:
 
 *   In your IDE, run your main application class with `spring.profiles.active=dev,no-liquibase` (please note you need to include the `dev` or `prod` profile explicitly)
 *   With a packaged application: `./java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=prod,no-liquibase`

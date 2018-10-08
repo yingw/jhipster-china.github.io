@@ -205,6 +205,15 @@ If you want to join the team, or just see how we work, our community rules are a
     </div>
     <div class="col-xs-3 team-member">
         <div class="thumbnail no-margin-bottom">
+            <img src="https://avatars.githubusercontent.com/u/1998883?v=3" class="img-responsive">
+            <div class="caption">
+                <h3>Ray Tsang</h3>
+                <p><a href="https://twitter.com/saturnism"><i>@saturnism</i></a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3 team-member">
+        <div class="thumbnail no-margin-bottom">
             <img src="https://avatars.githubusercontent.com/u/20539215?v=3" class="img-responsive">
             <div class="caption">
                 <h3>Srinivasa Vasu</h3>
@@ -268,7 +277,7 @@ Those discussion channels are publicly viewable, as everything we do in JHipster
 # How to join the board of developers?
 
 - Participate regularly in the project (commits, PRs, etc)
-- Ask someone from the current board, with some bio and background information, and he will submit a vote on the dev mailing list
+- Ask someone from the current board, with some bio and background information, and that person will submit a vote on the dev mailing list
 - Everybody on the dev mailing list can vote (+1 if they agree, -1 if they don’t)
     - Just one “-1” vote will reject the new member, but the person who votes “-1” will need to explain why
 

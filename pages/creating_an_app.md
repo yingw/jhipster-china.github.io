@@ -78,8 +78,8 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 一共有着这些可选项：
 
 *   JWT authentication: 使用 [JSON Web Token (JWT)](https://jwt.io/)，这个是默认值。
-*   HTTP Session Authentication: 经典的基于 session 的认证方式，好比我们在 Java 中的用法 (这是大部分用户使用使用 [Spring Security](http://docs.spring.io/spring-security/site/index.html) 的方式)。
-*   OAuth 2.0 / OIDC Authentication: 这个选项使用 OpenID Connect server, 比如 [Keycloak](http://www.keycloak.org/) 或者 [Okta](https://www.okta.com)，可以在引用外部处理认证。（译注：应该还能支持 [CAS](https://www.apereo.org/projects/cas)）
+*   OAuth 2.0 / OIDC Authentication: 这个选项使用 OpenID Connect server, 比如 [Keycloak](http://www.keycloak.org/) 或者 [Okta](https://www.okta.com)，可以在引用外部处理认证（译注：应该还能支持 [CAS](https://www.apereo.org/projects/cas)）。这方式比使用 JWT 更安全，但是需要设置一个 OpenID Connect Server，所以稍微复杂。请注意 JHipster 默认会从 OpenID Connect Server 同步用户数据，所以需要数据库。
+*   HTTP Session Authentication: 经典的基于 session 的认证方式，大部分用户使用使用 [Spring Security](http://docs.spring.io/spring-security/site/index.html)。
 *   Authentication with JHipster UAA server: 这使用的 [JHipster UAA server]({{ site.url }}/using-uaa/) 需要被独立的创建，同时也是 OAuth2 server 在应用外处理认证。
 
 你可以到 [应用安全]({{ site.url }}/security/) 章节获取更多信息。
@@ -88,11 +88,11 @@ _部分问题的选项会根据你之前的选择有所变化。比如你不需�
 
 你可以选择：
 
-- No database，不使用数据库 (只在使用 [微服务应用]({{ site.url }}/microservices-architecture/) 时可选)
 - SQL 数据库 (支持 H2, MySQL, MariaDB, PostgreSQL, MSSQL, Oracle)，通过 Spring Data JPA 来访问数据库
 - [MongoDB]({{ site.url }}/using-mongodb/)
 - [Cassandra]({{ site.url }}/using-cassandra/)
 - [Couchbase]({{ site.url }}/using-couchbase/)
+- No database，不使用数据库 (只在使用 [微服务应用]({{ site.url }}/microservices-architecture/) 使用 JWT 认证时可选)
 
 ### Which _production_ database would you like to use? （生产环境使用哪种数据库）
 
@@ -181,21 +181,23 @@ Websockets 由 Spring Websocket 实现。我们还提供了一个完整的例子
 
 [JHipster Marketplace]({{ site.url }}/modules/marketplace/) 是一个提供了额外功能的插件库，由外部工程师编写的各种功能，来添加各种非官方的特性。
 
-## <a name="5"></a> Using a blueprint
+## <a name="5"></a> 使用 a blueprint
 
-JHipster 5 introduces the concept of a blueprint. Blueprints are JHipster modules that can provide custome client/server side templates that will override the ones from JHipster. For example, the [Kotlin blueprint](https://github.com/jhipster/jhipster-kotlin) replaces most of the Java server side code with Kotlin.
+JHipster 5 带来了一种新的技术：蓝图（Blueprint）。
+蓝图可以视为一种提供客户端或服务端开发模板的 JHipster 插件，并覆盖了原生的 JHipster 模板。
+比如，[Kotlin blueprint](https://github.com/jhipster/jhipster-kotlin) 会用 Kotlin 来替换大部分服务端的 Java 代码。
 
-For example, to use the Kotlin blueprint pass the name of the blueprint like below while generating an app.
+要使用 Kotlin 蓝图，把该蓝图的名称作为参数来创建应用：
 
 ```bash
 jhipster --blueprint kotlin
 ```
 
-The name of the blueprint is saved in the `.yo-rc.json` and will be automatically used while executing sub-generators like `entity`, `spring-controller` and `spring-service`.
+蓝图的名称存在配置文件 `.yo-rc.json` 里，后续使用命令如 `entity`, `spring-controller` 和 `spring-service` 时还会继续使用这个蓝图功能。
 
-If a blueprint doesn't implement a specific sub-generator, it will be skiped and the JHipster templates for the same sub-generator will be used.
+如果某个蓝图没有实现到某个子命令上，那么就会跳过并且让 JHipster 默认的模板生效。
 
-**Note:** An application can use only one blueprint, multiple blueprints are not supported yet.
+**注意：** 一个应用只能使用一个蓝图，不支持同时使用多种蓝图。
 
 ## <a name="3"></a> 命令行选项
 

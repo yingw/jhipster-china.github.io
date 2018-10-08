@@ -44,9 +44,9 @@ sitemap:
     - [x] Shell Plugins（100%）
 - [x] JHipster 核心任务（%）
     - [x] 创建应用（100%）
-    - [x] 创建模型（20%）
+    - [x] 创建模型（40%）
     - [x] 创建 Spring controller（100%）
-    - [ ] 创建 Spring Service（%）
+    - [x] 创建 Spring Service（ 60%）
     - [ ] 创建 DTO（%）
     - [x] 管理关联关系（50%）
     - [ ] 国际化（10%）
@@ -57,7 +57,7 @@ sitemap:
     - [x] Traefik（100%）
     - [ ] JHipster 注册中心（20%）
     - [ ] Consul（%）
-    - [ ] JHipster UAA（%）
+    - [x] JHipster UAA（ 50%）
     - [ ] 创建微服务（%）
     - [ ] 生产环境的微服务（20%）
 - [ ] 可选项（%）

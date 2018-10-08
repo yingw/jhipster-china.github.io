@@ -15,17 +15,17 @@ sitemap:
 
 单页面应用：
 
-*   [Angular 5](https://angular.io/) or [React](https://reactjs.org/)
+*   [Angular](https://angular.io/) or [React](https://reactjs.org/)
 *   响应式页面设计： [Twitter Bootstrap](http://getbootstrap.com/)
 *   [HTML5 Boilerplate](http://html5boilerplate.com/)
-*   兼容 IE11 和更多主流浏览器
+*   兼容 IE11 和更多主流浏览器 (Chrome, FireFox, Microsoft Edge...)
 *   完整国际化支持
 *   可选：[Sass](https://www.npmjs.com/package/node-sass) 支持 CSS 扩展
 *   可选：使用 Spring Websocket 来支持 WebSocket 协议
 
 开发流程：
 
-*   使用 [NPM](https://www.npmjs.com/get-npm) 或 [Yarn](https://yarnpkg.com/) 来安装额外的 JavaScript 库
+*   使用 [NPM](https://www.npmjs.com/get-npm) 来安装额外的 JavaScript 库
 *   使用 [Webpack](https://webpack.js.org/) 编译、优化、热加载
 *   使用 [Jest](https://facebook.github.io/jest/), 以及 [Protractor](http://www.protractortest.org) 进行测试
 
@@ -66,4 +66,4 @@ sitemap:
 *   连接池管理：[HikariCP](https://github.com/brettwooldridge/HikariCP) 来优化性能
 *   编译为标准 WAR 包或可执行 JAR 包
 *   完整的 Docker 及 Docker Compose 支持
-*   支持主流云平台：AWS, Cloud Foundry, Heroku, Kubernetes, OpenShift, Docker...
+*   支持主流云平台：AWS, Cloud Foundry, Heroku, Kubernetes, OpenShift, Azure, Docker...

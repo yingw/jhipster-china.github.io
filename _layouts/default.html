@@ -33,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="/lib/css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/lib/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="/lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/lib/css/gh-fork-ribbon.min.css">
     <!-- CSS App -->
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/themes/flat-blue.css">
@@ -70,8 +71,7 @@
                             <i class="fa fa-th icon"></i>
                         </button>
                     </div>
-                    <!--TODO height issue-->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-center">
                         {% if page.home == true %}
                         <li class="page-scroll">
                             <a href="#sponsors">赞助商</a>
@@ -99,7 +99,7 @@
                             <a href="https://www.google.com/search?q=site:www.jhipster.tech" target="_blank">搜索</a>
                         </li>
                         <li>
-                            <a href="https://github.com/jhipster/generator-jhipster" class="dropdown-toggle navlink" target="_blank" role="button"><i class="fa fa-github fa-2x"></i></a>
+                            <a href="https://github.com/jhipster/generator-jhipster" target="_blank" role="button">Github</a>
                         </li>
                         <li>
                             <button type="button" class="navbar-right-expand-toggle visible-xs pull-right light">
@@ -250,6 +250,7 @@
                                             <li {% if '/using-angular/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/using-angular/"><i class="fa fa-fw fa-html5"></i> 使用 Angular</a></li>
                                             <li {% if '/using-react/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/using-react/"><i class="fa fa-fw fa-html5"></i> Using React</a></li>
                                             <li {% if '/customizing-bootstrap-4/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/customizing-bootstrap-4/"><i class="fa fa-fw fa-css3"></i> 定制化 Bootstrap 4</a></li>
+                                          <li {% if '/tls/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/tls/"><i class="fa fa-fw fa-lock"></i> 使用 TLS 和 HTTP/2</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -261,6 +262,7 @@
                                         <ul class="nav navbar-nav">
                                             <li {% if '/running-tests/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/running-tests/"><i class="fa fa-fw fa-shield"></i> 运行测试</a></li>
                                             <li {% if '/code-quality/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/code-quality/"><i class="fa fa-fw fa-diamond"></i> 代码质量检测</a></li>
+                                            <li {% if '/dependency-vulnerabities-check/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/dependency-vulnerabities-check/"><i class="fa fa-fw fa-check-circle-o"></i> 依赖关系漏洞检测</a></li>
                                             <li {% if '/setting-up-ci/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/setting-up-ci/"><i class="fa fa-fw fa-stethoscope"></i> 持续集成</a></li>
                                         </ul>
                                     </div>
@@ -440,6 +442,13 @@
         </div>
         <!-- /#wrapper -->
     </div>
+    {% if page.home != true %}
+    <a class="github-fork-ribbon"
+    href="{{site.github_repository_url}}/edit/master/{{page.path}}"
+    data-ribbon="Edit me on GitHub"
+    title="Edit me on GitHub"
+    style="z-index:99999;position:fixed;">Edit me on GitHub</a>
+    {% endif %}
     <!-- Javascript Libs -->
     <script type="text/javascript" src="{{ site.url }}/lib/js/jquery.min.js"></script>
     <script type="text/javascript" src="{{ site.url }}/lib/js/bootstrap.min.js"></script>
@@ -447,7 +456,6 @@
     <script type="text/javascript" src="{{ site.url }}/lib/js/mode-html.js"></script>
     <script type="text/javascript" src="{{ site.url }}/lib/js/theme-github.js"></script>
     <script type="text/javascript" src="{{ site.url }}/lib/js/jquery.easing.min.js"></script>
-
     {% if page.angularjs == true %}
     <script type="text/javascript" src="{{ site.url }}/lib/js/angular-1.4.8.min.js"></script>
     <script type="text/javascript" src="{{ site.url }}/lib/js/angular-route-1.4.8.min.js"></script>

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release 5.3.0
+title: Release 5.3.0（从 Yarn 换回 NPM）
 ---
 
 JHipster release v5.3.0

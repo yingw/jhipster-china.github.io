@@ -259,6 +259,7 @@ Kitematic 是个非常好用图形化管理工具，集成在 Docker Toolbox 中
     所以你不能：
     <ul>
         <li>运行 docker-compose</li>
-        <li>创建 Docker 镜像 (Maven 的 goal: <code>dockerfile:build</code> 或 Gradle task: <code>buildDocker</code>)</li>
+        <li>创建 Docker 镜像 (Maven 的 goal: <code>jib:dockerBuild</code> 或 Gradle task: <code>jibDockerBuild</code>)</li>
     </ul>
+    However, you will be able to use [jib](https://github.com/GoogleContainerTools/jib)'s daemonless mode which can build a docker image and push it to a registry without access to a docker daemon (Maven goal: <code>jib:build</code> or Gradle task: <code>jibBuild</code>). But you will need to setup credentials to the docker registry as a pre-requisite of building the app. See the [Jib plugin configuration documentations](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin#configuration) for more details.
 </div>
