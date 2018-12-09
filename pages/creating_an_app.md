@@ -210,8 +210,8 @@ jhipster --blueprint kotlin
 * `--skip-cache` - 不要记住之前提示的回答 (默认: false)
 * `--skip-git` - 不要创建 Git 仓库 (默认: false)
 * `--skip-install` - 不要自动安装依赖 (默认: false)
-* `--skip-client` - 跳过生成客户端程序，这样就可以只创建 Spring Boot 的后端程序 (默认: false)。这和使用 server 工具命令类似：`jhipster server`。
-* `--skip-server` - 跳过生成服务端程序，这样就可以只创建前端程序 (默认: false)。这和使用 client 工具命令类似：`jhipster client`。
+* `--skip-client` - 跳过生成客户端程序，这样就可以只创建 Spring Boot 的后端程序 (默认: false)。
+* `--skip-server` - 跳过生成服务端程序，这样就可以只创建前端程序 (默认: false)。
 * `--skip-user-management` - 跳过生成用户管理功能，同时作用于前端和后端 (默认: false)
 * `--i18n` - 开启或关闭国际化（i18n）功能，跳过客户端代码时没有作用 (默认: true)
 * `--auth` - 在跳过服务端代码生成时指定认证类型，使用 `skip-server` 时必填，其用其他模式时没有作用。
@@ -223,8 +223,5 @@ jhipster --blueprint kotlin
 * `--experimental` - 开启实验性质特性。请注意这些特性是不稳定的并且会在将来发生变化。
 
 ## <a name="4"></a> 提示
-
-如果你是高级用户，还可以使用 client 和 server 的 sub-generators：`jhipster client --[options]` 和 `jhipster server --[options]`.
-运行上面的命令时加上 `--help` 来查看所有的选项。
 
 还可以使用 Yeoman 的命令行选项，例如 `--force` 来覆盖现有文件。如果你想重新生成整个项目，包括实体对象相关代码，执行：`jhipster --force --with-entities`.

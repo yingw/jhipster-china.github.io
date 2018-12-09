@@ -62,6 +62,7 @@ JHipster 默认配置了 [Spring Boot devtools](https://docs.spring.io/spring-bo
     // 设置排除的文件和目录。
     "files.exclude": {
         "**/.git": true,
+        "**/.gradle": true,
         "**/.idea": true,
         "**/.mvn": true,
         "**/.svn": true,
@@ -73,6 +74,7 @@ JHipster 默认配置了 [Spring Boot devtools](https://docs.spring.io/spring-bo
         "**/node": true,
         "**/node_modules": true,
         "**/bower_components": true,
+        "**/build": true,
         "**/target": true
     }
 }

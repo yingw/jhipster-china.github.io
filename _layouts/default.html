@@ -33,7 +33,6 @@
     <link rel="stylesheet" type="text/css" href="/lib/css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="/lib/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="/lib/css/dataTables.bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/lib/css/gh-fork-ribbon.min.css">
     <!-- CSS App -->
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/themes/flat-blue.css">
@@ -51,8 +50,10 @@
     <![endif]-->
 
     <!-- Favicon with QHD -->
-    <link rel="icon" type="image/png" href="/images/logo/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="/images/logo/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/images/logo/favicon-64x64.ico" sizes="64x64" />
+    <link rel="icon" type="image/png" href="/images/logo/favicon-48x48.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" href="/images/logo/favicon-32x32.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/images/logo/favicon-16x16.ico" sizes="16x16" />
 </head>
 
 <body class="flat-blue">
@@ -71,7 +72,7 @@
                             <i class="fa fa-th icon"></i>
                         </button>
                     </div>
-                    <ul class="nav navbar-nav navbar-center">
+                    <ul class="nav navbar-nav navbar-right">
                         {% if page.home == true %}
                         <li class="page-scroll">
                             <a href="#sponsors">赞助商</a>
@@ -99,7 +100,7 @@
                             <a href="https://www.google.com/search?q=site:www.jhipster.tech" target="_blank">搜索</a>
                         </li>
                         <li>
-                            <a href="https://github.com/jhipster/generator-jhipster" target="_blank" role="button">Github</a>
+                            <a href="https://github.com/jhipster/generator-jhipster" class="dropdown-toggle navlink" target="_blank" role="button"><i class="fa fa-github fa-2x"></i></a>
                         </li>
                         <li>
                             <button type="button" class="navbar-right-expand-toggle visible-xs pull-right light">
@@ -115,7 +116,7 @@
                     <div class="side-menu-container">
                         <div class="navbar-header">
                             <a class="navbar-brand" href="/">
-                                <div class="icon"><img src="{{ site.url }}/images/logo/logo-jhipster.svg" height="50px"></div>
+                                <div class="icon"><img src="{{ site.url }}/images/logo/logo-jhipster.svg" height="19px"></div>
                                 <div class="title brand">JHipster </div>
                             </a>
                             <button type="button" class="navbar-expand-toggle pull-right visible-xs">
@@ -243,10 +244,11 @@
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
                                             <li {% if '/development/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/development/"><i class="fa fa-fw fa-code"></i> 开发相关技术</a></li>
-                                            <li {% if '/profiles/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/profiles/"><i class="fa fa-fw fa-group"></i> 管理 profile</a></li>
+                                            <li {% if '/profiles/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/profiles/"><i class="fa fa-fw fa-group"></i> 管理 profiles</a></li>
                                             <li {% if '/common-application-properties/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/common-application-properties/"><i class="fa fa-fw fa-flask"></i> 一些应用配置项</a></li>
+                                            <li {% if '/common-ports/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/common-ports/"><i class="fa fa-fw fa-plug"></i> 常用端口</a></li>
                                             <li {% if '/separating-front-end-and-api/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/separating-front-end-and-api/"><i class="fa fa-fw fa-unlink"></i> 分离的前端以及 API</a></li>
-                                            <li {% if '/managing-server-errors/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/managing-server-errors/"><i class="fa fa-fw fa-fire-extinguisher"></i> Managing server errors</a></li>
+                                            <li {% if '/managing-server-errors/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/managing-server-errors/"><i class="fa fa-fw fa-fire-extinguisher"></i> 管理异常</a></li>
                                             <li {% if '/using-angular/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/using-angular/"><i class="fa fa-fw fa-html5"></i> 使用 Angular</a></li>
                                             <li {% if '/using-react/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/using-react/"><i class="fa fa-fw fa-html5"></i> Using React</a></li>
                                             <li {% if '/customizing-bootstrap-4/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/customizing-bootstrap-4/"><i class="fa fa-fw fa-css3"></i> 定制化 Bootstrap 4</a></li>
@@ -282,6 +284,7 @@
                                             <li {% if '/cloudfoundry/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/cloudfoundry/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Cloud Foundry</a></li>
                                             <li {% if '/aws/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/aws/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 AWS</a></li>
                                             <li {% if '/azure/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/azure/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Azure</a></li>
+                                            <li {% if '/gcp/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/gcp/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Google Cloud Platform</a></li>
                                             <li {% if '/rancher/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/rancher/"><i class="fa fa-fw fa-cloud-upload"></i> 发布到 Rancher</a></li>
                                             <li {% if '/boxfuse/' == page.url %}class="active" {% endif %}><a href="{{ site.url }}/boxfuse/"><i class="fa fa-fw fa-cloud-upload"></i> Boxfuse 发布</a></li>
                                         </ul>
@@ -442,13 +445,6 @@
         </div>
         <!-- /#wrapper -->
     </div>
-    {% if page.home != true %}
-    <a class="github-fork-ribbon"
-    href="{{site.github_repository_url}}/edit/master/{{page.path}}"
-    data-ribbon="Edit me on GitHub"
-    title="Edit me on GitHub"
-    style="z-index:99999;position:fixed;">Edit me on GitHub</a>
-    {% endif %}
     <!-- Javascript Libs -->
     <script type="text/javascript" src="{{ site.url }}/lib/js/jquery.min.js"></script>
     <script type="text/javascript" src="{{ site.url }}/lib/js/bootstrap.min.js"></script>
@@ -456,6 +452,7 @@
     <script type="text/javascript" src="{{ site.url }}/lib/js/mode-html.js"></script>
     <script type="text/javascript" src="{{ site.url }}/lib/js/theme-github.js"></script>
     <script type="text/javascript" src="{{ site.url }}/lib/js/jquery.easing.min.js"></script>
+
     {% if page.angularjs == true %}
     <script type="text/javascript" src="{{ site.url }}/lib/js/angular-1.4.8.min.js"></script>
     <script type="text/javascript" src="{{ site.url }}/lib/js/angular-route-1.4.8.min.js"></script>

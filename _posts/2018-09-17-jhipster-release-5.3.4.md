@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release 5.3.4
+title: Release 5.3.4（JDL 支持创建微服务应用）
 ---
 
 JHipster release v5.3.4
