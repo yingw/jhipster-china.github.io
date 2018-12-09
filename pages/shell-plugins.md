@@ -16,4 +16,4 @@ Shell 的插件可以用来给 JHipster 提供一些代码提示，用起来会�
 目前有两个 shell 插件：
 
 * [Oh-My-Zsh JHipster plugin]({{ site.url }}/oh-my-zsh/) 用来支持 [Oh-My-Zsh](http://ohmyz.sh/)
-* [Fisherman JHipster plugin]({{ site.url }}/fisherman/) 用来支持 [Fisherman](http://fisherman.sh/)
+* [Fisher JHipster plugin]({{ site.url }}/fisher/) 用来支持 [Fisher](https://github.com/jorgebucaran/fisher)

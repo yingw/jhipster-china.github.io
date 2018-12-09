@@ -10,22 +10,23 @@ sitemap:
 # <i class="fa fa-star"></i> JHipster 领域模型语言 (JDL 语法)
 
 
-JDL 是 JHipster 特质的 domain 语言，我们提供了能在一个文件（或多个）中来描述所有实体对象及其关系的能力，并且只需要很简单的、友好的语法。
+JDL 是 JHipster 特质的 domain 语言，提供了能在一个文件（或多个）中来描述整个应用、部署、实体对象及其关系的能力，并且只需要很简单的、友好的语法。
 
-可以使用我们的在线工具 [JDL-Studio](https://start.jhipster.tech/jdl-studio/) 来创建 JDL 及其 UML 视图。你还可以创建、导出、或分享你的模型。
+可以使用我们的在线工具 [JDL-Studio](https://start.jhipster.tech/jdl-studio/) 或者插件 [JHipster IDE](https://www.jhipster.tech/jhipster-ide/) ，支持多个平台： [Eclipse](https://marketplace.eclipse.org/content/jhipster-ide), [VS Code](https://marketplace.visualstudio.com/items?itemName=jhipster-ide.jdl) 以及 [Atom](https://atom.io/packages/ide-jhipster)  来创建 JDL 及其 UML 视图。你还可以创建、导出、或分享你的模型。
 
-一旦你创建了项目（现有的或者用 `jhipster` 命令工具创建的), 接下来你可以使用命令 `import-jdl` 来从 JDL 文件生成实体对象，执行：`jhipster import-jdl your-jdl-file.jh` (确保在 JHipster 项目目录下执行)。
+You can generate applications, deployments and entities from a JDL file using the `import-jdl` sub-generator, by running `jhipster import-jdl your-jdl-file.jdl`. 
+
+一旦你创建了项目 (用 `jhipster import-jdl` 或者 `jhipster` 命令工具创建), 接下来你可以使用命令 `jhipster import-jdl your-jdl-file.jdl` 来从 JDL 文件生成实体对象 (确保在 JHipster 项目目录下执行)。
 
 你还能用 [JHipster UML]({{ site.url }}/jhipster-uml/) 来创建实体对象或引用并导出为 JDL 文件，执行 `jhipster-uml your-xmi-file.xmi --to-jdl`  (确保在 JHipster 项目目录下执行)。要了解更多关于如何安装和使用 JHipster UML, 访问 [JHipster UML documentation]({{ site.url }}/jhipster-uml/).
 
-这可以作为 [entity sub-generator]({{ site.url }}/creating-an-entity/) 工具的替代。
+这可以作为 [entity sub-generator]({{ site.url }}/creating-an-entity/) 工具的替代，并且是推荐这样做的。
 核心思想是使用图形工具比使用传统的 Yeoman 问答来 [管理关联关系]({{ site.url }}/managing-relationships/) 要简单的多。
 
 JDL 项目在 [GitHub 地址](https://github.com/jhipster/jhipster-core/), 它和 JHipster 一样是开源的并且遵循 Apache 2.0 开源协议。
 It can also be used as a node library to do JDL parsing.
 
-_如果你喜欢 JHipster Domain Language，别忘了给我们的项目一颗星 [GitHub](https://github.com/jhipster/jhipster-core/)!_
-_如果你喜欢 JDL Studio，也不要吝啬给我们再来一颗 [GitHub](https://github.com/jhipster/jdl-studio/)!_
+_如果你喜欢 [JHipster Domain Language](https://github.com/jhipster/jhipster-core/),  [JDL Studio](https://github.com/jhipster/jdl-studio/) 或 [JHipster IDE](https://github.com/jhipster/jhipster-ide/) 欢迎给我们点赞加星 [GitHub](https://github.com/jhipster/) - 谢谢！_
 
 ***
 
@@ -42,13 +43,15 @@ _如果你喜欢 JDL Studio，也不要吝啬给我们再来一颗 [GitHub](http
    1. [可选声明](#optiondeclaration)
    1. [微服务相关选项](#microserviceoptions)
    1. [注解](#annotations)
+   1. [声明部署](#deploymentdeclaration)
 1. [备注](#commentingjdl)
 1. [所有的关联](#jdlrelationships)
 1. [常量](#constants)
 1. [工作流](#workflows)
 1. [附录](#annexes)
    1. [应用选项](#application_options)
-   1. [类型和约束](#types_and_constraints)
+   1. [可选的部署选项](#deployment_options)
+   1. [支持的类型和约束](#types_and_constraints)
    1. [其他选项](#all_options)
 1. [错误和 Bug](#issues)
 
@@ -56,18 +59,18 @@ _如果你喜欢 JDL Studio，也不要吝啬给我们再来一颗 [GitHub](http
 
 # <a name="sample"></a> JDL 样例
 
-我们将 Oracle 的 "人力资源" 样例程序翻译成了 JDL，放在 [这里](https://github.com/jhipster/jhipster-core/blob/master/lib/dsl/example.jh).
-并且该程序是 [JDL-Studio](https://start.jhipster.tech/jdl-studio/) 默认加载的模型。
+我们将 Oracle 的 "人力资源" 样例程序翻译成了 JDL，放在 [这里](https://github.com/jhipster/jdl-samples/blob/master/Oracle-Human-Resources-sample.jdl).
+并且设置为默认加载的应用在 [JDL-Studio](https://start.jhipster.tech/jdl-studio/) 以及 [JHipster IDE](https://www.jhipster.tech/jhipster-ide/) 
 
-如果你想了解更多例子，这里有个例子：[here](https://github.com/jhipster/jdl-samples).
+如果你想了解更多例子，这里有些例子：[here](https://github.com/jhipster/jdl-samples).
 
 ## <a name="howtojdl"></a> 如何使用
 
 你可以使用 JDL 文件来生成实体对象：
-
   - 创建一个后缀为 '.jh' 或 '.jdl' 的文件，
-  - 声明实体对象和关联关系，或者从 [JDL-Studio](https://start.jhipster.tech/jdl-studio/) 下载该文件，
-  - 在 JHipster 应用的根目录中，执行：`jhipster import-jdl my_file.jdl`.
+  - 声明应用、部署、实体对象和关联关系，或者用 [JDL-Studio](https://start.jhipster.tech/jdl-studio/) 或者 [JHipster IDE](https://www.jhipster.tech/jhipster-ide/) 开发下载该文件，
+  - 如果你创建了实体对象，就在应用的根目录中，执行： `jhipster import-jdl my_file.jdl` 
+  - 如果你创建的是应用，就在一个目录里执行： `jhipster import-jdl my_file.jdl` 
 
 *欢呼吧*, 就行了！
 
@@ -82,12 +85,12 @@ _如果你喜欢 JDL Studio，也不要吝啬给我们再来一颗 [GitHub](http
 我们也支持这样使你不需要手工把它们拼在一起，
 你只需要执行：
 
-    jhipster import-jdl my_file1.jh my_file2.jh
+    jhipster import-jdl my_file1.jdl my_file2.jdl
 
 如果你不想创建实体对象类，而只是需要 JSON 文件，你可以在导入时加上参数：`--json-only`，这样就只会在 `.jhipster` 目录里创建 json 文件，而不会创建那些实体对象了。
 
     jhipster import-jdl ./my-jdl-file.jdl --json-only
-    
+
 默认情况下，`import-jdl` 命令只会生成发生了改变的实体对象, 如果你需要所有的实体对象都重新生成一遍，
 可以加上参数：`--force`。
 请注意这会覆盖你在这些对象上做的所有变更。
@@ -97,7 +100,7 @@ _如果你喜欢 JDL Studio，也不要吝啬给我们再来一颗 [GitHub](http
 如果你希望在项目内使用，你可以执行:
   - NPM: `npm install jhipster-core --save`
   - Yarn: `yarn add jhipster-core`
-  
+
 来将之安装在本地，并保存在你的 `package.json` 文件里。
 
 ---
@@ -108,7 +111,7 @@ _如果你喜欢 JDL Studio，也不要吝啬给我们再来一颗 [GitHub](http
   - 定义实体对象和它们的属性，
   - 定义它们之间的关联关系，
   - 定义一下 JHipster 的选项。
-  
+
 如果你需要了解 JDL 的语法，这里有个文档
 [here](https://github.com/jhipster/jhipster-core/blob/master/lib/dsl/gen/grammar.html).
 
@@ -237,7 +240,7 @@ Now, several things will happen when generating these applications and folders:
       - `D` in the second microservice
   - The `microservice` option is implicit for `C` and `D`
     - Because they get generated on the two microservices, this option will be set by default.
-  - Options work the same way as before 
+  - Options work the same way as before
 
 Note that the generator sets default values if they aren't present (like the `databaseType`).
 JHipster Core does the exact same things.
@@ -305,7 +308,7 @@ JDL 设计的易用可读，如果你的实体是空的（没有属性），你�
 
     entity Book
     entity Author
-    
+
     relationship ManyToOne {
       Book to Author
     }
@@ -315,7 +318,7 @@ The previous example is equivalent to this one:
 
     entity Book
     entity Author
-    
+
     relationship ManyToOne {
       Book{author} to Author
     }
@@ -477,8 +480,8 @@ entity A
 entity B
 entity C
 
-skipClient for A
-skipServer for B
+skipClient A
+skipServer B
 angularSuffix * with mySuperEntities
 filter C
 ```
@@ -542,6 +545,81 @@ entity C
 ```
 
 看上去会比移除的代码添加更多，但是这的确对项目有帮助，尤其是使用微服务时使用多个 JDL 文件时。
+
+### <a name="deploymentdeclaration"></a> 声明部署
+
+从版本 v3.6.0 开始，可以在 JDL 中声明部署了 (兼容 JHipster v5.7 以上).
+
+_To import one or several deployments, you need not be in a JHipster application folder._
+
+The most basic declaration is done as follows:
+
+```
+deployment {
+  deploymentType docker-compose
+  appsFolders [foo, bar]
+  dockerRepositoryName "yourDockerLoginName"
+}
+```
+
+A JHipster deployment has a config with default values for all other properties and using the previous syntax will
+ensure your deployment will use the default values (as if you didn't make any specific choice).
+The resulting deployment will have:
+  - deploymentType: `docker-compose`
+  - appsFolders: `foo, bar`
+  - dockerRepositoryName: `yourDockerLoginName`
+  - serviceDiscoveryType: `eureka`
+  - gatewayType: `zuul`
+  - directoryPath: `../`
+  - etc.
+
+Now, if you want some custom options:
+
+```
+deployment {
+  deploymentType kubernetes
+  appsFolders [store, invoice, notification, product]
+  dockerRepositoryName "yourDockerLoginName"
+  serviceDiscoveryType no
+  istio autoInjection
+  istioRoute true
+  kubernetesServiceType Ingress
+  kubernetesNamespace jhipster
+  ingressDomain "jhipster.192.168.99.100.nip.io"
+}
+```
+
+Those options are only a sample of what's available in the JDL.
+The complete list of options is available in the annexes, [here](#annexes).
+
+If you want more than one deployment, here's how you do it:
+
+```
+// will be created under 'docker-compose' folder
+deployment {
+  deploymentType docker-compose
+  appsFolders [foo, bar]
+  dockerRepositoryName "yourDockerLoginName"
+}
+
+// will be created under 'kubernetes' folder
+deployment {
+  deploymentType kubernetes
+  appsFolders [foo, bar]
+  dockerRepositoryName "yourDockerLoginName"
+}
+```
+
+You can have one deployment per deploymentType. The applications defined in `appsFolders` should be in the same folder where you are creating deployments or in the folder defined in `directoryPath`. For example for above you need to have a folder structure like this
+
+```
+.
+├── yourJdlFile.jdl
+├── foo
+├── bar
+├── kubernetes // will created by the JDL
+└── docker-compose // will created by the JDL
+```
 
 ## <a name="commentingjdl"></a> 注释 & Javadoc
 在 JDL 文件中还可以增加 Javadoc 和注释。
@@ -691,7 +769,7 @@ DEFAULT_MAX = 41
 
 entity A {
   name String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MAX_LENGTH)
-  content TextBlob minbytes(DEFAULT_MIN_BYTES) maxbytes(DEFAULT_MAX_BYTES)
+  content TextBlob required
   count Integer min(DEFAULT_MIN) max(DEFAULT_MAX)
 }
 ```
@@ -746,6 +824,8 @@ Here's the result:
   - In 'secondMS', entities `B` and `C` will be generated.
 It's because, at parsing-time, if an option overlaps with another, the latter takes precedence.
 
+You can also create entire microservice stack using JDL, [see this blog post](https://medium.com/@deepu105/create-full-microservice-stack-using-jhipster-domain-language-under-30-minutes-ecc6e7fc3f77) for example
+
 ---
 
 
@@ -768,39 +848,33 @@ Here are the application options supported in the JDL:
     <td></td>
   </tr>
   <tr>
-    <td>authenticationType</td>
-    <td>jwt or uaa</td>
-    <td>jwt, session, uaa, oauth2</td>
-    <td>uaa for UAA apps, jwt otherwise</td>
-  </tr>
-  <tr>
     <td>baseName</td>
     <td>jhipster</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
+    <td>packageName</td>
+    <td>com.mycompany.myapp</td>
+    <td></td>
+    <td>Sets the packageFolder option</td>
+  </tr>
+  <tr>
+    <td>authenticationType</td>
+    <td>jwt or uaa</td>
+    <td>jwt, session, uaa, oauth2</td>
+    <td>uaa for UAA apps, jwt otherwise</td>
+  </tr>
+  <tr>
+    <td>uaaBaseName</td>
+    <td></td>
+    <td></td>
+    <td>Mandatory for gateway and microservices if auth type is uaa, must be between double-quotes</td>
+  </tr>
+  <tr>
     <td>buildTool</td>
     <td>maven</td>
     <td>maven, gradle</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>cacheProvider</td>
-    <td>ehcache or hazelcast</td>
-    <td>ehcache, hazelcast, infinispan, no</td>
-    <td>ehcache for monoliths and gateways, hazelcast otherwise</td>
-  </tr>
-  <tr>
-    <td>clientFramework</td>
-    <td>angularX</td>
-    <td>angularX, react</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>clientPackageManager</td>
-    <td>npm</td>
-    <td>npm, yarn</td>
     <td></td>
   </tr>
   <tr>
@@ -816,14 +890,44 @@ Here are the application options supported in the JDL:
     <td>* + the prod database type</td>
   </tr>
   <tr>
+    <td>prodDatabaseType</td>
+    <td>mysql</td>
+    <td>mysql, mariadb, mssql, postgresql, oracle, no</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>cacheProvider</td>
+    <td>ehcache or hazelcast</td>
+    <td>ehcache, hazelcast, infinispan, no</td>
+    <td>ehcache for monoliths and gateways, hazelcast otherwise</td>
+  </tr>
+  <tr>
     <td>enableHibernateCache</td>
     <td>true</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
-    <td>enableSwaggerCodegen</td>
+    <td>clientFramework</td>
+    <td>angularX</td>
+    <td>angularX, react</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>useSass</td>
     <td>false</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>clientPackageManager</td>
+    <td>npm</td>
+    <td>npm, yarn</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>jhiPrefix</td>
+    <td>jhi</td>
     <td></td>
     <td></td>
   </tr>
@@ -834,19 +938,10 @@ Here are the application options supported in the JDL:
     <td></td>
   </tr>
   <tr>
-    <td>jhiPrefix</td>
-    <td>jhi</td>
+    <td>nativeLanguage</td>
+    <td>en</td>
+    <td>Any language supported by JHipster</td>
     <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>jhipsterVersion</td>
-    <td></td>
-    <td></td>
-    <td>
-        Deprecated, will be removed in the next major release.
-        This field will take the generator's version, must be between double-quotes.
-    </td>
   </tr>
   <tr>
     <td>languages</td>
@@ -855,27 +950,21 @@ Here are the application options supported in the JDL:
     <td>Braces are mandatory</td>
   </tr>
   <tr>
+    <td>enableSwaggerCodegen</td>
+    <td>false</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>serviceDiscoveryType</td>
+    <td>false</td>
+    <td>eureka, consul, no</td>
+    <td></td>
+  </tr>
+  <tr>
     <td>messageBroker</td>
     <td>false</td>
     <td>kafka, false</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>nativeLanguage</td>
-    <td>en</td>
-    <td>Any language supported by JHipster</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>packageName</td>
-    <td>com.mycompany.myapp</td>
-    <td></td>
-    <td>Sets the packageFolder option</td>
-  </tr>
-  <tr>
-    <td>prodDatabaseType</td>
-    <td>mysql</td>
-    <td>mysql, mariadb, mssql, postgresql, oracle, no</td>
     <td></td>
   </tr>
   <tr>
@@ -891,10 +980,16 @@ Here are the application options supported in the JDL:
     <td>Depends on the app type</td>
   </tr>
   <tr>
-    <td>serviceDiscoveryType</td>
+    <td>websocket</td>
     <td>false</td>
-    <td>eureka, consul, no</td>
+    <td>spring-websocket, false</td>
     <td></td>
+  </tr>
+  <tr>
+    <td>testFrameworks</td>
+    <td>[]</td>
+    <td>protractor, cucumber, gatling</td>
+    <td>Braces mandatory</td>
   </tr>
   <tr>
     <td>skipClient</td>
@@ -914,29 +1009,126 @@ Here are the application options supported in the JDL:
     <td></td>
     <td></td>
   </tr>
+</table>
+
+## <a name="deployment_options">可选的部署选项
+
+Here are the application options supported in the JDL:
+
+<table class="table table-striped table-responsive">
   <tr>
-    <td>testFrameworks</td>
+    <th>JDL option name</th>
+    <th>Default value</th>
+    <th>Possible values</th>
+    <th>Comment</th>
+  </tr>
+  <tr>
+    <td>deploymentType</td>
+    <td>docker-compose</td>
+    <td>docker-compose, kubernetes, openshift, rancher-compose</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>directoryPath</td>
+    <td>"../"</td>
+    <td></td>
+    <td>Relative path. Must be in double quotes</td>
+  </tr>
+  <tr>
+    <td>appsFolders</td>
     <td>[]</td>
-    <td>protractor, cucumber, gatling</td>
-    <td>Braces mandatory</td>
+    <td></td>
+    <td>Directory names for the applications separated by comma. Must be a list, example [foo, bar]</td>
   </tr>
   <tr>
-    <td>uaaBaseName</td>
+    <td>clusteredDbApps</td>
+    <td>[]</td>
     <td></td>
-    <td></td>
-    <td>Mandatory for gateway and microservices if auth type is uaa, must be between double-quotes</td>
+    <td>Directory names for the applications with clustered DB separated by comma. Must be a list, example [foo, bar]</td>
   </tr>
   <tr>
-    <td>useSass</td>
+    <td>gatewayType</td>
+    <td>zuul</td>
+    <td>zuul, traefik</td>
+    <td>Value is ignored when serviceDiscoveryType is `no`</td>
+  </tr>
+  <tr>
+    <td>monitoring</td>
+    <td>no</td>
+    <td>no, elk, prometheus</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>consoleOptions</td>
+    <td>[]</td>
+    <td>[curator, zipkin]</td>
+    <td>Must be a list</td>
+  </tr>
+  <tr>
+    <td>serviceDiscoveryType</td>
+    <td>eureka</td>
+    <td>eureka, consul, no</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>dockerRepositoryName</td>
+    <td></td>
+    <td></td>
+    <td>The name or URL of the docker repository. Must be in double quotes</td>
+  </tr>
+  <tr>
+    <td>dockerPushCommand</td>
+    <td>"docker push"</td>
+    <td></td>
+    <td>The docker push command to use. Must be in double quotes</td>
+  </tr>
+  <tr>
+    <td>kubernetesNamespace</td>
+    <td>default</td>
+    <td></td>
+    <td>Applicable only when deploymentType is kubernetes</td>
+  </tr>
+  <tr>
+    <td>kubernetesServiceType</td>
+    <td>LoadBalancer</td>
+    <td>LoadBalancer, NodePort, Ingress</td>
+    <td>Applicable only when deploymentType is kubernetes</td>
+  </tr>
+  <tr>
+    <td>ingressDomain</td>
+    <td></td>
+    <td></td>
+    <td>The domain for Ingress when kubernetesServiceType is `Ingress`. Must be in double quotes. Applicable only when deploymentType is kubernetes</td>
+  </tr>
+  <tr>
+    <td>istio</td>
+    <td>no</td>
+    <td>no, manualInjection, autoInjection</td>
+    <td>Applicable only when deploymentType is kubernetes</td>
+  </tr>
+  <tr>
+    <td>istioRoute</td>
     <td>false</td>
     <td></td>
-    <td></td>
+    <td>Applicable only when deploymentType is kubernetes</td>
   </tr>
   <tr>
-    <td>websocket</td>
+    <td>enableRancherLoadBalancing</td>
     <td>false</td>
-    <td>spring-websocket, false</td>
     <td></td>
+    <td>Applicable only when deploymentType is rancher-compose</td>
+  </tr>
+  <tr>
+    <td>openshiftNamespace</td>
+    <td>default</td>
+    <td></td>
+    <td>Applicable only when deploymentType is openshift</td>
+  </tr>
+  <tr>
+    <td>storageType</td>
+    <td>ephemeral</td>
+    <td>ephemeral, persistent</td>
+    <td>Applicable only when deploymentType is openshift</td>
   </tr>
 </table>
 
@@ -944,114 +1136,105 @@ Here are the application options supported in the JDL:
 
 JDL 支持如下类型：
 
+Common databases:
+  - PostgreSQL
+  - MySQL
+  - MariaDB
+  - Oracle
+  - MsSQL
+  - MongoDB
+  - Couchbase
+
 <table class="table table-striped table-responsive">
   <tr>
-    <th>SQL</th>
-    <th>MongoDB</th>
+    <th>Common databases</th>
     <th>Cassandra</th>
     <th>Validations</th>
   </tr>
   <tr>
     <td>String</td>
     <td>String</td>
-    <td>String</td>
-    <td><dfn>required, minlength, maxlength, pattern</dfn></td>
+    <td><dfn>required, minlength, maxlength, pattern, unique</dfn></td>
   </tr>
   <tr>
     <td>Integer</td>
     <td>Integer</td>
-    <td>Integer</td>
-    <td><dfn>required, min, max</dfn></td>
+    <td><dfn>required, min, max, unique</dfn></td>
   </tr>
   <tr>
     <td>Long</td>
     <td>Long</td>
-    <td>Long</td>
-    <td><dfn>required, min, max</dfn></td>
+    <td><dfn>required, min, max, unique</dfn></td>
   </tr>
   <tr>
     <td>BigDecimal</td>
     <td>BigDecimal</td>
-    <td>BigDecimal</td>
-    <td><dfn>required, min, max</dfn></td>
+    <td><dfn>required, min, max, unique</dfn></td>
   </tr>
   <tr>
     <td>Float</td>
     <td>Float</td>
-    <td>Float</td>
-    <td><dfn>required, min, max</dfn></td>
+    <td><dfn>required, min, max, unique</dfn></td>
   </tr>
   <tr>
     <td>Double</td>
     <td>Double</td>
-    <td>Double</td>
-    <td><dfn>required, min, max</dfn></td>
+    <td><dfn>required, min, max, unique</dfn></td>
   </tr>
   <tr>
     <td>Enum</td>
-    <td>Enum</td>
     <td></td>
-    <td><dfn>required</dfn></td>
+    <td><dfn>required, unique</dfn></td>
   </tr>
   <tr>
     <td>Boolean</td>
     <td>Boolean</td>
-    <td>Boolean</td>
-    <td>required</td>
+    <td>required, unique</td>
   </tr>
   <tr>
     <td>LocalDate</td>
-    <td>LocalDate</td>
     <td></td>
-    <td><dfn>required</dfn></td>
+    <td><dfn>required, unique</dfn></td>
   </tr>
   <tr>
-    <td></td>
     <td></td>
     <td>Date</td>
-    <td><dfn>required</dfn></td>
+    <td><dfn>required, unique</dfn></td>
   </tr>
   <tr>
     <td>ZonedDateTime</td>
-    <td>ZonedDateTime</td>
     <td></td>
-    <td><dfn>required</dfn></td>
+    <td><dfn>required, unique</dfn></td>
   </tr>
   <tr>
-    <td></td>
     <td></td>
     <td>UUID</td>
-    <td><dfn>required</dfn></td>
+    <td><dfn>required, unique</dfn></td>
   </tr>
   <tr>
     <td>Blob</td>
-    <td>Blob</td>
     <td></td>
-    <td><dfn>required, minbytes, maxbytes</dfn></td>
+    <td><dfn>required, minbytes, maxbytes, unique</dfn></td>
   </tr>
   <tr>
     <td>AnyBlob</td>
-    <td>AnyBlob</td>
     <td></td>
-    <td><dfn>required, minbytes, maxbytes</dfn></td>
+    <td><dfn>required, minbytes, maxbytes, unique</dfn></td>
   </tr>
   <tr>
     <td>ImageBlob</td>
-    <td>ImageBlob</td>
     <td></td>
-    <td><dfn>required, minbytes, maxbytes</dfn></td>
+    <td><dfn>required, minbytes, maxbytes, unique</dfn></td>
   </tr>
   <tr>
     <td>TextBlob</td>
-    <td>TextBlob</td>
     <td></td>
-    <td><dfn>required</dfn></td>
+    <td><dfn>required, unique</dfn></td>
   </tr>
   <tr>
     <td>Instant</td>
     <td>Instant</td>
-    <td>Instant</td>
-    <td><dfn>required</dfn></td>
+    <td><dfn>required, unique</dfn></td>
   </tr>
 </table>
 

@@ -152,7 +152,6 @@ JHipster 提供了一些属性，服务于 [JHipster 服务端库](https://githu
                 port: 2003
                 prefix: jhipster
             # Send metrics to a Prometheus server
-            # Use the "prometheus" Maven profile to have the Prometheus dependencies
             prometheus:
                 enabled: false # Prometheus is disabled by default
                 endpoint: /prometheusMetrics

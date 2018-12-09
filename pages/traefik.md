@@ -55,6 +55,6 @@ Traefik 也可以和 Zuul 一起工作：在这个例子中，到微服务的 HT
 这个配置文件设置了：
 
 - Traefik 运行在端口 `80` 上，所以如果你的网关程序叫做 `gateway`，你可以通过 [http://localhost/gateway/](http://localhost/gateway/) 来访问它。
-- Traefik 管理控制台工作在端口 `8080` 上，你可以通过 [http://localhost:8080](http://localhost:8080) 访问它。
+- Traefik 管理控制台工作在端口 `28080` 上，你可以通过 [http://localhost:28080](http://localhost:28080) 访问它。
 
 由于 Traefik 使用了 Consul，检查 Consul 管理控制台也很有用，它工作在端口 `8500` 上：[http://localhost:8500](http://localhost:8500)。

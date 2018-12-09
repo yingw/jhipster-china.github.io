@@ -32,3 +32,18 @@ _说明: 此工具比 [entity 工具]({{ site.url }}/creating-an-entity/) 更简
 ## 可以监控 Spring MVC REST 控制器吗？
 
 可以！给需要监控的方法加上 Metrics 的 `@Timed` 注解即可。
+
+## 可以从微服务架构的网关上代理吗？
+
+可以！在 webpack/webpack.dev.js 里设置上下文的服务名称即可。
+```javascript
+module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
+    devtool: 'eval-source-map',
+    devServer: {
+        contentBase: './target/www',
+        proxy: [{
+            context: [
+                '/<servicename>',
+                /* jhipster-needle-add-entity-to-webpack - JHipster will add entity api paths here */
+                ....
+```
