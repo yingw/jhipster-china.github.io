@@ -44,7 +44,7 @@ sitemap:
     - [x] Shell Plugins（100%）
 - [x] JHipster 核心任务（%）
     - [x] 创建应用（100%）
-    - [x] 创建模型（40%）
+    - [x] 创建模型（100%）
     - [x] 创建 Spring controller（100%）
     - [x] 创建 Spring Service（ 60%）
     - [ ] 创建 DTO（%）
