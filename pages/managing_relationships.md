@@ -25,7 +25,7 @@ sitemap:
 
 ## JHipster UML 和 JDL Studio 工具
 
-This page describes how to create关系s with JHipster using the standard command-line interface.  If you want to create many entities and关系s, you might prefer to use a graphical tool.
+这篇文章标书的是用 JHipster 的命令行工具创建关联关系。如果你希望创建很多关系，建议使用图形化工具。
 
 在这一章节，有两个可行选项：
 
@@ -36,7 +36,7 @@ This page describes how to create关系s with JHipster using the standard comman
 
 ## 支持的关联关系类型
 
-As we use JPA, 普通的一对多（one-to-many）, 多对一（many-to-one）, 多对多（many-to-many），一对一（one-to-one）关联关系有如下场景：
+使用 JPA 时, 普通的一对多（one-to-many）, 多对一（many-to-one）, 多对多（many-to-many），一对一（one-to-one）关联关系有如下场景：
 
 1. [双向一对多（one-to-many）关系](#1)
 2. [单向多对一（many-to-one）关系](#2)
@@ -46,23 +46,22 @@ As we use JPA, 普通的一对多（one-to-many）, 多对一（many-to-one）, 
 6. [一对一（one-to-one）关系](#6)
 7. [单向一对一（one-to-one）关系](#7)
 
-_Tip: the `User` entity_
+_提示: 关于 `User` 对象_
 
-Please note that the `User` entity, which is handled by JHipster, is specific. You can do:
+请注意关于 `User` 对象，是由 JHipster 管理的，特定的，你可以：
 
-- `many-to-one`关系s to this entity (a `Car` can have a many-to-one关系 to a `User`). This will generate a specific query in your new entity repository, so you can filter your entity on the current security user, which is a common requirement. On the generated Angular/React client UI you will have a dropdown in `Car` to select a `User`.
-- `many-to-many` and `one-to-one`关系s to the `User` entity, but the other entity __must__ be the owner
-of the关系 (a `Team` can have a many-to-many关系 to `User`, but only the team can add/remove users, and a user cannot add/remove a team). On the Angular/React client UI, you will also be able to select a `User` in a multi-select box.
+- 创建管理这个对象的 `many-to-one` 关系 (比如一个 `Car` 可以有一个 many-to-one 关系来关联 `User`)。这能在你的 repository 里创建特定的查询，让你能根据用户做查询过滤，这个需求很普遍。在 Angular/React 创建的客户端界面上，你会在 `Car` 对象上得到一个下拉控件来选择 `User`，
+- 创建 `many-to-many` 及 `one-to-one` 关系来关联 `User` 对象，但是对方实体 __必须__ 是该关系的 owner， (`Team` 可以有一个 many-to-many 关系来关联 `User`，但只有 `Team` 才可以添加/移除 `User`，反过来 `User` 不能管理 `Team`）。在 Angular/React 的客户端界面上，你会得到一个 `User` 对象的多选框。
 
 ## <a name="1"></a> 双向一对多（one-to-many）关系
 
-Let's start with two entities, a `Owner` and a `Car`. A owner can have many cars, and a car can have only one owner.
+我们来定义两个实体对象，`Owner` 和 `Car`。一个 owner 可以拥有多辆 car，一个 car 只能有一个 owner。
 
 这是一个非常普通的一对多（one-to-many）关系(一个 owner 拥有多个 car) 在“一”的一边, 以及一个多对一（many-to-one）关系 (多个 car 拥有同一个 owner) 在另一边对象上:
 
     Owner (1) <-----> (*) Car
 
-We will create the `Owner` first. Here are the relevant JHipster questions for the `Owner`:
+我们先创建 `Owner`。下面是创建 `Owner` 时的相关问题：
 
     jhipster entity Owner
     ...
@@ -73,9 +72,9 @@ We will create the `Owner` first. Here are the relevant JHipster questions for t
     ? What is the type of the relationship? one-to-many
     ? What is the name of this relationship in the other entity? owner
 
-Please note that we selected the default options concerning the names of the关系s.
+请注意我们选择了关系的默认名称。
 
-Now we can generate the `Car`:
+接下来创建 `Car`:
 
     jhipster entity Car
     ...
@@ -87,7 +86,7 @@ Now we can generate the `Car`:
     ? When you display this relationship with Angular, which field from 'Owner' do you want to use? id
 
 
-The same can be achieved using the below JDL as well
+同样的，可以用下面的 JDL 来完成
 
     entity Owner
     entity Car
@@ -96,7 +95,7 @@ The same can be achieved using the below JDL as well
       Owner{car} to Car{owner}
     }
 
-That's it, you now have a one-to-many关系 between those two entities! On the generated Angular/React client UI you will have a dropdown in `Car` to select a `Owner`.
+OK了，现在我们有了一个 one-to-many 关系。在 Angular/React 创建的客户端界面上有一个下拉框来选择 `Owner` 的 `Car` 。
 
 ## <a name="2"></a> 单向多对一（many-to-one）关系
 

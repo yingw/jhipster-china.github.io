@@ -52,7 +52,7 @@ JHipster 提供了完整的 Docker 支持，为了：
 - [Docker](https://docs.docker.com/installation/#installation)
 - [Docker Compose](https://docs.docker.com/compose/install)
 
-Docker now requires creating an account to the docker store to download Docker for Mac and Docker for Windows. To bypass this
+Docker 需要创建 docker 市场的账号来下载 Mac 和 Windows 版本的 Docker. To bypass this
 
 <div class="alert alert-info"><i>小提示：</i>
 
@@ -85,7 +85,7 @@ __解决方案 2__
 - 使用 Maven，执行：`./mvnw package -Pprod verify jib:dockerBuild`
 - 使用 Gradle，执行：`./gradlew -Pprod bootWar jibDockerBuild`
 
-这将使用 profile `prod` 打包你的应用，and build a docker image using [Jib](https://github.com/GoogleContainerTools/jib) connecting to the local docker daemon.
+这将使用 profile `prod` 打包你的应用，并连接到本地 Docker 使用 [Jib](https://github.com/GoogleContainerTools/jib) 打包好了应用。
 
 在 Windows 上，由于 [lack of named pipes](https://github.com/spotify/docker-client/issues/875)，你需要调整设置，打开 “Expose daemon on tcp://localhost:2375 without TLS”。
 
@@ -93,7 +93,7 @@ __解决方案 2__
 
 - `docker-compose -f src/main/docker/app.yml up`
 
-该命令将会启动你的应用及所需的服务 (database, search engine, JHipster Registry...).
+该命令将会启动你的应用及所需的所有服务 (数据库，搜索引擎，JHipster Registry...).
 
 如果你选择了 OAuth 2.0 作为认证方案，请参阅 [Keycloak section on this documentation](#7).
 
@@ -285,7 +285,7 @@ Sonar 的报告会生成在：[http://localhost:9000](http://localhost:9000)
 
 ### 添加内存参数到 docker-compose.yml 配置
 
-This solution is desired over Dockerfile. In this way, you have a single control point for your memory configuration on all containers that compose you application.
+这个方法要修改到 Dockerfile。这样修改，你可以完全控制你应用组合中的内存使用设置。
 
 添加 `JAVA_OPTS` 配置到 `environment` 段落下：
 

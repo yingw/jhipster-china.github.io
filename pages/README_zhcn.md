@@ -46,7 +46,7 @@ sitemap:
     - [x] 创建应用（100%）
     - [x] 创建模型（100%）
     - [x] 创建 Spring controller（100%）
-    - [x] 创建 Spring Service（ 60%）
+    - [x] 创建 Spring Service（100%）
     - [ ] 创建 DTO（%）
     - [x] 管理关联关系（50%）
     - [ ] 国际化（10%）
