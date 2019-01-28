@@ -174,7 +174,7 @@ If you use the [entity sub-generator]({{ site.url }}/creating-an-entity/), here 
 *   A new "change log" is created in your `src/main/resources/config/liquibase/changelog` directory, and has been automatically added to your `src/main/resources/config/liquibase/master.xml` file
 *   Review this change log, it will be applied the next time you run your application
 
-### Database updates with the Maven liquibase:diff goal
+### 用 Maven liquibase:diff 命令做数据库更新
 
 If you have choosen to use MySQL, MariaDB or PostgreSQL in development, you can use the `./mvnw liquibase:diff` goal to automatically generate a changelog.
 

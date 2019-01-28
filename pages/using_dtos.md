@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Using DTOs
+title: 使用 DTO
 permalink: /using-dtos/
 redirect_from:
   - /using_dtos.html
@@ -9,48 +9,48 @@ sitemap:
     lastmod: 2015-05-28T23:41:00-00:00
 ---
 
-# <i class="fa fa-briefcase"></i> [BETA] Using DTOs
+# <i class="fa fa-briefcase"></i> [BETA] 使用 DTO
 
-__WARNING!__ This is a new feature, of <b>BETA</b> quality. Use it at your own risk! Feedback is highly welcome!
+__警告!__ 这个新特性目前还是 <b>测试</b> 阶段。谨慎使用！欢迎反馈！
 
-## Introduction
+## 介绍
 
-By default, JHipster uses its domain objects (typically JPA entities) directly in its REST endpoints. This has a lot of benefits, the main one being that it makes the code easy to use, understand and extend.
+默认情况下，JHipster 使用领域模型对象（domain objects，通常是 JPA 实体对象）直接给到 REST 端点。这样做有很多好处，主要好处是代码很简单，易于理解。
 
-For complex use cases, however, you might want to use Data Transfer Objects (or DTOs) that will be exposed by the REST endpoints. Those objects add an extra layer on top of the domain objects, and are specifically tuned for the REST layer: their main benefit is that they can aggregate several domain objects.
+对于复杂的场景，你还是有可能会需要使用数据传输对象（Data Transfer Objects ，DTOs），被用来暴露给 REST 端点。这些对象在领域模型上增加了额外的一层，并对 REST 层做了优化和适配：主要的好处是他们可以集成多种领域模型。
 
-## How DTOs work in JHipster
+## JHipster 里的 DTO
 
-When generating a JHipster entity, you have the option to add a service layer: the DTO option will only be available if you choose to have a service layer, as it needs that layer to handle the mapping (if you are using JPA, this is because the service layer is transactional, so lazy-loading will work).
+当创建 JHipster 实体对象时，你可以增加一层服务层：DTO 选项也只会在你选择了服务层时才可用，因为它需要这一层来做映射 (如果你使用了 JPA，也因为这一层处理了事务，延迟加载才会正常工作）。
 
-Once you have selected to have a service layer, you will have the option to generate a DTO for the entity. If you select that option:
+一旦你选择创建了服务层，你就可以选择创建实体对象的 DTO。如果你选择了该选项：
 
-- A DTO will be generated, and it will be mapped on the underlying entity.
-- It will aggregate many-to-one relationships, only using the ID and the field used to display it in your client-side framework (Angular, for example). As a result, a many-to-one relationship to the `User` entity will add a `userId` field and a `userLogin` field to the DTO.
-- It will ignore one-to-many relationships and many-to-many relationships on the non-owner side: this matches the way entities work (they have a `@JsonIgnore` annotation on those fields).
-- For a many-to-many relationship on the owner side: it will use DTOs from the other entity and use them in a `Set`. Thus, this can only work if the other entity also uses DTOs.
+- 创建一个 DTO ，并映射到实体对象。
+- 它会集合管理 many-to-one 关系，只使用 ID 和另一个在客户端显示的字段。以至于需要在 DTO 上添加一个 many-to-one 关系指向 `User` 对象，添加 `userId` 字段和 `userLogin` 字段。
+- 它会在非管理端忽略 one-to-many 和 many-to-many 关系：这和实体对象的工作方式匹配 (他们会有个 `@JsonIgnore` 字段注解)。
+- 对于 many-to-many 关系，在管理端：会从另一端实体使用 DTO，并把它们放在一个 `Set` 里。也就是，其他实体也是用了 DTO 的时候才会起作用。
 
-## Using MapStruct to map DTOs and entities
+## 使用 MapStruct 来映射 DTO 和实体
 
-As DTOs look a lot like entities, it's a frequent requirement to have a solution to map them automatically with each other.
+大部分 DTO 和实体对象看上去差不多，所以经常会有需要能在他们之间做自动映射。
 
-The selected solution in JHipster is to use [MapStruct](http://mapstruct.org/). It is an annotation processor, plugged into the Java compiler, that will generate the required mapping automatically.
+这个章节介绍使用 [MapStruct](http://mapstruct.org/)。这是一个组件处理器，作为 Java 编译器的插件，能自动创建所需的映射。
 
-We have found it very clean and efficient, and liked that it does not use reflection (which is bad for performance when used as heavily as in a mapper).
+我们发现这是非常简洁有效的，并且不需要反射（反射在映射中的使用会有较大的性能影响）。
 
-## Configuring your IDE for MapStruct
+## 设置你的 IDE 来支持 MapStruct
 
-MapStruct is an annotation processor, and as such it should also be set up to be run automatically when your IDE compiles the project.
+MapStruct 是一种注释处理器，所以它需要在你的 IDE 编译项目的时候正确设置。
 
-If you are using Maven, you need to activate the `IDE` maven profile in your IDE. Gradle users don't need to apply anything IDE-specific.
+如果你使用的是 Maven，你需要启用 maven 的 `IDE` profile。Gradle 用户不需要做任何设置。
 
-Instructions for activating the profile are included in [Configuring your IDE]({{ site.url }}/configuring-ide/).
+启用这个 profile 的介绍参考： [配置你的 IDE]({{ site.url }}/configuring-ide/).
 
-## Advanced MapStruct usage
+## 高级 MapStruct 使用
 
-MapStruct mappers are configured as Spring Beans, and support dependency injection. One nice tip is that you can inject a `Repository` into a mapper, so you can fetch a managed JPA entity from the mapper, using its ID.
+MapStruct 的 mapper 配置为 Spring Bean，并支持依赖注入（dependency injection）。一个好的建议是你可以把 `Repository` 注入到 mapper 里，使你能用 ID 从 mapper 中抓取 JPA 实体。
 
-Here is an example code, fetching a `User` entity:
+这里是一个例子，抓取 `User` 实体：
 
     @Mapper
     public abstract class CarMapper {

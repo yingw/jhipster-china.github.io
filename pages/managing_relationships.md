@@ -99,25 +99,25 @@ OK了，现在我们有了一个 one-to-many 关系。在 Angular/React 创建�
 
 ## <a name="2"></a> 单向多对一（many-to-one）关系
 
-In the previous example we had a 双向关系: from a `Car` instance you could find its owner, and from a `Owner` instance you could get all of its cars.
+在上面的例子里我们创建了双向关系: 从 `Car` 上你可以找到它的 owner，从 `Owner` 上你能找到它所有的 car。
 
 多对一（many-to-one）关系意味着 car 对象可以关联到他们的 owner, 但反过来不行。
 
     Owner (1) <----- (*) Car
 
-You would do that关系 for two reasons:
+你可能会因为这些场景使用该关系:
 
-- From a business point of view, you only use your entities in this way. So you don't want to have an API that allows developers to do something which doesn't make sense.
-- You have a small performance gain when using the `Owner` entity (as it won't have to manage the collection of cars).
+- 对于业务视角，你只在这种方式下使用你的对象。不需要一些允许开发人员实现一些不清楚的 API。
+- 需要做些性能优化在 `Owner` 上 (因为它不会管理 car 的集合)。
 
-In that case, you would still create the `Owner` first, this time with no关系:
+在这类场景下，你可以先创建 `Owner`，并且这次不要创建任何关联关系:
 
     jhipster entity Owner
     ...
     Generating relationships with other entities
     ? Do you want to add a relationship to another entity? No
 
-And then the `Car` entity, as in the previous example:
+然后创建 `Car` ，和前面的例子一样:
 
     jhipster entity Car
     ...
@@ -128,8 +128,8 @@ And then the `Car` entity, as in the previous example:
     ? What is the type of the relationship? many-to-one
     ? When you display this relationship with Angular, which field from 'Owner' do you want to use? id
 
-This will work as in the previous example, but you won't be able to add or remove cars from the `Owner` entity. On the generated Angular/React client UI you will have a dropdown in `Car` to select a `Owner`.
-This is the corresponding JDL:
+这前面的例子一样可以工作，但是你不能从 `Owner` 这一端添加或删除 `car`。在 Angular/React 创建的客户端界面上有一个下拉框来选择 `Owner` 的 `Car` 。
+这是相关的 DDL:
 
     entity Owner
     entity Car
@@ -141,31 +141,31 @@ This is the corresponding JDL:
 
 ## <a name="3"></a> 单向一对多（one-to-many）关系
 
-单向的一对多（one-to-many）关系 means that the `Owner` instance can get its collection of cars, but not the opposite. It is the opposite from the previous example.
+单向的一对多（one-to-many）关系是指 `Owner` 对象管理 `Car` 的集合，但是反过来不管。这个和上面的例子是相反的。
 
     Owner (1) -----> (*) Car
 
-这种关系类型是目前 JHipster 不支持的，参考 [#1569](https://github.com/jhipster/generator-jhipster/issues/1569) for more information.
+这种关系类型是目前 JHipster 不支持的，参考 [#1569](https://github.com/jhipster/generator-jhipster/issues/1569) 。
 
 你可以尝试这两种解决方法：
 
 - 设置一个双向映射，且禁止修改：这是我们目前推荐的方式，使用起来也比较方便
 - 设置一个双向映射，然后修改为一个单向的映射：
     - 删除 `@OneToMany` 注解上的 "mappedBy" 属性
-    - 创建关联表：执行 `mvn liquibase:diff`，参考 [documentation about using Liquibase diff]({{ site.url }}/development/)
+    - 创建关联表：执行 `mvn liquibase:diff`，参考 [使用 Liquibase diff]({{ site.url }}/development/)
 
-这在 JDL 里面是不支持的因为这不是在 JHipster 里。（译注：？）
+这在 JDL 里面是不支持。
 
 ## <a name="4"></a> 两个一对多（one-to-many） 关系，在两个相同的实体对象上
 
-For this example, a `Person` can be the owner of many cars, and he can also be the driver of many cars:
+在这个例子里，一个 `Person` 对象可以是多个 `Car` 的 owner ，同时他也可以成为多个 `Car` 的司机：
 
     Person (1) <---owns-----> (*) Car
     Person (1) <---drives---> (*) Car
 
-为了实现这种关系，我们需要设置关系的 name 属性, which we have left with their default values in the previous examples.
+为了实现这种关系，我们需要设置关系的 name 属性，在之前的例子里我们使用了它们的默认值。
 
-Generate the `Person` entity, which has two one-to-many关系s to the `Car` entity:
+创建 `Person` 对象，有两个 one-to-many 关系关联 `Car` ：
 
     jhipster entity Person
     ...
@@ -183,7 +183,7 @@ Generate the `Person` entity, which has two one-to-many关系s to the `Car` enti
     ? What is the type of the relationship? one-to-many
     ? What is the name of this relationship in the other entity? driver
 
-Generate the `Car` entity, which use the same关系 name has was configured in the `Person` entity:
+创建 `Car` 对象，使用在 `Person` 里配置的关系属性名称：
 
     jhipster entity Car
     ...
@@ -201,7 +201,7 @@ Generate the `Car` entity, which use the same关系 name has was configured in t
     ? What is the type of the relationship? many-to-one
     ? When you display this relationship with Angular, which field from 'Person' do you want to use? id
 
-The same can be achieved using the below JDL as well
+也可以用一下的 JDL 来实现：
 
     entity Person
     entity Car
@@ -214,19 +214,19 @@ The same can be achieved using the below JDL as well
       Person{drivedCar} to Car{driver}
     }
 
-A `Car` can now have a driver and a owner, which are both `Person` entities. On the generated Angular/React client UI you will dropdowns in `Car` to select a `Person` for `owner` field and `driver` field.
+`Car` 对象现在可以同时拥有 driver 和 owner，都是 `Person` 对象。在 Angular/React 生成的前端界面上，会有选择 `Person` 和 `owner` 字段的下拉框。
 
 ## <a name="5"></a> 多对多（many-to-many）关系
 
-A `Driver` can drive many cars, but a `Car` can also have many drivers.
+一个司机 `Driver` 可以驾驶多个汽车，同时 `Car` 也可以拥有多个司机对象。
 
     Driver (*) <-----> (*) Car
 
-At the database level, 我们需要一个关联表来关联 `Driver` 和 `Car` 表.
+在数据库层面，我们需要一个关联表来关联 `Driver` 和 `Car` 表。
 
-For JPA, one of those two entities will need to manage the关系: in our case, that would be the `Car` entity, which will be responsible to add or remove drivers.
+使用 JPA，这两者中的一个需要负责管理这个关系: 在我们的例子里，使用 `Car` 来负责添加或删除司机。
 
-Let us generate the 非管理方（non-owning side） of the关系, the `Driver`, with a many-to-many关系:
+先来创建这个关系的非管理方（non-owning side），`Driver` 对象，拥有一个 many-to-many 关系:
 
     jhipster entity Driver
     ...
@@ -238,7 +238,7 @@ Let us generate the 非管理方（non-owning side） of the关系, the `Driver`
     ? Is this entity the owner of the relationship? No
     ? What is the name of this relationship in the other entity? driver
 
-Then generate the `Car`, with the 管理方（owning side） of the many-to-many关系:
+然后创建 `Car`，作为 many-to-many 关系的管理方（owning side）:
 
     jhipster entity Car
     ...
@@ -250,7 +250,7 @@ Then generate the `Car`, with the 管理方（owning side） of the many-to-many
     ? Is this entity the owner of the relationship? Yes
     ? When you display this relationship with Angular, which field from 'Driver' do you want to use? id
 
-The same can be achieved using the below JDL as well
+也可以用一下的 JDL 来实现：
 
     entity Driver
     entity Car
@@ -259,15 +259,15 @@ The same can be achieved using the below JDL as well
       Car{driver} to Driver{car}
     }
 
-That's it, you now have a many-to-many关系 between those two entities! On the generated Angular/React client UI you will have a multi-select dropdown in `Car` to select multiple `Driver` since `Car` is the owning side.
+这就ok了，你现在拥有了一个在两个对象之间的 many-to-many 多对多关系。在 Angular/React 创建的 `Car` 对象的客户端界面上，会有一个多选下拉框来选择多个 `Driver`，因为 `Car` 是管理方。
 
 ## <a name="6"></a> 一对一（one-to-one）关系
 
-Following our example, a one-to-one关系 would mean that a `Driver` can drive only one `Car`, and a `Car` can only have one `Driver`.
+下面的例子里， one-to-one 一对一关系意味着一个 `Driver` 只能驾驶一辆 `Car`，并且一辆 `Car` 只能被一个 `Driver` 开。
 
     Driver (1) <-----> (1) Car
 
-Let us create the 非管理方（non-owning side） of the关系, in our case the `Driver`:
+先来创建非管理方（non-owning side），我们的 `Driver` 对象：
 
     jhipster entity Driver
     ...
@@ -279,7 +279,7 @@ Let us create the 非管理方（non-owning side） of the关系, in our case th
     ? Is this entity the owner of the relationship? No
     ? What is the name of this relationship in the other entity? driver
 
-Then generate the `Car`, which owns the关系:
+然后是 `Car`，管理方：
 
     jhipster entity Car
     ...
@@ -292,7 +292,7 @@ Then generate the `Car`, which owns the关系:
     ? What is the name of this relationship in the other entity? car
     ? When you display this relationship with Angular, which field from 'Driver' do you want to use? id
 
-The same can be achieved using the below JDL as well
+也可以用一下的 JDL 来实现：
 
     entity Driver
     entity Car
@@ -301,22 +301,22 @@ The same can be achieved using the below JDL as well
       Car{driver} to Driver{car}
     }
 
-That's it, you now have a one-to-one关系 between those two entities! On the generated Angular/React client UI you will have a dropdown in `Car` to select a `Driver` since `Car` is the owning side.
+现在你拥有了 one-to-one 关系！在 Angular/React 创建的客户端界面上，`Car` 界面上有一个选择 `Driver` 的下拉框，因为 `Car` 是管理方。
 
 ## <a name="7"></a> 单向一对一（one-to-one）关系
 
-单向一对一（one-to-one）关系 means that the `citizen` instance can get its passport, but the `passport` instance can't get to its owner.
+单向一对一（one-to-one）关系意味着 `citizen` 实例可以管理他的护照 `Passport`，但是 `passport` 获取不到 `Owner`。
 
     Citizen (1) -----> (1) Passport
 
-Generate the `Passport` entity first, without any关系 to its owner:
+创建 `Passport`，不配置任何关系：
 
     jhipster entity Passport
     ...
     Generating relationships with other entities
     ? Do you want to add a relationship to another entity? No
 
-Then, generate the `Citizen` entity:
+然后是 `Citizen` ：
 
     jhipster entity Citizen
     ...
@@ -329,8 +329,9 @@ Then, generate the `Citizen` entity:
     ? What is the name of this relationship in the other entity? citizen
     ? When you display this relationship with Angular, which field from 'Passport' do you want to use? id
 
-After doing this, a `Citizen` possesses a passport, but no `Citizen` instance is defined in `Passport`. On the generated Angular/React client UI you will have a dropdown in `Citizen` to select a `Passport` since `Citizen` is the owning side.
-This is the corresponding JDL:
+完成后，`Citizen` 处理护照，但是反过来 `Passport` 不管理 `Citizen`。在 Angular/React 创建的客户端界面上， `Citizen` 界面有一个下拉框选择 `Passport` 。
+
+也可以用一下的 JDL 来实现：
 
 
     entity Citizen

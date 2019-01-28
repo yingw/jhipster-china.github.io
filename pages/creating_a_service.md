@@ -54,7 +54,7 @@ JPA 默认使用延迟加载技术来管理 one-to-many（一对多） 以及 ma
 
 默认创建的 Service 类使用 `@Transactional` ，所有的方法都是事务控制了的。这意味着可以在十五中查询到所有的延迟加载关系，也不会有 `LazyInitializationException` 异常。
 
-_提示：_ 用 `@Transactional(readOnly = true)` 注解来声明不需要修改数据不启动事务。这会得到更好的性能 (Hibernate 不会刷新一级缓存)，as well as a quality enhancement with some JDBC drivers (Oracle won't allow you to send INSERT/UPDATE/DELETE statements)
+_提示：_ 用 `@Transactional(readOnly = true)` 注解来声明不需要修改数据不启动事务。这会得到更好的性能 (Hibernate 不会刷新一级缓存)，并且在一些特定的 JDBC 驱动下提升性能 ( 比如 Oracle 不允许发送 插入/更新/删除 的命令 )
 
 ## 能给 Service Beans 安全管理么？
 

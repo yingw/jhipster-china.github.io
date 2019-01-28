@@ -10,23 +10,23 @@ gitgraph: http://jsfiddle.net/lordlothar99/tqp9gyu3
 
 # <i class="fa fa-refresh"></i> 升级应用
 
-每当有新的 JHipster 版本发布，JHipster 的 upgrade sub-generator 可以帮助我们升级一个现有的应用到最新版，并且不会丢失你所做的变更。
+每当有新的 JHipster 版本发布，JHipster 的 upgrade 命令可以帮助我们升级一个现有的应用到最新版，并且不会丢失你所做的变更。
 
 这非常有用：
 
-- Have the latest JHipster features in an existing application
+- 可以获得最新的 JHipster 特性
 - 获得重要的补丁修复或安全更新
-- Retain your changes in your codebase, and easily merge them with newly generated code
+- 在你的代码仓库从保存这些变化，并且在重新生成的代码上很方便地合并
 
-_Please read this page carefully before doing an upgrade, to understand how the upgrade process works_
+_请在升级你的应用前仔细阅读这篇关于升级的说明，来理解更新是如何工作的_
 
 ## 准备工作
 
-要让这个 sub-generator 工作，你需要事先安装好 `git` [http://git-scm.com](http://git-scm.com/).
+要让这个命令工作，你需要事先安装好 `git` [http://git-scm.com](http://git-scm.com/).
 
 ## 执行升级工具
 
-Go into the application's root directory:
+进入应用根目录：
 
 `cd myapplication/`
 
@@ -34,48 +34,48 @@ Go into the application's root directory:
 
 `jhipster upgrade`
 
-Here are the options you can pass:
+还可以有这些可选参数：
 
-* `--verbose` - Log each step of the upgrade process in detail
-* `--target-version=4.2.0` - Upgrade to the target version instead of the latest release, useful if a project is several versions behind
-* `--force` - Run the upgrade sub-generator even if no new JHipster version is available
+* `--verbose` - 观察模式，更新过程中查看更新步骤的详细日志
+* `--target-version=4.2.0` - 更新到一个特定的版本，而不是最新版，这在一个项目已经落后最新版好多个版本的时候比较有用
+* `--force` - 强制执行更新重新生成项目，即使没有更新的 JHipster 版本
 
 ## 升级过程的图形化视角
 
-Here is how the upgrade process works graphically (read the sections below to have a textual explanation):
+下面的是升级过程的图形化展示 (后面的章节会进行详细的解释):
 
 ![GitGraph]({{ site.url }}/images/upgrade_gitgraph.png)
 
-(this image comes from [JSFiddle](http://jsfiddle.net/lordlothar99/tqp9gyu3/) )
+(图像来自于 [JSFiddle](http://jsfiddle.net/lordlothar99/tqp9gyu3/) )
 
-Please note that the `jhipster_upgrade` branch will be created orphan on your project, although it doesn't display correctly on the above graph.
+请注意 `jhipster_upgrade` 分支是从项目上孤立创建出来的，他不会正确地在上面的图上显示出来。
 
-## Step-by-step explanation of the upgrade process
+## 上图流程的解释
 
-Below are the steps processed by the JHipster upgrade sub-generator:
+下面是 JHipster upgrade 命令的详细步骤：
 
-1. Check if there is a new version of JHipster available (not applicable if you are using `--force`).
-2. Check if the application is already initialized as a `git` repository, or else JHipster will initialize one for you and commit the current codebase to the master branch.
-3. Check to ensure that there are no un-committed local changes in the repository. The process will exit if there are un-committed changes found.
-4. Check if a `jhipster_upgrade` branch exists. If not, a branch is created: details about this step is provided in the "Specific steps executed on first upgrade" section.
-5. Checkout the `jhipster_upgrade` branch.
-6. Upgrade JHipster to the latest available version globally.
-7. Clean the current project directory.
-8. Re-generate the application using the `jhipster --force --with-entities` command.
-9. Commit the generated code to the `jhipster_upgrade` branch.
-10. Merge the `jhipster_upgrade` branch back to the original branch from where the `jhipster upgrade` command was launched.
-11. Now you just need to proceed with resolving merge conflicts if there are any.
+1. 检查是否有 JHipster 更新版本 (如果使用了 `--force` 就不检查)。
+2. 检查项目是否初始化了 `git` 仓库，否则 JHipster 会初始化并提交当前代码到 master 分支。
+3. 检查没有未提交的代码。如果还有未提交的代码升级流程就会自动退出。
+4. 检查是否有一个 `jhipster_upgrade` 分支。如果没，创建：这里的细节参考下面的“第一次升级的具体步骤”章节。
+5. 检出 `jhipster_upgrade` 分支。
+6. 全局更新 JHipster 到最新版。
+7. 清楚当前项目目录。
+8. 用 `jhipster --force --with-entities` 命令重新生成当前项目。
+9. 将生成的代码提交到 `jhipster_upgrade` 分支。
+10. 将 `jhipster_upgrade` 分支合并回原来 `jhipster upgrade` 命令启动时的分支。
+11. 最后需要手工处理合并的冲突。
 
-Congratulations, your application is now upgraded with the latest version of JHipster!
+祝贺，你的应用已经完成升级到最新版本的 JHipster 了。
 
 ## 第一次升级的具体步骤
 
-On the first execution of the JHipster upgrade sub-generator, in order to avoid erasing all your changes, some additional steps are run:
+第一次执行 JHipster 升级命令时，为了避免你所做的变更被清除，建议执行下面的操作：
 
-1. A `jhipster_upgrade` branch is created orphan (it has no parent)
-2. The whole application is generated (using your current JHipster version).
-3. A block-merge commit is made on the `master` branch: no alteration is made on your codebase on the `master` branch; this is just a practical way to record in Git that the HEAD of `master` is up-to-date with the current JHipster version.
+1. 创建一个孤立的 `jhipster_upgrade` 分支（没有父分支）
+2. 应用创建好（使用当前的 JHipster 版本）。
+3. 在 `master` 分支上提交 block-merge : 确保没有 `master` 上的修改；这只是个比较实用的方式来记录 `master` 的 HEAD 是更新到当前版本的 JHipster 了。
 
 ### 建议
 
-Don't commit anything on the `jhipster_upgrade` branch. This branch is dedicated to the JHipster upgrade sub-generator: each time the sub-generator is run, a new commit will be created.
+不要在 `jhipster_upgrade` 分支上提交任何代码。这个分支是作为 JHipster 更新用的：每次 upgrade 命令执行，这里都会创建一个新的 commit。
