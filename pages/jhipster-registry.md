@@ -13,10 +13,10 @@ sitemap:
 
 JHipster Registry 是一个运行时应用，由 JHipster 团队开发。就像 JHipster，它也是开源的，基于 Apache 2 开原协议，它的代码在 GitHub 上：[jhipster/jhipster-registry](https://github.com/jhipster/jhipster-registry).
 
-JHipster Registry has 三个主要目标：
+JHipster Registry 的三个主要目标：
 
-- 作为 [Eureka 服务](https://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html), that serves as a discovery server for applications. This is how JHipster handles routing, load balancing and scalability for all applications.
-- 作为 [Spring Cloud 配置中心](https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html), that provide runtime configuration to all applications.
+- 作为 [Eureka 服务](https://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html)，作为应用的服务发现服务。这是 JHipster 处理路由、负载均衡、以及弹性伸缩的功能。
+- 作为 [Spring Cloud 配置中心](https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html)，这提供所有应用以运行时配置的能力。
 - 作为管理中心，具备一个仪表板来监控应用。
 
 所有这些功能，都打包在同一个应用中，并具备一个潮流的 Angular 用户界面。
@@ -26,39 +26,39 @@ JHipster Registry has 三个主要目标：
 ## 摘要
 
 1. [安装](#installation)
-2. [Service discovery with Eureka](#eureka)
-3. [Application configuration with Spring Cloud Config](#spring-cloud-config)
+2. [使用 Eureka 服务发现](#eureka)
+3. [使用 Spring Cloud Config 配置应用](#spring-cloud-config)
 4. [管理中心](#dashboards)
-5. [Securing the JHipster Registry](#security)
+5. [JHipster Registry 的安全](#security)
 
 ## <a name="installation"></a> 安装
 
 ### Spring profiles
 
-The JHipster Registry uses the usual JHipster `dev` and `prod` Spring profiles, as well as the standard `composite` from Spring Cloud Config (See [official documentation](https://cloud.spring.io/spring-cloud-config/multi/multi__spring_cloud_config_server.html#composite-environment-repositories)).
+JHipster Registry 使用常规的 `dev` 和 `prod` profile，以及标准的 Spring Cloud `composite` profile。（参考 [官方文档](https://cloud.spring.io/spring-cloud-config/multi/multi__spring_cloud_config_server.html#composite-environment-repositories)）。
 
-As a result:
+由此：
 
-- Using the `dev` profile will run the JHipster Registry with the `dev` and the `composite` profiles. The `dev` profile will load the Spring Cloud configuration from the filesystem, looking for the `central-config` directory, which is relative to the running directory, defined in `src/main/resources/config/bootstrap.yml` file.
-- Using the `prod` profile will run the JHipster Registry with the `prod` and the `composite` profiles. The `prod` profile will load the Spring Cloud configuration from a Git repository, which is by default [https://github.com/jhipster/jhipster-registry-sample-config](https://github.com/jhipster/jhipster-registry-sample-config). In a real-world usage, this repository should be changed, either by reconfiguring it in the `src/main/resources/config/bootstrap-prod.yml` file, or by reconfiguring the `spring.cloud.config.server.composite` Spring property.
+- 使用 `dev` profile 将会以 `dev` 和 `composite` profile 运行 JHipster Registry。`dev` 将会从文件系统加载 Spring Cloud 配置，查找 `central-config` 目录，这是运行目录的相对目录，定义在 `src/main/resources/config/bootstrap.yml` 文件里。
+- 使用 `prod` profile 将会以 `prod` 和 `composite` profile 运行 JHipster Registry。`prod` 将会从 Git 仓库里加载 Spring Cloud 配置，默认值是 [https://github.com/jhipster/jhipster-registry-sample-config](https://github.com/jhipster/jhipster-registry-sample-config)。根据真实情况修改这个仓库的地址，配置 `src/main/resources/config/bootstrap-prod.yml` 文件，或 `spring.cloud.config.server.composite` 参数。
 
-Once the JHipster Registry is running, you can check its configuration in the `Configuration > Cloud Config` menu. Please note that if you can't log in, it might be because the JWT signature key is not correctly set up, which is a sign that your configuration isn't good.
+一旦 JHipster Registry 运行起来了，查看菜单 `Configuration > Cloud Config` 下的配置项。请注意如果你无法登入，有可能是你配置里的 JWT 秘钥没有正确设置。
 
-### Using the pre-packaged WAR file
+### 使用打好的 WAR 包
 
 JHipster Registry 发布为一个可运行的 WAR 包，提供在我们的网页上：[发布网页](https://github.com/jhipster/jhipster-registry/releases).
 
-下载 WAR 文件，已普通 JHipster 应用的方式启动，设置你想要使用的 profile (看上面有关 profile 的章节)。例如, to run it using a Spring Cloud Config configuration stored in the `central-config` directory:
+下载 WAR 文件，已普通 JHipster 应用的方式启动，设置你想要使用的 profile (看上面有关 profile 的章节)。例如，使用在 `central-config` 目录下配置的方式运行：
 
     ./jhipster-registry-<version>.war --spring.security.user.password=admin --jhipster.security.authentication.jwt.secret=my-secret-key-which-should-be-changed-in-production-and-be-base64-encoded --spring.cloud.config.server.composite.0.type=native --spring.cloud.config.server.composite.0.search-locations=file:./central-config
 （译注：windows 下不能这样运行，windows 环境应该是：`java -jar jhipster-registry-<version>.war`）
 
-Note that it is important to provide a JWT secret key to the registry on startup, either via the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_SECRET` environment variable or with arguments as shown above. Another possible way is to set this value in the `application.yml` file of your centralized configuration source (which is loaded on startup by all your applications including the registry).
+请注意这非常重要：要在启动时设置一个 JWT 秘钥，在 `JHIPSTER_SECURITY_AUTHENTICATION_JWT_SECRET` 环境变量上设置，或者类似上面例子里在启动命令里设置参数。还有一个可以设置的地方是 `application.yml` 文件，在配置中心源里（在启动时都会被应用加载上）。
 
-Please note that since JHipster 5.3.0 we have a new `jhipster.security.authentication.jwt.base64-secret` property, which is more secure, but as you might still use older releases
-we use `jhipster.security.authentication.jwt.secret` in this documentation. More information on those properties is available in our [security documentation]({{ site.url }}/security/).
+请注意从 JHipster 5.3.0 开始，我们设置了一个新的 `jhipster.security.authentication.jwt.base64-secret` 属性，这个更安全，但你可能还在用老版本。
+我们在这个文档中使用 `jhipster.security.authentication.jwt.secret` 。更多有关这些属性的说明参考文档 [安全]({{ site.url }}/security/).
 
-Similarly, to run the registry with the `prod` profile, adapt the arguments to your setup, for example:
+类似的，还可以运行 `prod` profile，设置参数，如：
 
     ./jhipster-registry-<version>.war --spring.profiles.active=prod --spring.security.user.password=admin --jhipster.security.authentication.jwt.secret=my-secret-key-which-should-be-changed-in-production-and-be-base64-encoded --spring.cloud.config.server.composite.0.type=git --spring.cloud.config.server.composite.0.uri=https://github.com/jhipster/jhipster-registry-sample-config
 
@@ -66,14 +66,14 @@ Similarly, to run the registry with the `prod` profile, adapt the arguments to y
 
 ### 从源码构建
 
-The JHipster Registry can be cloned/forked/downloaded directly from [jhipster/jhipster-registry](https://github.com/jhipster/jhipster-registry). As the JHipster Registry is also a JHipster-generated application, you can run it like any other JHipster application:
+JHipster Registry 可以从 [jhipster/jhipster-registry](https://github.com/jhipster/jhipster-registry) 仓库 克隆/fork/下载。因为 JHipster Registry 也是一个用 JHipster 生成的应用，你也可以像运行其他 JHipster 应用一样运行：
 
-- run it in development with `./mvnw` (for the Java server) and `yarn start` (for managing the front-end), it will use by default the `dev` profile and it will be available at [http://127.0.0.1:8761/](http://127.0.0.1:8761/).
-- use `./mvnw -Pprod package` to package it in production, and generate the usual JHipster executable WAR file. You can then run the WAR file using the `dev` or `prod` Spring profile, for example: `./jhipster-registry-<version>.war --spring.profiles.active=prod`
+- 运行开发模式 `./mvnw` (启动 Java server) 并且 `yarn start` (启动前端)，将会使用默认的 `dev` profile，访问 [http://127.0.0.1:8761/](http://127.0.0.1:8761/).
+- 使用 `./mvnw -Pprod package` 来打生产环境包，并且是可执行的 WAR 包。然后你可以运行 WAR 包并使用 `dev` 或 `prod` profile，如：`./jhipster-registry-<version>.war --spring.profiles.active=prod`
 
-请注意使用 `dev` and `composite` profile 时，你还需要设置一个 `central-config` 目录， so if you run `./jhipster-registry-<version>.war --spring.profiles.active=dev`, you need to have that directory set up.
+请注意使用 `dev` 及 `composite` profile 时，你还需要设置一个 `central-config` 目录， 所以你运行 `./jhipster-registry-<version>.war --spring.profiles.active=dev` 时，需要设置那个目录.
 
-### Using Docker
+### 使用 Docker
 
 If you'd rather run the JHipster Registry from a Docker image, it is available on Docker Hub at [jhipster/jhipster-registry](https://hub.docker.com/r/jhipster/jhipster-registry/). A docker-compose file to easily run this image is already present within each microservice `src/main/docker` directory:
 
@@ -81,7 +81,7 @@ If you'd rather run the JHipster Registry from a Docker image, it is available o
 
 Please read our [Docker Compose documentation]({{ site.url }}/docker-compose/) for more information on using the JHipster Registry with Docker Compose.
 
-### Running in the cloud
+### 运行在云环境
 
 It's very easy to host a JHipster Registry instance in the cloud. This is mandatory in production, but this can also be useful in development (there is no need to run it on your laptop).
 
@@ -172,7 +172,7 @@ The configuration dashboard uses Spring Boot Actuator's configuration endpoint t
 
 The logs dashboard allows to manage at runtime the Logback configuration of the running application. Changing the log level of a Java package is as simple as clicking on a button, which is very convenient both in development and in production.
 
-## <a name="security"></a> JHipster Registry 安全
+## <a name="security"></a> JHipster Registry 的安全
 
 The JHipster Registry is secured by default. You can login using the usual "admin/admin" login and password that are used in normal JHipster applications.
 

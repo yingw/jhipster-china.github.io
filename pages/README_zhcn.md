@@ -55,9 +55,9 @@ sitemap:
     - [x] 概述（100%）
     - [x] API 网关（100%）
     - [x] Traefik（100%）
-    - [ ] JHipster 注册中心（20%）
-    - [ ] Consul（%）
-    - [x] JHipster UAA（ 50%）
+    - [ ] JHipster 注册中心（40%）
+    - [ ] Consul（50%）
+    - [ ] JHipster UAA（ 50%）
     - [ ] 创建微服务（%）
     - [ ] 生产环境的微服务（20%）
 - [ ] 可选项（%）
