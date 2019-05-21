@@ -75,110 +75,111 @@ JHipster Registry 可以从 [jhipster/jhipster-registry](https://github.com/jhip
 
 ### 使用 Docker
 
-If you'd rather run the JHipster Registry from a Docker image, it is available on Docker Hub at [jhipster/jhipster-registry](https://hub.docker.com/r/jhipster/jhipster-registry/). A docker-compose file to easily run this image is already present within each microservice `src/main/docker` directory:
+如果你希望使用 Docker 来运行 JHipster Registry，可以从 Docker Hub [jhipster/jhipster-registry](https://hub.docker.com/r/jhipster/jhipster-registry/) 下载。有个 docker-compose 文件来运行镜像连同在 `src/main/docker` 目录下的所有微服务：
 
-- run `docker-compose -f src/main/docker/jhipster-registry.yml up` to start the JHipster Registry. It will be available on port `8761` of your Docker host, so if it runs on your machine it should be at [http://127.0.0.1:8761/](http://127.0.0.1:8761/).
+- 执行 `docker-compose -f src/main/docker/jhipster-registry.yml up` 启动 JHipster Registry。他将运行在 Docker 主机的端口 `8761`，所以如果是在你的电脑上运行，可以访问 [http://127.0.0.1:8761/](http://127.0.0.1:8761/)。
 
-Please read our [Docker Compose documentation]({{ site.url }}/docker-compose/) for more information on using the JHipster Registry with Docker Compose.
+请参阅 [Docker Compose]({{ site.url }}/docker-compose/) 文档来获取更多关于使用 Docker Compose 运行 JHipster Registry 的信息。
 
 ### 运行在云环境
 
-It's very easy to host a JHipster Registry instance in the cloud. This is mandatory in production, but this can also be useful in development (there is no need to run it on your laptop).
+将 JHipster Registry 实例部署到云里非常方便。这对于生产环境是必要的，但同时对于开发环境也是非常有用的（并不需要在你的开发工作机上运行）。
 
-Please read [the "microservices in production" documentation]({{ site.url }}/microservices-in-production/) to learn how to deploy the JHipster Registry to Cloud Foundry or to Heroku.
+请参阅 ["生产环境中的微服务" 文档]({{ site.url }}/microservices-in-production/) 来了解更多关于如何部署 JHipster Registry 到 Cloud Foundry 或 Heroku 的信息。
 
 ## <a name="eureka"></a> 使用 Eureka 服务发现
 
 ![]({{ site.url }}/images/jhipster-registry-eureka.png)
 
-The JHipster Registry is a [Netflix Eureka server](https://github.com/Netflix/eureka), that provides service discovery for all applications.
+JHipster Registry 是一个 [Netflix Eureka server](https://github.com/Netflix/eureka) 的应用，提供了应用的服务发现服务。
 
-- This is very useful for microservices architectures: this is how the gateways know which microservices are available, and which instances are up
-- For all applications, including monoliths, this is how the Hazelcast distributed cache can automatically scale, see [the Hazelcast cache documentation]({{ site.url }}/using-cache/)
+- 这对于微服务架构是非常有用的功能：这使得网关（Gateway）能知晓哪些微服务可用，哪些实例正在运行。
+- 对于所有应用，包括巨石类应用，使得 Hazelcast 分布式缓存可以自动伸缩，参考 [Hazelcast 缓存]({{ site.url }}/using-cache/) 文档。
 
 ## <a name="spring-cloud-config"></a> 使用 Spring Cloud Config 配置应用
 
 ![]({{ site.url }}/images/jhipster-registry-spring-cloud-config.png)
 
-The JHipster Registry is a [Spring Config Server](http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html): when applications are launched they will first connect to the JHipster Registry to get their configuration. This is true for both gateways and microservices.
+JHipster Registry 同时也是一个 [Spring Config Server](http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html) 应用：当应用刚启动时他们会连接 JHipster Registry 来获取他们的配置项。对于网关和微服务都是如此。
 
-This configuration is a Spring Boot configuration, like the one found in the JHipster `application-*.yml` files, but it is stored in a central server, so it is easier to manage.
+配置是一个 Spring Boot 配置文档，就如同 JHipster 的 `application-*.yml` 文件，但是是存储在中央服务器中的，方便管理。
 
-On startup, your gateways and microservices app will query the Registry's config server and overwrite their local properties with the ones defined there.
+启动时，你的网关应用和微服务应用都会查询 Registry 的配置服务器并覆盖他们本地定义的配置。
 
-Two kinds of configurations sources are available (defined by the `spring.cloud.config.server.composite` property):
+支持两种配置源（定义在 `spring.cloud.config.server.composite` 属性中）：
 
-- A `native` configuration, which is used by default in development (using the JHipster `dev` profile), and which uses the local filesystem.
-- A `Git` configuration, which is used by default in production (using the JHipster `prod` profile), and which stores the configuration in a Git server. This allows to tag, branch or rollback configurations using the usual Git tools, which are very powerful in this use-case.
+- `native` 配置，这在开发环境中是默认选项（使用 JHipster `dev` profile），会使用本地文件系统。
+- `Git` 配置，这在生产环境中是默认选项（使用 JHipster `prod` profile），会使用存储在 Git 服务器上的配置。这种方式下还允许使用 Tag、分支或使用 Git 工具回滚配置，这在某些场合下非常有用。
+- （译注：Spring Cloud Config 还支持很多配资源，传统如数据库。Git 环境如果不是作为生产环境的一部分可以考虑使用数据库方式，参考[文档](https://cloud.spring.io/spring-cloud-config/spring-cloud-config.html#_environment_repository)。）
 
-To manage your centralized configuration you just need to add `appname-profile.yml` files in your configuration source where **appname** and **profile** correspond to the application's name and current profile of the service that you want to configure.
-For example, adding properties in a `gateway-prod.yml` file will set those properties only for the application named **gateway** started with a **prod** profile. Moreover, properties defined in `application[-dev|prod].yml` will be set for all your applications.
+要管理你的配置，你只需要在配置源中添加 `appname-profile.yml` 文件，这里的 **appname** 和 **profile** 就是应用的名称和当前你在配置的 profile。
+例如：添加配置文件 `gateway-prod.yml` 会影响应用 **gateway** 并允许于 **prod** profile。另外，定义在 `application[-dev|prod].yml` 配置文件中的属性会影响你所有的应用。
 
-As the Gateway routes are configured using Spring Boot, they can also be managed using the Spring Config Server, for example you could map application `app1-v1` to the `/app1` URL in your `v1` branch, and map application `app1-v2` to the `/app1` URL in your `v2` branch. This is a good way of upgrading microservices without any downtime for end-users.
+由于网关应用的路由也是由 Spring Boot 配置的，它们也可以用 Spring Config Server 来管理，例如你可以配置应用 `app1-v1` 映射至 `/app1` URL 在你的 `v1` 分支上，同时 `app1-v2` 映射至 `/app1` URL 在 `v2` 分支。这对于升级微服务并避免停机升级很有帮助。
 
 ### <a name="encryption"></a> 使用加密配置值
 
 JHipster Registry 有一个特殊的 `configuration > encryption` 网页来执行加密和解密配置。
 
-To encrypt configuration values (for example, database passwords) you need to:
+要加密配置项的值（比如，数据库密码）：
 
-- 下载 [JCE](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html) and install it by following the instructions in the downloaded files (this is only required if you are using the Oracle JDK).
+- 下载 [JCE](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html) 并根据下载文件中的说明安装（只在你使用的是Oracle JDK 的时候需要这一步）。
 - 设置 `encrypt.key` 属性，在 `bootstrap.yml` 文件里 (注意不是 `application.yml`) 或者设置 `ENCRYPT_KEY` 环境变量 with your symmetric key passphrase.
 
-If everything is setup correctly, you should be able to use the specific `Configuration > Encryption` page, and also send POST requests to `/config/encrypt` and `/config/decrypt` endpoints with the text you want to manipulate in the `body` of the requests.
+所有都设置正确的话，你应该可以访问 `Configuration > Encryption` 页，并能提交 POST 请求到 `/config/encrypt` 和 `/config/decrypt` 并带上你希望加密或解密的文本，放在请求的 `body` 中。
 
-For example: `curl localhost:8761/config/encrypt -d mypassword`
+如： `curl localhost:8761/config/encrypt -d mypassword` （译注：应该还有个 -X POST）
 
-The cipher text must be placed in any `*.yml` configuration file, in the form `password= '{cipher}myciphertextafterencryotion'` and it will be decrypted by the config server before sending it to its clients. This way your configuration files (stored in Git or stored "natively" on your filesystem) do not have plain text values.
+加密的文本要放在 `*.yml` 配置文件里，格式为 `password= '{cipher}myciphertextafterencryotion'` 并在配置服务发给客户端前会被解密。这样你的配置文件（存在 Git 或 "natively" 在文件系统上）就不会有未加密文本了。
 
-For more information, please refer to Spring Cloud Config's [Encryption and Decryption documentation](http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html#_encryption_and_decryption).
+查看更多说明，访问 Spring Cloud Config 的文档 [加密和解密](http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html#_encryption_and_decryption).
 
 ## <a name="dashboards"></a> 管理中心
 
-The JHipster Registry provides administration dashboards, which are used for all application types. As soon as an application registers on the Eureka server, it will become available in the dashboards.
+JHipster Registry 提供了一个管理面板，适用于所有类型的应用。当应用在 Eureka 上注册成功后，就可以在管理面板里看到了。
 
-In order to access sensitive information from the applications, the JHipster Registry will use a JWT token (this is why the JHipster Registry only works for applications using JWT). The JWT key used to sign the request should be the same for the applications and the JHipster Registry: as by default the JHipster Registry configures applications through Spring Cloud Config, this should work out-of-the-box, as it will send the same key to all applications.
+为访问应用的敏感信息，JHipster Registry 使用了一个 JWT token (这也是为什么 JHipster Registry 只能工作与使用 JWT 应用的原因)。 用于应用和 JHipster Registry 的 JWT key 应该是相同的：由于 JHipster Registry 默认使用 Spring Cloud Config，它会发送统一的 key 给所有应用，应该是原生可用。
 
-### The metrics dashboard
+### 度量面板
 
 ![]({{ site.url }}/images/jhipster-registry-metrics.png)
 
-The metrics dashboard uses Dropwizard metrics to give a detailed view of the application performance.
+度量面板使用了 Dropwizard 的度量共来提供一个详细的应用性能描述。
 
-It gives metrics on:
+提供了关于：
 
-- the JVM
-- HTTP requests
-- methods used in Spring Beans (using the `@Timed` annotation)
-- database connection pool
+- JVM
+- HTTP 请求
+- Spring Beans 里的方法 (使用 `@Timed` 注解)
+- 数据库连接池
 
-By clicking on the eye next to the JVM thread metrics, you will get a stacktrace of the running application, which is very useful to find out blocked threads.
+点击 JVM 线程旁边的眼睛图标，你可以查看运行中应用的堆栈记录，这对于找线程问题很有帮助。
 
-### The health dashboard
+### 健康度面板
 
 ![]({{ site.url }}/images/jhipster-registry-health.png)
 
-The health dashboard uses Spring Boot Actuator's health endpoint to give health information on various parts of the application. Many health checks are provided out-of-the-box by Spring Boot Actuator, and it's also very easy to add application-specific health checks.
+健康度使用 Spring Boot Actuator 的 health 管理端点来提供应用的多方面健康信息。很多 Spring Boot Actuator 提供的健康度检查都是开箱即用的，并且也非常易于扩展添加新的健康检查。
 
-### The configuration dashboard
+### 配置面板
 
 ![]({{ site.url }}/images/jhipster-registry-configuration.png)
 
-The configuration dashboard uses Spring Boot Actuator's configuration endpoint to give a full view of the Spring configuration of the current application.
+配置面板使用 Spring Boot Actuator 的 configuration 管理端点来获得当前应用的所有配置。
 
-### The logs dashboard
+### 日志面板
 
 ![]({{ site.url }}/images/jhipster-registry-logs.png)
 
-The logs dashboard allows to manage at runtime the Logback configuration of the running application. Changing the log level of a Java package is as simple as clicking on a button, which is very convenient both in development and in production.
+日志面板可以用来管理运行时的 Logback 配置。修改 Java 包的日志等级只需要简单地点击一个按钮，这在开发和生产环境中都是十分有帮助的。
 
 ## <a name="security"></a> JHipster Registry 的安全
 
-The JHipster Registry is secured by default. You can login using the usual "admin/admin" login and password that are used in normal JHipster applications.
+JHipster Registry 是默认需要认证的。可以使用默认的 "admin/admin" 账号登入。
 
-Applications also connect to the JHipster Registry using that same "admin" user, but use HTTP Basic authentication. So if your microservices cannot access the registry, and you see some "401 authentication error" messages, it is because you have misconfigured those applications.
+应用也使用这个 "admin" 用户连接 JHipster Registry，但是是通过 HTTP 基础认证。所以如果你的微服务连不上 registry，并看到类如 "401 authentication error" 错误消息，说明应用里的设置有问题。
 
-In order to secure your JHipster Registry:
+为了更安全地使用 JHipster Registry：
 
-- You must change the default "admin" password. This password is set using the standard Spring Boot property `spring.security.user.password`, so you can use the usual Spring Boot mechanisms to modify it: you could modify the project's `application-*.yml` files, or add a `SPRING_SECURITY_USER_PASSWORD` environment variable. The [Docker Compose sub-generator]({{ site.url }}/docker-compose/) uses the environment variable method.
-- As your applications will connect to the registry using HTTP, it is very important to secure that connection channel. There are many ways to do it, and the easiest one is probably to use HTTPS.
+- 你必须修改默认的 "admin" 密码。该密码设置在 Spring Boot 标准属性 `spring.security.user.password`，你可以使用常用的 Spring Boot 方式去修改之：修改项目的 `application-*.yml` 文件，或添加 `SPRING_SECURITY_USER_PASSWORD` 环境变量。[Docker Compose sub-generator]({{ site.url }}/docker-compose/) 只能使用环境变量方式。
+- 应用使用 HTTP 协议连接 Registry，加密连接通道非常重要。有很多方式，比较简单是使用 HTTPS。
