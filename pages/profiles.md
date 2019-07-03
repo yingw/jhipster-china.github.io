@@ -41,41 +41,41 @@ _注意:_ Spring 的 profile 用来设置 JHipster 应用的属性（propertie�
 
 ## 在生产环境，JHipster 必须使用 `prod` profile
 
-You can run JHipster in production directly using Maven or Gradle:
+你可以在生产环境中用 Maven 或 Gradle 来运行 JHipster 应用：
 
-*   With Maven, run `./mvnw -Pprod` (or `mvn -Pprod`)
-*   With Gradle, run `./gradlew -Pprod` (or `gradle -Pprod`)
+*   使用 Maven, 运行 `./mvnw -Pprod` (或 `mvn -Pprod`)
+*   使用 Gradle, 运行 `./gradlew -Pprod` (或 `gradle -Pprod`)
 
-如果希望打包为可执行 WAR 文件，可以在 package 时传 profile 给 Maven or Gradle。例如：
+如果希望打包为可执行 WAR 文件，可以在 package 时传 profile 给 Maven 或 Gradle。例如：
 
-*   With Maven, run `./mvnw -Pprod package` (or `mvn -Pprod package`)
-*   With Gradle, run `./gradlew -Pprod bootWar` (or `gradle -Pprod bootWar`)
+*   使用 Maven, 运行 `./mvnw -Pprod package` (或 `mvn -Pprod package`)
+*   使用 Gradle, 运行 `./gradlew -Pprod bootWar` (或 `gradle -Pprod bootWar`)
 
 当以 WAR 文件运行生产环境应用，默认既使用打包时指定的 profile。如果你希望复写这个 profile，可以在 VM 参数上提供明确的声明：
 
 *   `./java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=...`
 
-## Spring profiles switches
+## 其他 Spring profiles
 
-JHipster comes with three additional profiles used as switches:
+JHipster 还有三个可选的 profiles:
 
-*   `swagger` to enable swagger
-*   `no-liquibase` to disable liquibase
-*   `tls` to enable TLS security and use the HTTP/2 protocol (see [the TLS and HTTP/2 documentation]({{ site.url }}/tls/))
+*   `swagger` 来启用 swagger
+*   `no-liquibase` 来禁用 liquibase
+*   `tls` 开启用 TLS 安全并使用 HTTP/2 协议 (参考 [TLS 和 HTTP/2 文档]({{ site.url }}/tls/))
 
-These can be used along with both the `dev` and `prod` profiles. Please note that by default, the `swagger` profile is disabled in `prod` and enabled in `dev` by setting the `spring.profiles.include` property in `application.yml`.
+这些可以和 `dev` 以及 `prod` profile 一起使用。注意默认 `swagger` profile 在 `prod` 下禁用了，在 `dev` 下启用，通过 `application.yml` 设置 `spring.profiles.include` 属性来设置的。
 
-`swagger`, `no-liquibase`, `tls` are only used at runtime:
+`swagger`, `no-liquibase`, `tls` 只作用于运行时：
 
-*   In your IDE, run your main application class with `spring.profiles.active=dev,no-liquibase` (please note you need to include the `dev` or `prod` profile explicitly)
-*   With a packaged application: `./java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=prod,no-liquibase`
+*   在你的 IDE 里，运行应用主类加上 `spring.profiles.active=dev,no-liquibase` (注意你需要显式地加上 `dev` 或 `prod` profile 声明)
+*   使用打包的应用时：`./java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=prod,no-liquibase`
 
-With Maven, you can also use those profiles directly:
+使用 Maven，你还可以直接调用这些 profile:
 
 *   `./mvnw -Pprod,swagger,no-liquibase`
 *   `./mvnw -Pdev,no-liquibase`
 
-With Gradle, you can also use those profiles directly:
+使用 Gradle，你也可以直接调用这些 profile:
 
 *   `./gradlew -Pprod -Pswagger -Pno-liquibase`
 *   `./gradlew -Pno-liquibase`

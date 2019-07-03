@@ -11,23 +11,23 @@ sitemap:
 
 # <i class="fa fa-code"></i> JHipster 开发相关技术
 
-_**Please check our [video tutorial]({{ site.url }}/video-tutorial/) on creating a new JHipster application!**_
+_**请在这里 [视频教程]({{ site.url }}/video-tutorial/) 查看我们关于创建 JHipster 应用的教程！**_
 
-## Summary
+## 概述
 
-1.  [General configuration](#general-configuration)
-2.  [Running the Java server](#running-java-server)
-3.  [Working with Angular/React](#working-with-angular)
-4.  [Using a database](#using-a-database)
-5.  [Internationalization](#internationalization)
+1.  [通用配置](#general-configuration)
+2.  [运行 Java 服务器](#running-java-server)
+3.  [运行 Angular/React](#working-with-angular)
+4.  [使用数据库](#using-a-database)
+5.  [国际化](#internationalization)
 
-## <a name="general-configuration"></a> General configuration
+## <a name="general-configuration"></a> 通用配置
 
-### IDE configuration
+### IDE 设置
 
 If you haven't configured your IDE yet, please go to the [Configuring your IDE]({{ site.url }}/configuring-ide/) page.
 
-### Application configuration
+### 应用配置
 
 By default, JHipster uses the "development" profile, so you don't have to configure anything.
 
@@ -35,9 +35,9 @@ If you want more information on the available profiles, please go the section ti
 
 If you want to configure some specific JHipster properties, have a look at the [common application properties]({{ site.url }}/common-application-properties/) page.
 
-## <a name="running-java-server"></a> Running the Java server
+## <a name="running-java-server"></a> 运行 Java 服务器
 
-### As a "main" Java class
+### 作为 "main" Java 类
 
 From your IDE, right-click on the "Application" class at the root of your Java package hierarchy, and run it directly. You should also be able to debug it as easily.
 
@@ -45,7 +45,7 @@ The application will be available on [http://localhost:8080](http://localhost:80
 
 This application will have "hot reload" enabled by default, so if you compile a class, the Spring application context should refresh itself automatically, without the need to restart the server.
 
-### As a Maven project
+### 作为 Maven 项目
 
 You can launch the Java server with Maven. JHipster provides a Maven wrapper, so you don't need to install Maven, and you have the guarantee that all project users have the same Maven version:
 
@@ -61,7 +61,7 @@ Alternatively, if you have installed Maven, you can launch the Java server with 
 
 If you want more information on using Maven, please go to [http://maven.apache.org](http://maven.apache.org)
 
-### (Optional) As a Gradle project
+### (可选) 作为 Gradle 项目
 
 If you selected the Gradle option, JHipster provides a Gradle wrapper, so you don't need to install Gradle, and you have the guarantee that all project users have the same Gradle version:
 
@@ -77,9 +77,9 @@ The application will be available on [http://localhost:8080](http://localhost:80
 
 If you want more information on using Gradle, please go to [https://gradle.org](https://gradle.org)
 
-## <a name="working-with-angular"></a> Working with Angular/React
+## <a name="working-with-angular"></a> 运行 Angular/React
 
-### Running Webpack
+### 运行 Webpack
 
 _This step is required to see changes in your TypeScript code and have live reloading of your client-side code._
 
@@ -101,13 +101,13 @@ This will launch:
 - A BrowserSync task that will run on [http://localhost:9000/](http://localhost:9000/), which has a proxy to [http://localhost:9060/](http://localhost:9060/) (the Webpack "hot module reload" server), and which will synchronize the user's clicks/scrolls/inputs
 - The BrowserSync UI, which will be available on [http://localhost:3001/](http://localhost:3001/)
 
-### Running NPM
+### 运行 NPM
 
 Direct project dependencies are configured into `package.json`, but transitive dependencies are defined into the `package-lock.json` file, that get generated when `npm install` is run.
 
 It is advised to check `package-lock.json`[https://docs.npmjs.com/files/package-lock.json] into source control, so that all team members of a project have the same versions of all dependencies. Running `npm install` again will regenerate the `package-lock.json` with the latest versions of transitive dependencies.
 
-### Other NPM/Yarn tasks
+### 其他 NPM/Yarn 任务
 
 Those tasks are the same whether you use NPM or Yarn, we use the `npm` command as an example but you can replace it with `yarn`.
 
@@ -118,9 +118,9 @@ Those tasks are the same whether you use NPM or Yarn, we use the `npm` command a
 - `npm run test:watch`: keep the Jest unit tests running, for live feedback when code is changed
 - `npm run e2e`: run "end to end" tests with Protractor (only works if the Protractor option has been selected when the project was generated)
 
-## <a name="using-a-database"></a> Using a database
+## <a name="using-a-database"></a> 使用数据库
 
-### Running a database
+### 运行数据库
 
 If you use a non-embedded database, like MySQL, MariaDB, PostgreSQL, MSSQL, MongoDB, Cassandra or Couchbase, you will need to install and configure that database.
 
@@ -128,7 +128,7 @@ The easiest and recommended way with JHipster is to use Docker Compose. [Follow 
 
 If you prefer to install and configure your database manually, don't forget to configure your Spring Boot properties accordingly in your `src/main/resources/config/application-*.yml` files (for example your database URL, login and password).
 
-### Using the H2 database in development
+### 在开发环境中使用 H2 数据库
 
 If you choose the H2 database, you will have an in-memory database running inside your application, and you can access its console at [http://localhost:8080/h2-console](http://localhost:8080/h2-console) by default.
 
@@ -141,7 +141,7 @@ To connect to the database, select the pre-configured options:
 
 ![]({{ site.url }}/images/h2.png)
 
-### Using MySQL, MariaDB or PostgreSQL in development
+### 在开发环境中使用 MySQL, MariaDB 或 PostgreSQL
 
 This option is bit more complex than using H2, but you have a some important benefits:
 
@@ -160,13 +160,13 @@ The command is:
 
     mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8 --explicit_defaults_for_timestamp
 
-## Database updates
+## 数据库更新
 
 If you add or modify a JPA entity, you will need to update your database schema.
 
 JHipster uses [Liquibase](http://www.liquibase.org) to manage the database updates, and stores its configuration in the `/src/main/resources/config/liquibase/` directory. There are 3 ways to work with Liquibase: use the entity sub-generator, use the liquibase:diff Maven goal, or update the configuration files manually.
 
-### Database updates with the entity sub-generator
+### 使用 entity 命令更新数据库
 
 If you use the [entity sub-generator]({{ site.url }}/creating-an-entity/), here is the development workflow:
 
@@ -174,7 +174,7 @@ If you use the [entity sub-generator]({{ site.url }}/creating-an-entity/), here 
 *   A new "change log" is created in your `src/main/resources/config/liquibase/changelog` directory, and has been automatically added to your `src/main/resources/config/liquibase/master.xml` file
 *   Review this change log, it will be applied the next time you run your application
 
-### 用 Maven liquibase:diff 命令做数据库更新
+### 用 Maven liquibase:diff 命令更新数据库
 
 If you have choosen to use MySQL, MariaDB or PostgreSQL in development, you can use the `./mvnw liquibase:diff` goal to automatically generate a changelog.
 
@@ -192,7 +192,7 @@ Here is the development workflow:
 
 If you use Gradle instead of Maven, you can use the same workflow by running `./gradlew liquibaseDiffChangelog -PrunList=diffLog`, and change the database configuration in `build.gradle` in the liquibase configuration if required.
 
-### Database updates by manually editing the change log
+### 手动修改变更日志来更新数据库
 
 If you prefer (or need) to do a database update manually, here is the development workflow:
 
@@ -202,7 +202,7 @@ If you prefer (or need) to do a database update manually, here is the developmen
 
 If you want more information on using Liquibase, please go to [http://www.liquibase.org](http://www.liquibase.org).
 
-## <a name="internationalization"></a> Internationalization
+## <a name="internationalization"></a> 国际化
 
 Internationalization (or i18n) is a first-class citizen in JHipster, as we believe it should be set up at the beginning of your project (and not as an afterthought).
 

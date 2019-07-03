@@ -1,68 +1,68 @@
 ---
 layout: default
-title: Filtering
+title: 查询过滤
 permalink: /entities-filtering/
 sitemap:
     priority: 0.7
     lastmod: 2017-08-22T00:00:00-00:00
 ---
 
-# <i class="fa fa-filter"></i> Filtering your entities
+# <i class="fa fa-filter"></i> 实体对象的查询过滤
 
-## Introduction
+## 介绍
 
-After the basic CRUD functionalities are implemented for an entity, there is a very common request to create various filters for the attributes of the entity,
-so the server could be used more effectively. These filters should be sent as the request parameters, so any client - and any browser - could use it easily.
-Additionally, these filters should follow a sane, and concise pattern, and they must be allowed combining them freely.
+在实现了实体的基础增删查改（CRUD）功能后，就会碰到一个常见的需求：需要对实体对象的属性进行多种过滤查询条件，
+使得服务端查询会变得更有效。这些查询条件可以作为请求参数，来使客户端和浏览器都能很方便地使用。
+另外，这些条件应该能遵循一定的模式，使得它们能被自由地使用。
 
-## How to activate
+## 如何启用
 
-When generating an entity with `jhipster entity` command, select services or service implementation to enable filtering on this entity. 
+当使用 `jhipster entity` 命令创建实体时，选择使用 services 或 service implementation 来在这个实体上启用查询条件。
 
-If you want to enable filtering for existing entities, you can modify the entity configuration in your projects `.jhipster` directory, by setting `service` to `serviceClass` or `serviceImpl` from `no`, and `jpaMetamodelFiltering` to `true` and then re-generate with `jhipster entity <entity name>`.
+如果你想在一个现有的实体上启用，可以编辑项目文件夹 `.jhipster` 里的实体对象配置文件，把 `service` 参数从 `no` 改为 `serviceClass` 或 `serviceImpl`，以及 `jpaMetamodelFiltering` 属性改为 `true`，最后重新生成对象命令：`jhipster entity <entity name>`。
 
-When using JDL, add a line `filter <entity name>` to your JDL file and re-import the definitions with `jhipster import-jdl` command.
+如果使用了 JDL，添加一行：`filter <entity name>`，然后重新导入： `jhipster import-jdl`。
 
-## Public interface
+## 公共接口
 
-For each entity, you can enable filtering in the entity generator, and after, you can call your `/api/my-entity` GET endpoint with the following parameters :
+对于每个实体对象，你可以启用查询条件，然后你就可以通过 `/api/my-entity` 的 GET 端点以及这些参数:
 
-* For each *xyz* field
+* 对于每一个 *xyz* 字段
     * *xyz.equals=someValue*
-        - To list all the entities, where xyz equals to 'someValue'
+        - 列出所有 xyz 等于 'someValue' 的对象
     * *xyz.in=someValue,otherValue*
-        - To list all the entities, where xyz equals to 'someValue' or 'otherValue'
+        - 列出所有 xyz 等于 'someValue' 或 'otherValue' 的对象
     * *xyz.specified=true*
-        - To list all the entities, where xyz is not null, specified.
+        - 列出所有 xyz 不为空的对象
     * *xyz.specified=false*
-        - To list all the entities, where xyz is null, unspecified.
-* If *xyz*'s type is string:
+        - 列出所有 xyz 为空的对象
+* 如果 *xyz* 字段的类型是 string:
     * *xyz.contains=something*
-        - To list all the entities, where xyz contains 'something'.
-* If *xyz*'s is either any of the number types, or the date types.
+        - 列出所有 xyz 的值含有 'something' 的对象
+* 如 *xyz* 字段是任意数字类型，或日期类型
     * *xyz.greaterThan=someValue*
-        - To list all the entities, where xyz is greater than 'someValue'.
+        - 列出所有 xyz 的值大于 'someValue'
     * *xyz.lessThan=someValue*
-        - To list all the entities, where xyz is less than 'someValue'.
+        - 列出所有 xyz 的值小于 'someValue'
     * *xyz.greaterOrEqualThan=someValue*
-        - To list all the entities, where xyz is greater than or equal to 'someValue'.
+        - 列出所有 xyz 的值大于等于 'someValue'
     * *xyz.lessOrEqualThan=someValue*
-        - To list all the entities, where xyz is less than or equal to 'someValue'.
+        - 列出所有 xyz 的值小于等于 'someValue'
 
-Of course, they can be combined freely.
+当然的，他们之间还能自由组合。
 
-A good way to experience the expressiveness of this filter API is to use it from swagger-ui in the API docs page of your JHipster application.
+对于该表达式的一个不错的测试的方式是从你的 JHipster 应用的 API 文档页面的 swagger-ui 来进行测试
 
 ![]({{ site.url }}/images/entities_filtering_swagger.png)
 
-## Implementation
+## 实现
 
-When this feature is enabled, a new service named as `EntityQueryService` and an `EntityCriteria` is generated. Spring will convert the request parameters into the fields of the `EntityCriteria` class.
+当此特性启用时，会创建好一个新的服务类 `EntityQueryService` 以及另一个 `EntityCriteria`。Spring 会将请求参数转换成 `EntityCriteria` 类的属性。
 
-In the `EntityQueryService`, we convert the criteria object into a static, and type safe, JPA query object. For this, it is **required** that the **static metamodel generation is enabled** in the build. See the [JPA Static Metamodel Generator documentation](http://docs.jboss.org/hibernate/orm/current/topical/html_single/metamodelgen/MetamodelGenerator.html) for details.
+在 `EntityQueryService` 类里，我们将 criteria 对象转换成一个静态的、类型安全的 JPA 查询对象。对此，还需要在编译时 **开启了静态元模型生成（static metamodel generation）** 。参考 [JPA Static Metamodel Generator 文档](http://docs.jboss.org/hibernate/orm/current/topical/html_single/metamodelgen/MetamodelGenerator.html)。
 
-To prove that the generated criteria is working, and Spring is well configured, the `EntityResourceIntTest` is extended with lots of test cases, one for each individual filter.
+为了验证生成的查询条件生效了，以及相关的 Spring 配置，继承 `EntityResourceIntTest` 生成了很多测试案例，每一个都算独立的查询条件。
 
-## Limitations
+## 限制
 
-Currently only SQL databases (with JPA) is supported, with the separate service or separate service implementation/interface combination.
+目前只支持 SQL 数据库 (并使用了 JPA)，并启用了服务层（接口或实现）。
